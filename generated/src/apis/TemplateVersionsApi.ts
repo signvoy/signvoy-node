@@ -14,32 +14,32 @@
 
 import * as runtime from '../runtime';
 
-export interface DiscardDraftRequest {
+export interface TemplateVersionsDiscardDraftRequest {
     templateId: string;
 }
 
-export interface EnsureDraftRequest {
+export interface TemplateVersionsEnsureDraftRequest {
     templateId: string;
 }
 
-export interface FindOneRequest {
+export interface TemplateVersionsFindOneRequest {
     templateId: string;
     versionId: string;
 }
 
-export interface GetDraftRequest {
+export interface TemplateVersionsGetDraftRequest {
     templateId: string;
 }
 
-export interface ListVersionsRequest {
+export interface TemplateVersionsListVersionsRequest {
     templateId: string;
 }
 
-export interface PublishRequest {
+export interface TemplateVersionsPublishRequest {
     templateId: string;
 }
 
-export interface UpsertDraftRequest {
+export interface TemplateVersionsUpsertDraftRequest {
     templateId: string;
 }
 
@@ -49,13 +49,13 @@ export interface UpsertDraftRequest {
 export class TemplateVersionsApi extends runtime.BaseAPI {
 
     /**
-     * Creates request options for discardDraft without sending the request
+     * Creates request options for templateVersionsDiscardDraft without sending the request
      */
-    async discardDraftRequestOpts(requestParameters: DiscardDraftRequest): Promise<runtime.RequestOpts> {
+    async templateVersionsDiscardDraftRequestOpts(requestParameters: TemplateVersionsDiscardDraftRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['templateId'] == null) {
             throw new runtime.RequiredError(
                 'templateId',
-                'Required parameter "templateId" was null or undefined when calling discardDraft().'
+                'Required parameter "templateId" was null or undefined when calling templateVersionsDiscardDraft().'
             );
         }
 
@@ -90,8 +90,8 @@ export class TemplateVersionsApi extends runtime.BaseAPI {
     /**
      * Discard the current draft
      */
-    async discardDraftRaw(requestParameters: DiscardDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.discardDraftRequestOpts(requestParameters);
+    async templateVersionsDiscardDraftRaw(requestParameters: TemplateVersionsDiscardDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.templateVersionsDiscardDraftRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -100,18 +100,18 @@ export class TemplateVersionsApi extends runtime.BaseAPI {
     /**
      * Discard the current draft
      */
-    async discardDraft(requestParameters: DiscardDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.discardDraftRaw(requestParameters, initOverrides);
+    async templateVersionsDiscardDraft(requestParameters: TemplateVersionsDiscardDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.templateVersionsDiscardDraftRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Creates request options for ensureDraft without sending the request
+     * Creates request options for templateVersionsEnsureDraft without sending the request
      */
-    async ensureDraftRequestOpts(requestParameters: EnsureDraftRequest): Promise<runtime.RequestOpts> {
+    async templateVersionsEnsureDraftRequestOpts(requestParameters: TemplateVersionsEnsureDraftRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['templateId'] == null) {
             throw new runtime.RequiredError(
                 'templateId',
-                'Required parameter "templateId" was null or undefined when calling ensureDraft().'
+                'Required parameter "templateId" was null or undefined when calling templateVersionsEnsureDraft().'
             );
         }
 
@@ -146,8 +146,8 @@ export class TemplateVersionsApi extends runtime.BaseAPI {
     /**
      * Lazily create a draft from the published version (or empty)
      */
-    async ensureDraftRaw(requestParameters: EnsureDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.ensureDraftRequestOpts(requestParameters);
+    async templateVersionsEnsureDraftRaw(requestParameters: TemplateVersionsEnsureDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.templateVersionsEnsureDraftRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -156,25 +156,25 @@ export class TemplateVersionsApi extends runtime.BaseAPI {
     /**
      * Lazily create a draft from the published version (or empty)
      */
-    async ensureDraft(requestParameters: EnsureDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.ensureDraftRaw(requestParameters, initOverrides);
+    async templateVersionsEnsureDraft(requestParameters: TemplateVersionsEnsureDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.templateVersionsEnsureDraftRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Creates request options for findOne without sending the request
+     * Creates request options for templateVersionsFindOne without sending the request
      */
-    async findOneRequestOpts(requestParameters: FindOneRequest): Promise<runtime.RequestOpts> {
+    async templateVersionsFindOneRequestOpts(requestParameters: TemplateVersionsFindOneRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['templateId'] == null) {
             throw new runtime.RequiredError(
                 'templateId',
-                'Required parameter "templateId" was null or undefined when calling findOne().'
+                'Required parameter "templateId" was null or undefined when calling templateVersionsFindOne().'
             );
         }
 
         if (requestParameters['versionId'] == null) {
             throw new runtime.RequiredError(
                 'versionId',
-                'Required parameter "versionId" was null or undefined when calling findOne().'
+                'Required parameter "versionId" was null or undefined when calling templateVersionsFindOne().'
             );
         }
 
@@ -210,8 +210,8 @@ export class TemplateVersionsApi extends runtime.BaseAPI {
     /**
      * Get a specific version (read-only)
      */
-    async findOneRaw(requestParameters: FindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.findOneRequestOpts(requestParameters);
+    async templateVersionsFindOneRaw(requestParameters: TemplateVersionsFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.templateVersionsFindOneRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -220,18 +220,18 @@ export class TemplateVersionsApi extends runtime.BaseAPI {
     /**
      * Get a specific version (read-only)
      */
-    async findOne(requestParameters: FindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.findOneRaw(requestParameters, initOverrides);
+    async templateVersionsFindOne(requestParameters: TemplateVersionsFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.templateVersionsFindOneRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Creates request options for getDraft without sending the request
+     * Creates request options for templateVersionsGetDraft without sending the request
      */
-    async getDraftRequestOpts(requestParameters: GetDraftRequest): Promise<runtime.RequestOpts> {
+    async templateVersionsGetDraftRequestOpts(requestParameters: TemplateVersionsGetDraftRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['templateId'] == null) {
             throw new runtime.RequiredError(
                 'templateId',
-                'Required parameter "templateId" was null or undefined when calling getDraft().'
+                'Required parameter "templateId" was null or undefined when calling templateVersionsGetDraft().'
             );
         }
 
@@ -267,8 +267,8 @@ export class TemplateVersionsApi extends runtime.BaseAPI {
      * Returns the current draft version\'s content, or 200 with `null` if none exists.
      * Get current draft version
      */
-    async getDraftRaw(requestParameters: GetDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.getDraftRequestOpts(requestParameters);
+    async templateVersionsGetDraftRaw(requestParameters: TemplateVersionsGetDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.templateVersionsGetDraftRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -278,18 +278,18 @@ export class TemplateVersionsApi extends runtime.BaseAPI {
      * Returns the current draft version\'s content, or 200 with `null` if none exists.
      * Get current draft version
      */
-    async getDraft(requestParameters: GetDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.getDraftRaw(requestParameters, initOverrides);
+    async templateVersionsGetDraft(requestParameters: TemplateVersionsGetDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.templateVersionsGetDraftRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Creates request options for listVersions without sending the request
+     * Creates request options for templateVersionsListVersions without sending the request
      */
-    async listVersionsRequestOpts(requestParameters: ListVersionsRequest): Promise<runtime.RequestOpts> {
+    async templateVersionsListVersionsRequestOpts(requestParameters: TemplateVersionsListVersionsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['templateId'] == null) {
             throw new runtime.RequiredError(
                 'templateId',
-                'Required parameter "templateId" was null or undefined when calling listVersions().'
+                'Required parameter "templateId" was null or undefined when calling templateVersionsListVersions().'
             );
         }
 
@@ -324,8 +324,8 @@ export class TemplateVersionsApi extends runtime.BaseAPI {
     /**
      * List all published + draft versions
      */
-    async listVersionsRaw(requestParameters: ListVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.listVersionsRequestOpts(requestParameters);
+    async templateVersionsListVersionsRaw(requestParameters: TemplateVersionsListVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.templateVersionsListVersionsRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -334,18 +334,18 @@ export class TemplateVersionsApi extends runtime.BaseAPI {
     /**
      * List all published + draft versions
      */
-    async listVersions(requestParameters: ListVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.listVersionsRaw(requestParameters, initOverrides);
+    async templateVersionsListVersions(requestParameters: TemplateVersionsListVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.templateVersionsListVersionsRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Creates request options for publish without sending the request
+     * Creates request options for templateVersionsPublish without sending the request
      */
-    async publishRequestOpts(requestParameters: PublishRequest): Promise<runtime.RequestOpts> {
+    async templateVersionsPublishRequestOpts(requestParameters: TemplateVersionsPublishRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['templateId'] == null) {
             throw new runtime.RequiredError(
                 'templateId',
-                'Required parameter "templateId" was null or undefined when calling publish().'
+                'Required parameter "templateId" was null or undefined when calling templateVersionsPublish().'
             );
         }
 
@@ -381,8 +381,8 @@ export class TemplateVersionsApi extends runtime.BaseAPI {
      * Strict engine validation gate. Returns the published version; or throws RuleEngineException with structured diagnostics.
      * Publish the draft
      */
-    async publishRaw(requestParameters: PublishRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.publishRequestOpts(requestParameters);
+    async templateVersionsPublishRaw(requestParameters: TemplateVersionsPublishRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.templateVersionsPublishRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -392,18 +392,18 @@ export class TemplateVersionsApi extends runtime.BaseAPI {
      * Strict engine validation gate. Returns the published version; or throws RuleEngineException with structured diagnostics.
      * Publish the draft
      */
-    async publish(requestParameters: PublishRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.publishRaw(requestParameters, initOverrides);
+    async templateVersionsPublish(requestParameters: TemplateVersionsPublishRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.templateVersionsPublishRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Creates request options for upsertDraft without sending the request
+     * Creates request options for templateVersionsUpsertDraft without sending the request
      */
-    async upsertDraftRequestOpts(requestParameters: UpsertDraftRequest): Promise<runtime.RequestOpts> {
+    async templateVersionsUpsertDraftRequestOpts(requestParameters: TemplateVersionsUpsertDraftRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['templateId'] == null) {
             throw new runtime.RequiredError(
                 'templateId',
-                'Required parameter "templateId" was null or undefined when calling upsertDraft().'
+                'Required parameter "templateId" was null or undefined when calling templateVersionsUpsertDraft().'
             );
         }
 
@@ -439,8 +439,8 @@ export class TemplateVersionsApi extends runtime.BaseAPI {
      * Writes the full version content. Always allowed; returns engine diagnostics for the editor to render (warning-tolerant).
      * Upsert draft content
      */
-    async upsertDraftRaw(requestParameters: UpsertDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.upsertDraftRequestOpts(requestParameters);
+    async templateVersionsUpsertDraftRaw(requestParameters: TemplateVersionsUpsertDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.templateVersionsUpsertDraftRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -450,8 +450,8 @@ export class TemplateVersionsApi extends runtime.BaseAPI {
      * Writes the full version content. Always allowed; returns engine diagnostics for the editor to render (warning-tolerant).
      * Upsert draft content
      */
-    async upsertDraft(requestParameters: UpsertDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.upsertDraftRaw(requestParameters, initOverrides);
+    async templateVersionsUpsertDraft(requestParameters: TemplateVersionsUpsertDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.templateVersionsUpsertDraftRaw(requestParameters, initOverrides);
     }
 
 }

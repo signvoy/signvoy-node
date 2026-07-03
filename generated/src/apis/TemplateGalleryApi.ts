@@ -14,16 +14,16 @@
 
 import * as runtime from '../runtime';
 
-export interface FindOneRequest {
+export interface TemplateGalleryFindOneRequest {
     slug: string;
 }
 
-export interface InstantiateRequest {
+export interface TemplateGalleryInstantiateRequest {
     slug: string;
     body: object;
 }
 
-export interface ListRequest {
+export interface TemplateGalleryListRequest {
     category?: string;
 }
 
@@ -33,13 +33,13 @@ export interface ListRequest {
 export class TemplateGalleryApi extends runtime.BaseAPI {
 
     /**
-     * Creates request options for findOne without sending the request
+     * Creates request options for templateGalleryFindOne without sending the request
      */
-    async findOneRequestOpts(requestParameters: FindOneRequest): Promise<runtime.RequestOpts> {
+    async templateGalleryFindOneRequestOpts(requestParameters: TemplateGalleryFindOneRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['slug'] == null) {
             throw new runtime.RequiredError(
                 'slug',
-                'Required parameter "slug" was null or undefined when calling findOne().'
+                'Required parameter "slug" was null or undefined when calling templateGalleryFindOne().'
             );
         }
 
@@ -75,8 +75,8 @@ export class TemplateGalleryApi extends runtime.BaseAPI {
      * Includes a short-lived presigned PDF preview URL.
      * Get a single gallery template
      */
-    async findOneRaw(requestParameters: FindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.findOneRequestOpts(requestParameters);
+    async templateGalleryFindOneRaw(requestParameters: TemplateGalleryFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.templateGalleryFindOneRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -86,25 +86,25 @@ export class TemplateGalleryApi extends runtime.BaseAPI {
      * Includes a short-lived presigned PDF preview URL.
      * Get a single gallery template
      */
-    async findOne(requestParameters: FindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.findOneRaw(requestParameters, initOverrides);
+    async templateGalleryFindOne(requestParameters: TemplateGalleryFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.templateGalleryFindOneRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Creates request options for instantiate without sending the request
+     * Creates request options for templateGalleryInstantiate without sending the request
      */
-    async instantiateRequestOpts(requestParameters: InstantiateRequest): Promise<runtime.RequestOpts> {
+    async templateGalleryInstantiateRequestOpts(requestParameters: TemplateGalleryInstantiateRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['slug'] == null) {
             throw new runtime.RequiredError(
                 'slug',
-                'Required parameter "slug" was null or undefined when calling instantiate().'
+                'Required parameter "slug" was null or undefined when calling templateGalleryInstantiate().'
             );
         }
 
         if (requestParameters['body'] == null) {
             throw new runtime.RequiredError(
                 'body',
-                'Required parameter "body" was null or undefined when calling instantiate().'
+                'Required parameter "body" was null or undefined when calling templateGalleryInstantiate().'
             );
         }
 
@@ -143,8 +143,8 @@ export class TemplateGalleryApi extends runtime.BaseAPI {
      * Clones the gallery template (PDF + content) into a new workspace template. Use mode=\"customize\" to open the editor, or mode=\"send\" to auto-publish and send immediately.
      * Instantiate a gallery template into the workspace
      */
-    async instantiateRaw(requestParameters: InstantiateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.instantiateRequestOpts(requestParameters);
+    async templateGalleryInstantiateRaw(requestParameters: TemplateGalleryInstantiateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.templateGalleryInstantiateRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -154,14 +154,14 @@ export class TemplateGalleryApi extends runtime.BaseAPI {
      * Clones the gallery template (PDF + content) into a new workspace template. Use mode=\"customize\" to open the editor, or mode=\"send\" to auto-publish and send immediately.
      * Instantiate a gallery template into the workspace
      */
-    async instantiate(requestParameters: InstantiateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.instantiateRaw(requestParameters, initOverrides);
+    async templateGalleryInstantiate(requestParameters: TemplateGalleryInstantiateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.templateGalleryInstantiateRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Creates request options for list without sending the request
+     * Creates request options for templateGalleryList without sending the request
      */
-    async listRequestOpts(requestParameters: ListRequest): Promise<runtime.RequestOpts> {
+    async templateGalleryListRequestOpts(requestParameters: TemplateGalleryListRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['category'] != null) {
@@ -197,8 +197,8 @@ export class TemplateGalleryApi extends runtime.BaseAPI {
      * Returns the curated gallery catalog. Optionally filter by category.
      * List gallery templates
      */
-    async listRaw(requestParameters: ListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.listRequestOpts(requestParameters);
+    async templateGalleryListRaw(requestParameters: TemplateGalleryListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.templateGalleryListRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -208,8 +208,8 @@ export class TemplateGalleryApi extends runtime.BaseAPI {
      * Returns the curated gallery catalog. Optionally filter by category.
      * List gallery templates
      */
-    async list(requestParameters: ListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.listRaw(requestParameters, initOverrides);
+    async templateGalleryList(requestParameters: TemplateGalleryListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.templateGalleryListRaw(requestParameters, initOverrides);
     }
 
 }

@@ -4,19 +4,19 @@ All URIs are relative to *https://api.signvoy.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**discardDraft**](TemplateVersionsApi.md#discarddraft) | **DELETE** /v1/templates/{templateId}/draft | Discard the current draft |
-| [**ensureDraft**](TemplateVersionsApi.md#ensuredraft) | **POST** /v1/templates/{templateId}/draft/ensure | Lazily create a draft from the published version (or empty) |
-| [**findOne**](TemplateVersionsApi.md#findone) | **GET** /v1/templates/{templateId}/versions/{versionId} | Get a specific version (read-only) |
-| [**getDraft**](TemplateVersionsApi.md#getdraft) | **GET** /v1/templates/{templateId}/draft | Get current draft version |
-| [**listVersions**](TemplateVersionsApi.md#listversions) | **GET** /v1/templates/{templateId}/versions | List all published + draft versions |
-| [**publish**](TemplateVersionsApi.md#publish) | **POST** /v1/templates/{templateId}/draft/publish | Publish the draft |
-| [**upsertDraft**](TemplateVersionsApi.md#upsertdraft) | **PATCH** /v1/templates/{templateId}/draft | Upsert draft content |
+| [**templateVersionsDiscardDraft**](TemplateVersionsApi.md#templateversionsdiscarddraft) | **DELETE** /v1/templates/{templateId}/draft | Discard the current draft |
+| [**templateVersionsEnsureDraft**](TemplateVersionsApi.md#templateversionsensuredraft) | **POST** /v1/templates/{templateId}/draft/ensure | Lazily create a draft from the published version (or empty) |
+| [**templateVersionsFindOne**](TemplateVersionsApi.md#templateversionsfindone) | **GET** /v1/templates/{templateId}/versions/{versionId} | Get a specific version (read-only) |
+| [**templateVersionsGetDraft**](TemplateVersionsApi.md#templateversionsgetdraft) | **GET** /v1/templates/{templateId}/draft | Get current draft version |
+| [**templateVersionsListVersions**](TemplateVersionsApi.md#templateversionslistversions) | **GET** /v1/templates/{templateId}/versions | List all published + draft versions |
+| [**templateVersionsPublish**](TemplateVersionsApi.md#templateversionspublish) | **POST** /v1/templates/{templateId}/draft/publish | Publish the draft |
+| [**templateVersionsUpsertDraft**](TemplateVersionsApi.md#templateversionsupsertdraft) | **PATCH** /v1/templates/{templateId}/draft | Upsert draft content |
 
 
 
-## discardDraft
+## templateVersionsDiscardDraft
 
-> discardDraft(templateId)
+> templateVersionsDiscardDraft(templateId)
 
 Discard the current draft
 
@@ -27,7 +27,7 @@ import {
   Configuration,
   TemplateVersionsApi,
 } from '@signvoy/node';
-import type { DiscardDraftRequest } from '@signvoy/node';
+import type { TemplateVersionsDiscardDraftRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -42,10 +42,10 @@ async function example() {
   const body = {
     // string
     templateId: templateId_example,
-  } satisfies DiscardDraftRequest;
+  } satisfies TemplateVersionsDiscardDraftRequest;
 
   try {
-    const data = await api.discardDraft(body);
+    const data = await api.templateVersionsDiscardDraft(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -85,9 +85,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## ensureDraft
+## templateVersionsEnsureDraft
 
-> ensureDraft(templateId)
+> templateVersionsEnsureDraft(templateId)
 
 Lazily create a draft from the published version (or empty)
 
@@ -98,7 +98,7 @@ import {
   Configuration,
   TemplateVersionsApi,
 } from '@signvoy/node';
-import type { EnsureDraftRequest } from '@signvoy/node';
+import type { TemplateVersionsEnsureDraftRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -113,10 +113,10 @@ async function example() {
   const body = {
     // string
     templateId: templateId_example,
-  } satisfies EnsureDraftRequest;
+  } satisfies TemplateVersionsEnsureDraftRequest;
 
   try {
-    const data = await api.ensureDraft(body);
+    const data = await api.templateVersionsEnsureDraft(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -156,9 +156,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## findOne
+## templateVersionsFindOne
 
-> findOne(templateId, versionId)
+> templateVersionsFindOne(templateId, versionId)
 
 Get a specific version (read-only)
 
@@ -169,7 +169,7 @@ import {
   Configuration,
   TemplateVersionsApi,
 } from '@signvoy/node';
-import type { FindOneRequest } from '@signvoy/node';
+import type { TemplateVersionsFindOneRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -186,10 +186,10 @@ async function example() {
     templateId: templateId_example,
     // string
     versionId: versionId_example,
-  } satisfies FindOneRequest;
+  } satisfies TemplateVersionsFindOneRequest;
 
   try {
-    const data = await api.findOne(body);
+    const data = await api.templateVersionsFindOne(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -230,9 +230,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## getDraft
+## templateVersionsGetDraft
 
-> getDraft(templateId)
+> templateVersionsGetDraft(templateId)
 
 Get current draft version
 
@@ -245,7 +245,7 @@ import {
   Configuration,
   TemplateVersionsApi,
 } from '@signvoy/node';
-import type { GetDraftRequest } from '@signvoy/node';
+import type { TemplateVersionsGetDraftRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -260,10 +260,10 @@ async function example() {
   const body = {
     // string
     templateId: templateId_example,
-  } satisfies GetDraftRequest;
+  } satisfies TemplateVersionsGetDraftRequest;
 
   try {
-    const data = await api.getDraft(body);
+    const data = await api.templateVersionsGetDraft(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -303,9 +303,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## listVersions
+## templateVersionsListVersions
 
-> listVersions(templateId)
+> templateVersionsListVersions(templateId)
 
 List all published + draft versions
 
@@ -316,7 +316,7 @@ import {
   Configuration,
   TemplateVersionsApi,
 } from '@signvoy/node';
-import type { ListVersionsRequest } from '@signvoy/node';
+import type { TemplateVersionsListVersionsRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -331,10 +331,10 @@ async function example() {
   const body = {
     // string
     templateId: templateId_example,
-  } satisfies ListVersionsRequest;
+  } satisfies TemplateVersionsListVersionsRequest;
 
   try {
-    const data = await api.listVersions(body);
+    const data = await api.templateVersionsListVersions(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -374,9 +374,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## publish
+## templateVersionsPublish
 
-> publish(templateId)
+> templateVersionsPublish(templateId)
 
 Publish the draft
 
@@ -389,7 +389,7 @@ import {
   Configuration,
   TemplateVersionsApi,
 } from '@signvoy/node';
-import type { PublishRequest } from '@signvoy/node';
+import type { TemplateVersionsPublishRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -404,10 +404,10 @@ async function example() {
   const body = {
     // string
     templateId: templateId_example,
-  } satisfies PublishRequest;
+  } satisfies TemplateVersionsPublishRequest;
 
   try {
-    const data = await api.publish(body);
+    const data = await api.templateVersionsPublish(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -447,9 +447,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## upsertDraft
+## templateVersionsUpsertDraft
 
-> upsertDraft(templateId)
+> templateVersionsUpsertDraft(templateId)
 
 Upsert draft content
 
@@ -462,7 +462,7 @@ import {
   Configuration,
   TemplateVersionsApi,
 } from '@signvoy/node';
-import type { UpsertDraftRequest } from '@signvoy/node';
+import type { TemplateVersionsUpsertDraftRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -477,10 +477,10 @@ async function example() {
   const body = {
     // string
     templateId: templateId_example,
-  } satisfies UpsertDraftRequest;
+  } satisfies TemplateVersionsUpsertDraftRequest;
 
   try {
-    const data = await api.upsertDraft(body);
+    const data = await api.templateVersionsUpsertDraft(body);
     console.log(data);
   } catch (error) {
     console.error(error);

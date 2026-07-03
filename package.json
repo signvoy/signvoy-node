@@ -43,16 +43,22 @@
   },
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
-    "test": "vitest run",
+    "test": "vitest run --passWithNoTests",
     "lint": "eslint src"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
     "cross-fetch": "^4.0.0"
   },
   "devDependencies": {
+    "@types/node": "^22.20.0",
     "typescript": "^5.5.0",
     "vitest": "^2.0.0"
   },

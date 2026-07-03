@@ -4,17 +4,17 @@ All URIs are relative to *https://api.signvoy.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**decline**](SigningApi.md#decline) | **POST** /v1/sign/{token}/decline | Decline to sign |
-| [**getContext**](SigningApi.md#getcontext) | **GET** /v1/sign/{token} | Get signing context |
-| [**getDraft**](SigningApi.md#getdraft) | **GET** /v1/sign/{token}/draft | Get saved draft |
-| [**saveDraft**](SigningApi.md#savedraft) | **POST** /v1/sign/{token}/draft | Save draft |
-| [**submit**](SigningApi.md#submit) | **POST** /v1/sign/{token}/submit | Submit signature |
+| [**signingDecline**](SigningApi.md#signingdecline) | **POST** /v1/sign/{token}/decline | Decline to sign |
+| [**signingGetContext**](SigningApi.md#signinggetcontext) | **GET** /v1/sign/{token} | Get signing context |
+| [**signingGetDraft**](SigningApi.md#signinggetdraft) | **GET** /v1/sign/{token}/draft | Get saved draft |
+| [**signingSaveDraft**](SigningApi.md#signingsavedraft) | **POST** /v1/sign/{token}/draft | Save draft |
+| [**signingSubmit**](SigningApi.md#signingsubmit) | **POST** /v1/sign/{token}/submit | Submit signature |
 
 
 
-## decline
+## signingDecline
 
-> decline(token, declineDto)
+> signingDecline(token, declineDto)
 
 Decline to sign
 
@@ -27,7 +27,7 @@ import {
   Configuration,
   SigningApi,
 } from '@signvoy/node';
-import type { DeclineRequest } from '@signvoy/node';
+import type { SigningDeclineRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -38,10 +38,10 @@ async function example() {
     token: token_example,
     // DeclineDto
     declineDto: ...,
-  } satisfies DeclineRequest;
+  } satisfies SigningDeclineRequest;
 
   try {
-    const data = await api.decline(body);
+    const data = await api.signingDecline(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -84,9 +84,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## getContext
+## signingGetContext
 
-> getContext(token)
+> signingGetContext(token)
 
 Get signing context
 
@@ -99,7 +99,7 @@ import {
   Configuration,
   SigningApi,
 } from '@signvoy/node';
-import type { GetContextRequest } from '@signvoy/node';
+import type { SigningGetContextRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -108,10 +108,10 @@ async function example() {
   const body = {
     // string | Unique signing token sent to recipient
     token: token_example,
-  } satisfies GetContextRequest;
+  } satisfies SigningGetContextRequest;
 
   try {
-    const data = await api.getContext(body);
+    const data = await api.signingGetContext(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -153,9 +153,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## getDraft
+## signingGetDraft
 
-> getDraft(token)
+> signingGetDraft(token)
 
 Get saved draft
 
@@ -168,7 +168,7 @@ import {
   Configuration,
   SigningApi,
 } from '@signvoy/node';
-import type { GetDraftRequest } from '@signvoy/node';
+import type { SigningGetDraftRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -177,10 +177,10 @@ async function example() {
   const body = {
     // string | Unique signing token sent to recipient
     token: token_example,
-  } satisfies GetDraftRequest;
+  } satisfies SigningGetDraftRequest;
 
   try {
-    const data = await api.getDraft(body);
+    const data = await api.signingGetDraft(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -222,9 +222,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## saveDraft
+## signingSaveDraft
 
-> saveDraft(token, saveDraftDto)
+> signingSaveDraft(token, saveDraftDto)
 
 Save draft
 
@@ -237,7 +237,7 @@ import {
   Configuration,
   SigningApi,
 } from '@signvoy/node';
-import type { SaveDraftRequest } from '@signvoy/node';
+import type { SigningSaveDraftRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -248,10 +248,10 @@ async function example() {
     token: token_example,
     // SaveDraftDto
     saveDraftDto: ...,
-  } satisfies SaveDraftRequest;
+  } satisfies SigningSaveDraftRequest;
 
   try {
-    const data = await api.saveDraft(body);
+    const data = await api.signingSaveDraft(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -294,9 +294,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## submit
+## signingSubmit
 
-> submit(token, submitSigningDto)
+> signingSubmit(token, submitSigningDto)
 
 Submit signature
 
@@ -309,7 +309,7 @@ import {
   Configuration,
   SigningApi,
 } from '@signvoy/node';
-import type { SubmitRequest } from '@signvoy/node';
+import type { SigningSubmitRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -320,10 +320,10 @@ async function example() {
     token: token_example,
     // SubmitSigningDto
     submitSigningDto: ...,
-  } satisfies SubmitRequest;
+  } satisfies SigningSubmitRequest;
 
   try {
-    const data = await api.submit(body);
+    const data = await api.signingSubmit(body);
     console.log(data);
   } catch (error) {
     console.error(error);

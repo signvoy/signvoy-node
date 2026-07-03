@@ -4,21 +4,21 @@ All URIs are relative to *https://api.signvoy.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**create**](WebhooksApi.md#create) | **POST** /v1/webhooks | Create a webhook endpoint |
-| [**get**](WebhooksApi.md#get) | **GET** /v1/webhooks/{id} | Get a single webhook endpoint |
-| [**list**](WebhooksApi.md#list) | **GET** /v1/webhooks | List webhook endpoints for the workspace |
-| [**listDeliveries**](WebhooksApi.md#listdeliveries) | **GET** /v1/webhooks/{id}/deliveries | List recent deliveries for an endpoint |
-| [**ping**](WebhooksApi.md#ping) | **POST** /v1/webhooks/{id}/ping | Send a test event |
-| [**remove**](WebhooksApi.md#remove) | **DELETE** /v1/webhooks/{id} | Delete a webhook endpoint |
-| [**retryDelivery**](WebhooksApi.md#retrydelivery) | **POST** /v1/webhooks/{id}/deliveries/{deliveryId}/retry | Manually retry a failed delivery |
-| [**rotateSecret**](WebhooksApi.md#rotatesecret) | **POST** /v1/webhooks/{id}/rotate-secret | Rotate the signing secret |
-| [**update**](WebhooksApi.md#update) | **PATCH** /v1/webhooks/{id} | Update a webhook endpoint |
+| [**webhooksCreate**](WebhooksApi.md#webhookscreate) | **POST** /v1/webhooks | Create a webhook endpoint |
+| [**webhooksGet**](WebhooksApi.md#webhooksget) | **GET** /v1/webhooks/{id} | Get a single webhook endpoint |
+| [**webhooksList**](WebhooksApi.md#webhookslist) | **GET** /v1/webhooks | List webhook endpoints for the workspace |
+| [**webhooksListDeliveries**](WebhooksApi.md#webhookslistdeliveries) | **GET** /v1/webhooks/{id}/deliveries | List recent deliveries for an endpoint |
+| [**webhooksPing**](WebhooksApi.md#webhooksping) | **POST** /v1/webhooks/{id}/ping | Send a test event |
+| [**webhooksRemove**](WebhooksApi.md#webhooksremove) | **DELETE** /v1/webhooks/{id} | Delete a webhook endpoint |
+| [**webhooksRetryDelivery**](WebhooksApi.md#webhooksretrydelivery) | **POST** /v1/webhooks/{id}/deliveries/{deliveryId}/retry | Manually retry a failed delivery |
+| [**webhooksRotateSecret**](WebhooksApi.md#webhooksrotatesecret) | **POST** /v1/webhooks/{id}/rotate-secret | Rotate the signing secret |
+| [**webhooksUpdate**](WebhooksApi.md#webhooksupdate) | **PATCH** /v1/webhooks/{id} | Update a webhook endpoint |
 
 
 
-## create
+## webhooksCreate
 
-> WebhookEndpointWithSecretDto create(createWebhookDto)
+> WebhookEndpointWithSecretDto webhooksCreate(createWebhookDto)
 
 Create a webhook endpoint
 
@@ -31,7 +31,7 @@ import {
   Configuration,
   WebhooksApi,
 } from '@signvoy/node';
-import type { CreateRequest } from '@signvoy/node';
+import type { WebhooksCreateRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -48,10 +48,10 @@ async function example() {
   const body = {
     // CreateWebhookDto
     createWebhookDto: ...,
-  } satisfies CreateRequest;
+  } satisfies WebhooksCreateRequest;
 
   try {
-    const data = await api.create(body);
+    const data = await api.webhooksCreate(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -91,9 +91,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## get
+## webhooksGet
 
-> WebhookEndpointDto get(id)
+> WebhookEndpointDto webhooksGet(id)
 
 Get a single webhook endpoint
 
@@ -104,7 +104,7 @@ import {
   Configuration,
   WebhooksApi,
 } from '@signvoy/node';
-import type { GetRequest } from '@signvoy/node';
+import type { WebhooksGetRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -121,10 +121,10 @@ async function example() {
   const body = {
     // string | Webhook endpoint ID
     id: id_example,
-  } satisfies GetRequest;
+  } satisfies WebhooksGetRequest;
 
   try {
-    const data = await api.get(body);
+    const data = await api.webhooksGet(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -165,9 +165,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## list
+## webhooksList
 
-> Array&lt;WebhookEndpointDto&gt; list()
+> Array&lt;WebhookEndpointDto&gt; webhooksList()
 
 List webhook endpoints for the workspace
 
@@ -178,7 +178,7 @@ import {
   Configuration,
   WebhooksApi,
 } from '@signvoy/node';
-import type { ListRequest } from '@signvoy/node';
+import type { WebhooksListRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -193,7 +193,7 @@ async function example() {
   const api = new WebhooksApi(config);
 
   try {
-    const data = await api.list();
+    const data = await api.webhooksList();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -230,9 +230,9 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## listDeliveries
+## webhooksListDeliveries
 
-> Array&lt;WebhookDeliveryDto&gt; listDeliveries(id)
+> Array&lt;WebhookDeliveryDto&gt; webhooksListDeliveries(id)
 
 List recent deliveries for an endpoint
 
@@ -245,7 +245,7 @@ import {
   Configuration,
   WebhooksApi,
 } from '@signvoy/node';
-import type { ListDeliveriesRequest } from '@signvoy/node';
+import type { WebhooksListDeliveriesRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -262,10 +262,10 @@ async function example() {
   const body = {
     // string | Webhook endpoint ID
     id: id_example,
-  } satisfies ListDeliveriesRequest;
+  } satisfies WebhooksListDeliveriesRequest;
 
   try {
-    const data = await api.listDeliveries(body);
+    const data = await api.webhooksListDeliveries(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -305,9 +305,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## ping
+## webhooksPing
 
-> WebhookDeliveryDto ping(id)
+> WebhookDeliveryDto webhooksPing(id)
 
 Send a test event
 
@@ -320,7 +320,7 @@ import {
   Configuration,
   WebhooksApi,
 } from '@signvoy/node';
-import type { PingRequest } from '@signvoy/node';
+import type { WebhooksPingRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -337,10 +337,10 @@ async function example() {
   const body = {
     // string | Webhook endpoint ID
     id: id_example,
-  } satisfies PingRequest;
+  } satisfies WebhooksPingRequest;
 
   try {
-    const data = await api.ping(body);
+    const data = await api.webhooksPing(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -380,9 +380,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## remove
+## webhooksRemove
 
-> remove(id)
+> webhooksRemove(id)
 
 Delete a webhook endpoint
 
@@ -393,7 +393,7 @@ import {
   Configuration,
   WebhooksApi,
 } from '@signvoy/node';
-import type { RemoveRequest } from '@signvoy/node';
+import type { WebhooksRemoveRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -410,10 +410,10 @@ async function example() {
   const body = {
     // string | Webhook endpoint ID
     id: id_example,
-  } satisfies RemoveRequest;
+  } satisfies WebhooksRemoveRequest;
 
   try {
-    const data = await api.remove(body);
+    const data = await api.webhooksRemove(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -453,9 +453,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## retryDelivery
+## webhooksRetryDelivery
 
-> WebhookDeliveryDto retryDelivery(id, deliveryId)
+> WebhookDeliveryDto webhooksRetryDelivery(id, deliveryId)
 
 Manually retry a failed delivery
 
@@ -468,7 +468,7 @@ import {
   Configuration,
   WebhooksApi,
 } from '@signvoy/node';
-import type { RetryDeliveryRequest } from '@signvoy/node';
+import type { WebhooksRetryDeliveryRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -487,10 +487,10 @@ async function example() {
     id: id_example,
     // string | Delivery ID
     deliveryId: deliveryId_example,
-  } satisfies RetryDeliveryRequest;
+  } satisfies WebhooksRetryDeliveryRequest;
 
   try {
-    const data = await api.retryDelivery(body);
+    const data = await api.webhooksRetryDelivery(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -531,9 +531,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## rotateSecret
+## webhooksRotateSecret
 
-> WebhookEndpointWithSecretDto rotateSecret(id)
+> WebhookEndpointWithSecretDto webhooksRotateSecret(id)
 
 Rotate the signing secret
 
@@ -546,7 +546,7 @@ import {
   Configuration,
   WebhooksApi,
 } from '@signvoy/node';
-import type { RotateSecretRequest } from '@signvoy/node';
+import type { WebhooksRotateSecretRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -563,10 +563,10 @@ async function example() {
   const body = {
     // string | Webhook endpoint ID
     id: id_example,
-  } satisfies RotateSecretRequest;
+  } satisfies WebhooksRotateSecretRequest;
 
   try {
-    const data = await api.rotateSecret(body);
+    const data = await api.webhooksRotateSecret(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -606,9 +606,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## update
+## webhooksUpdate
 
-> WebhookEndpointDto update(id, updateWebhookDto)
+> WebhookEndpointDto webhooksUpdate(id, updateWebhookDto)
 
 Update a webhook endpoint
 
@@ -619,7 +619,7 @@ import {
   Configuration,
   WebhooksApi,
 } from '@signvoy/node';
-import type { UpdateRequest } from '@signvoy/node';
+import type { WebhooksUpdateRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -638,10 +638,10 @@ async function example() {
     id: id_example,
     // UpdateWebhookDto
     updateWebhookDto: ...,
-  } satisfies UpdateRequest;
+  } satisfies WebhooksUpdateRequest;
 
   try {
-    const data = await api.update(body);
+    const data = await api.webhooksUpdate(body);
     console.log(data);
   } catch (error) {
     console.error(error);

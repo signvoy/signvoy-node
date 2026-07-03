@@ -29,25 +29,25 @@ import {
     SubmitSigningDtoToJSON,
 } from '../models/SubmitSigningDto';
 
-export interface DeclineRequest {
+export interface SigningDeclineRequest {
     token: string;
     declineDto: DeclineDto;
 }
 
-export interface GetContextRequest {
+export interface SigningGetContextRequest {
     token: string;
 }
 
-export interface GetDraftRequest {
+export interface SigningGetDraftRequest {
     token: string;
 }
 
-export interface SaveDraftRequest {
+export interface SigningSaveDraftRequest {
     token: string;
     saveDraftDto: SaveDraftDto;
 }
 
-export interface SubmitRequest {
+export interface SigningSubmitRequest {
     token: string;
     submitSigningDto: SubmitSigningDto;
 }
@@ -58,20 +58,20 @@ export interface SubmitRequest {
 export class SigningApi extends runtime.BaseAPI {
 
     /**
-     * Creates request options for decline without sending the request
+     * Creates request options for signingDecline without sending the request
      */
-    async declineRequestOpts(requestParameters: DeclineRequest): Promise<runtime.RequestOpts> {
+    async signingDeclineRequestOpts(requestParameters: SigningDeclineRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['token'] == null) {
             throw new runtime.RequiredError(
                 'token',
-                'Required parameter "token" was null or undefined when calling decline().'
+                'Required parameter "token" was null or undefined when calling signingDecline().'
             );
         }
 
         if (requestParameters['declineDto'] == null) {
             throw new runtime.RequiredError(
                 'declineDto',
-                'Required parameter "declineDto" was null or undefined when calling decline().'
+                'Required parameter "declineDto" was null or undefined when calling signingDecline().'
             );
         }
 
@@ -98,8 +98,8 @@ export class SigningApi extends runtime.BaseAPI {
      * Allows recipient to decline signing the document with a reason
      * Decline to sign
      */
-    async declineRaw(requestParameters: DeclineRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.declineRequestOpts(requestParameters);
+    async signingDeclineRaw(requestParameters: SigningDeclineRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.signingDeclineRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -109,18 +109,18 @@ export class SigningApi extends runtime.BaseAPI {
      * Allows recipient to decline signing the document with a reason
      * Decline to sign
      */
-    async decline(requestParameters: DeclineRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.declineRaw(requestParameters, initOverrides);
+    async signingDecline(requestParameters: SigningDeclineRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.signingDeclineRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Creates request options for getContext without sending the request
+     * Creates request options for signingGetContext without sending the request
      */
-    async getContextRequestOpts(requestParameters: GetContextRequest): Promise<runtime.RequestOpts> {
+    async signingGetContextRequestOpts(requestParameters: SigningGetContextRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['token'] == null) {
             throw new runtime.RequiredError(
                 'token',
-                'Required parameter "token" was null or undefined when calling getContext().'
+                'Required parameter "token" was null or undefined when calling signingGetContext().'
             );
         }
 
@@ -144,8 +144,8 @@ export class SigningApi extends runtime.BaseAPI {
      * Retrieves document and field information for a recipient using their signing token
      * Get signing context
      */
-    async getContextRaw(requestParameters: GetContextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.getContextRequestOpts(requestParameters);
+    async signingGetContextRaw(requestParameters: SigningGetContextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.signingGetContextRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -155,18 +155,18 @@ export class SigningApi extends runtime.BaseAPI {
      * Retrieves document and field information for a recipient using their signing token
      * Get signing context
      */
-    async getContext(requestParameters: GetContextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.getContextRaw(requestParameters, initOverrides);
+    async signingGetContext(requestParameters: SigningGetContextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.signingGetContextRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Creates request options for getDraft without sending the request
+     * Creates request options for signingGetDraft without sending the request
      */
-    async getDraftRequestOpts(requestParameters: GetDraftRequest): Promise<runtime.RequestOpts> {
+    async signingGetDraftRequestOpts(requestParameters: SigningGetDraftRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['token'] == null) {
             throw new runtime.RequiredError(
                 'token',
-                'Required parameter "token" was null or undefined when calling getDraft().'
+                'Required parameter "token" was null or undefined when calling signingGetDraft().'
             );
         }
 
@@ -190,8 +190,8 @@ export class SigningApi extends runtime.BaseAPI {
      * Retrieves previously saved draft values for the recipient
      * Get saved draft
      */
-    async getDraftRaw(requestParameters: GetDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.getDraftRequestOpts(requestParameters);
+    async signingGetDraftRaw(requestParameters: SigningGetDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.signingGetDraftRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -201,25 +201,25 @@ export class SigningApi extends runtime.BaseAPI {
      * Retrieves previously saved draft values for the recipient
      * Get saved draft
      */
-    async getDraft(requestParameters: GetDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.getDraftRaw(requestParameters, initOverrides);
+    async signingGetDraft(requestParameters: SigningGetDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.signingGetDraftRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Creates request options for saveDraft without sending the request
+     * Creates request options for signingSaveDraft without sending the request
      */
-    async saveDraftRequestOpts(requestParameters: SaveDraftRequest): Promise<runtime.RequestOpts> {
+    async signingSaveDraftRequestOpts(requestParameters: SigningSaveDraftRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['token'] == null) {
             throw new runtime.RequiredError(
                 'token',
-                'Required parameter "token" was null or undefined when calling saveDraft().'
+                'Required parameter "token" was null or undefined when calling signingSaveDraft().'
             );
         }
 
         if (requestParameters['saveDraftDto'] == null) {
             throw new runtime.RequiredError(
                 'saveDraftDto',
-                'Required parameter "saveDraftDto" was null or undefined when calling saveDraft().'
+                'Required parameter "saveDraftDto" was null or undefined when calling signingSaveDraft().'
             );
         }
 
@@ -246,8 +246,8 @@ export class SigningApi extends runtime.BaseAPI {
      * Saves recipient\'s progress without submitting the document
      * Save draft
      */
-    async saveDraftRaw(requestParameters: SaveDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.saveDraftRequestOpts(requestParameters);
+    async signingSaveDraftRaw(requestParameters: SigningSaveDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.signingSaveDraftRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -257,25 +257,25 @@ export class SigningApi extends runtime.BaseAPI {
      * Saves recipient\'s progress without submitting the document
      * Save draft
      */
-    async saveDraft(requestParameters: SaveDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.saveDraftRaw(requestParameters, initOverrides);
+    async signingSaveDraft(requestParameters: SigningSaveDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.signingSaveDraftRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Creates request options for submit without sending the request
+     * Creates request options for signingSubmit without sending the request
      */
-    async submitRequestOpts(requestParameters: SubmitRequest): Promise<runtime.RequestOpts> {
+    async signingSubmitRequestOpts(requestParameters: SigningSubmitRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['token'] == null) {
             throw new runtime.RequiredError(
                 'token',
-                'Required parameter "token" was null or undefined when calling submit().'
+                'Required parameter "token" was null or undefined when calling signingSubmit().'
             );
         }
 
         if (requestParameters['submitSigningDto'] == null) {
             throw new runtime.RequiredError(
                 'submitSigningDto',
-                'Required parameter "submitSigningDto" was null or undefined when calling submit().'
+                'Required parameter "submitSigningDto" was null or undefined when calling signingSubmit().'
             );
         }
 
@@ -302,8 +302,8 @@ export class SigningApi extends runtime.BaseAPI {
      * Submits the completed document with recipient\'s signatures and data
      * Submit signature
      */
-    async submitRaw(requestParameters: SubmitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.submitRequestOpts(requestParameters);
+    async signingSubmitRaw(requestParameters: SigningSubmitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.signingSubmitRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -313,8 +313,8 @@ export class SigningApi extends runtime.BaseAPI {
      * Submits the completed document with recipient\'s signatures and data
      * Submit signature
      */
-    async submit(requestParameters: SubmitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.submitRaw(requestParameters, initOverrides);
+    async signingSubmit(requestParameters: SigningSubmitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.signingSubmitRaw(requestParameters, initOverrides);
     }
 
 }

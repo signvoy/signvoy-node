@@ -39,36 +39,36 @@ import {
     WebhookEndpointWithSecretDtoToJSON,
 } from '../models/WebhookEndpointWithSecretDto';
 
-export interface CreateRequest {
+export interface WebhooksCreateRequest {
     createWebhookDto: CreateWebhookDto;
 }
 
-export interface GetRequest {
+export interface WebhooksGetRequest {
     id: string;
 }
 
-export interface ListDeliveriesRequest {
+export interface WebhooksListDeliveriesRequest {
     id: string;
 }
 
-export interface PingRequest {
+export interface WebhooksPingRequest {
     id: string;
 }
 
-export interface RemoveRequest {
+export interface WebhooksRemoveRequest {
     id: string;
 }
 
-export interface RetryDeliveryRequest {
+export interface WebhooksRetryDeliveryRequest {
     id: string;
     deliveryId: string;
 }
 
-export interface RotateSecretRequest {
+export interface WebhooksRotateSecretRequest {
     id: string;
 }
 
-export interface UpdateRequest {
+export interface WebhooksUpdateRequest {
     id: string;
     updateWebhookDto: UpdateWebhookDto;
 }
@@ -79,13 +79,13 @@ export interface UpdateRequest {
 export class WebhooksApi extends runtime.BaseAPI {
 
     /**
-     * Creates request options for create without sending the request
+     * Creates request options for webhooksCreate without sending the request
      */
-    async createRequestOpts(requestParameters: CreateRequest): Promise<runtime.RequestOpts> {
+    async webhooksCreateRequestOpts(requestParameters: WebhooksCreateRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['createWebhookDto'] == null) {
             throw new runtime.RequiredError(
                 'createWebhookDto',
-                'Required parameter "createWebhookDto" was null or undefined when calling create().'
+                'Required parameter "createWebhookDto" was null or undefined when calling webhooksCreate().'
             );
         }
 
@@ -131,8 +131,8 @@ export class WebhooksApi extends runtime.BaseAPI {
      * Register a new HTTPS endpoint. The signing secret is returned **once** in this response and will not be shown again — store it securely.
      * Create a webhook endpoint
      */
-    async createRaw(requestParameters: CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookEndpointWithSecretDto>> {
-        const requestOptions = await this.createRequestOpts(requestParameters);
+    async webhooksCreateRaw(requestParameters: WebhooksCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookEndpointWithSecretDto>> {
+        const requestOptions = await this.webhooksCreateRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => WebhookEndpointWithSecretDtoFromJSON(jsonValue));
@@ -142,19 +142,19 @@ export class WebhooksApi extends runtime.BaseAPI {
      * Register a new HTTPS endpoint. The signing secret is returned **once** in this response and will not be shown again — store it securely.
      * Create a webhook endpoint
      */
-    async create(requestParameters: CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookEndpointWithSecretDto> {
-        const response = await this.createRaw(requestParameters, initOverrides);
+    async webhooksCreate(requestParameters: WebhooksCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookEndpointWithSecretDto> {
+        const response = await this.webhooksCreateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for get without sending the request
+     * Creates request options for webhooksGet without sending the request
      */
-    async getRequestOpts(requestParameters: GetRequest): Promise<runtime.RequestOpts> {
+    async webhooksGetRequestOpts(requestParameters: WebhooksGetRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling get().'
+                'Required parameter "id" was null or undefined when calling webhooksGet().'
             );
         }
 
@@ -197,8 +197,8 @@ export class WebhooksApi extends runtime.BaseAPI {
     /**
      * Get a single webhook endpoint
      */
-    async getRaw(requestParameters: GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookEndpointDto>> {
-        const requestOptions = await this.getRequestOpts(requestParameters);
+    async webhooksGetRaw(requestParameters: WebhooksGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookEndpointDto>> {
+        const requestOptions = await this.webhooksGetRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => WebhookEndpointDtoFromJSON(jsonValue));
@@ -207,15 +207,15 @@ export class WebhooksApi extends runtime.BaseAPI {
     /**
      * Get a single webhook endpoint
      */
-    async get(requestParameters: GetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookEndpointDto> {
-        const response = await this.getRaw(requestParameters, initOverrides);
+    async webhooksGet(requestParameters: WebhooksGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookEndpointDto> {
+        const response = await this.webhooksGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for list without sending the request
+     * Creates request options for webhooksList without sending the request
      */
-    async listRequestOpts(): Promise<runtime.RequestOpts> {
+    async webhooksListRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -254,8 +254,8 @@ export class WebhooksApi extends runtime.BaseAPI {
     /**
      * List webhook endpoints for the workspace
      */
-    async listRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<WebhookEndpointDto>>> {
-        const requestOptions = await this.listRequestOpts();
+    async webhooksListRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<WebhookEndpointDto>>> {
+        const requestOptions = await this.webhooksListRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(WebhookEndpointDtoFromJSON));
@@ -264,19 +264,19 @@ export class WebhooksApi extends runtime.BaseAPI {
     /**
      * List webhook endpoints for the workspace
      */
-    async list(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<WebhookEndpointDto>> {
-        const response = await this.listRaw(initOverrides);
+    async webhooksList(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<WebhookEndpointDto>> {
+        const response = await this.webhooksListRaw(initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for listDeliveries without sending the request
+     * Creates request options for webhooksListDeliveries without sending the request
      */
-    async listDeliveriesRequestOpts(requestParameters: ListDeliveriesRequest): Promise<runtime.RequestOpts> {
+    async webhooksListDeliveriesRequestOpts(requestParameters: WebhooksListDeliveriesRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling listDeliveries().'
+                'Required parameter "id" was null or undefined when calling webhooksListDeliveries().'
             );
         }
 
@@ -320,8 +320,8 @@ export class WebhooksApi extends runtime.BaseAPI {
      * Returns the 50 most recent delivery attempts.
      * List recent deliveries for an endpoint
      */
-    async listDeliveriesRaw(requestParameters: ListDeliveriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<WebhookDeliveryDto>>> {
-        const requestOptions = await this.listDeliveriesRequestOpts(requestParameters);
+    async webhooksListDeliveriesRaw(requestParameters: WebhooksListDeliveriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<WebhookDeliveryDto>>> {
+        const requestOptions = await this.webhooksListDeliveriesRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(WebhookDeliveryDtoFromJSON));
@@ -331,19 +331,19 @@ export class WebhooksApi extends runtime.BaseAPI {
      * Returns the 50 most recent delivery attempts.
      * List recent deliveries for an endpoint
      */
-    async listDeliveries(requestParameters: ListDeliveriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<WebhookDeliveryDto>> {
-        const response = await this.listDeliveriesRaw(requestParameters, initOverrides);
+    async webhooksListDeliveries(requestParameters: WebhooksListDeliveriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<WebhookDeliveryDto>> {
+        const response = await this.webhooksListDeliveriesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for ping without sending the request
+     * Creates request options for webhooksPing without sending the request
      */
-    async pingRequestOpts(requestParameters: PingRequest): Promise<runtime.RequestOpts> {
+    async webhooksPingRequestOpts(requestParameters: WebhooksPingRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling ping().'
+                'Required parameter "id" was null or undefined when calling webhooksPing().'
             );
         }
 
@@ -387,8 +387,8 @@ export class WebhooksApi extends runtime.BaseAPI {
      * Sends a `webhook.test` event to verify the endpoint is reachable. Returns the delivery result.
      * Send a test event
      */
-    async pingRaw(requestParameters: PingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookDeliveryDto>> {
-        const requestOptions = await this.pingRequestOpts(requestParameters);
+    async webhooksPingRaw(requestParameters: WebhooksPingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookDeliveryDto>> {
+        const requestOptions = await this.webhooksPingRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => WebhookDeliveryDtoFromJSON(jsonValue));
@@ -398,19 +398,19 @@ export class WebhooksApi extends runtime.BaseAPI {
      * Sends a `webhook.test` event to verify the endpoint is reachable. Returns the delivery result.
      * Send a test event
      */
-    async ping(requestParameters: PingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookDeliveryDto> {
-        const response = await this.pingRaw(requestParameters, initOverrides);
+    async webhooksPing(requestParameters: WebhooksPingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookDeliveryDto> {
+        const response = await this.webhooksPingRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for remove without sending the request
+     * Creates request options for webhooksRemove without sending the request
      */
-    async removeRequestOpts(requestParameters: RemoveRequest): Promise<runtime.RequestOpts> {
+    async webhooksRemoveRequestOpts(requestParameters: WebhooksRemoveRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling remove().'
+                'Required parameter "id" was null or undefined when calling webhooksRemove().'
             );
         }
 
@@ -453,8 +453,8 @@ export class WebhooksApi extends runtime.BaseAPI {
     /**
      * Delete a webhook endpoint
      */
-    async removeRaw(requestParameters: RemoveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.removeRequestOpts(requestParameters);
+    async webhooksRemoveRaw(requestParameters: WebhooksRemoveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.webhooksRemoveRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -463,25 +463,25 @@ export class WebhooksApi extends runtime.BaseAPI {
     /**
      * Delete a webhook endpoint
      */
-    async remove(requestParameters: RemoveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.removeRaw(requestParameters, initOverrides);
+    async webhooksRemove(requestParameters: WebhooksRemoveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.webhooksRemoveRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Creates request options for retryDelivery without sending the request
+     * Creates request options for webhooksRetryDelivery without sending the request
      */
-    async retryDeliveryRequestOpts(requestParameters: RetryDeliveryRequest): Promise<runtime.RequestOpts> {
+    async webhooksRetryDeliveryRequestOpts(requestParameters: WebhooksRetryDeliveryRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling retryDelivery().'
+                'Required parameter "id" was null or undefined when calling webhooksRetryDelivery().'
             );
         }
 
         if (requestParameters['deliveryId'] == null) {
             throw new runtime.RequiredError(
                 'deliveryId',
-                'Required parameter "deliveryId" was null or undefined when calling retryDelivery().'
+                'Required parameter "deliveryId" was null or undefined when calling webhooksRetryDelivery().'
             );
         }
 
@@ -526,8 +526,8 @@ export class WebhooksApi extends runtime.BaseAPI {
      * Resets the delivery to `pending` and immediately re-attempts it. The original payload and `Signvoy-Event-Id` are preserved so receivers can deduplicate.
      * Manually retry a failed delivery
      */
-    async retryDeliveryRaw(requestParameters: RetryDeliveryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookDeliveryDto>> {
-        const requestOptions = await this.retryDeliveryRequestOpts(requestParameters);
+    async webhooksRetryDeliveryRaw(requestParameters: WebhooksRetryDeliveryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookDeliveryDto>> {
+        const requestOptions = await this.webhooksRetryDeliveryRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => WebhookDeliveryDtoFromJSON(jsonValue));
@@ -537,19 +537,19 @@ export class WebhooksApi extends runtime.BaseAPI {
      * Resets the delivery to `pending` and immediately re-attempts it. The original payload and `Signvoy-Event-Id` are preserved so receivers can deduplicate.
      * Manually retry a failed delivery
      */
-    async retryDelivery(requestParameters: RetryDeliveryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookDeliveryDto> {
-        const response = await this.retryDeliveryRaw(requestParameters, initOverrides);
+    async webhooksRetryDelivery(requestParameters: WebhooksRetryDeliveryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookDeliveryDto> {
+        const response = await this.webhooksRetryDeliveryRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for rotateSecret without sending the request
+     * Creates request options for webhooksRotateSecret without sending the request
      */
-    async rotateSecretRequestOpts(requestParameters: RotateSecretRequest): Promise<runtime.RequestOpts> {
+    async webhooksRotateSecretRequestOpts(requestParameters: WebhooksRotateSecretRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling rotateSecret().'
+                'Required parameter "id" was null or undefined when calling webhooksRotateSecret().'
             );
         }
 
@@ -593,8 +593,8 @@ export class WebhooksApi extends runtime.BaseAPI {
      * Issues a new HMAC secret for the endpoint. The new secret is returned **once** — update your server immediately. All future deliveries will use the new secret.
      * Rotate the signing secret
      */
-    async rotateSecretRaw(requestParameters: RotateSecretRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookEndpointWithSecretDto>> {
-        const requestOptions = await this.rotateSecretRequestOpts(requestParameters);
+    async webhooksRotateSecretRaw(requestParameters: WebhooksRotateSecretRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookEndpointWithSecretDto>> {
+        const requestOptions = await this.webhooksRotateSecretRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => WebhookEndpointWithSecretDtoFromJSON(jsonValue));
@@ -604,26 +604,26 @@ export class WebhooksApi extends runtime.BaseAPI {
      * Issues a new HMAC secret for the endpoint. The new secret is returned **once** — update your server immediately. All future deliveries will use the new secret.
      * Rotate the signing secret
      */
-    async rotateSecret(requestParameters: RotateSecretRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookEndpointWithSecretDto> {
-        const response = await this.rotateSecretRaw(requestParameters, initOverrides);
+    async webhooksRotateSecret(requestParameters: WebhooksRotateSecretRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookEndpointWithSecretDto> {
+        const response = await this.webhooksRotateSecretRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for update without sending the request
+     * Creates request options for webhooksUpdate without sending the request
      */
-    async updateRequestOpts(requestParameters: UpdateRequest): Promise<runtime.RequestOpts> {
+    async webhooksUpdateRequestOpts(requestParameters: WebhooksUpdateRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling update().'
+                'Required parameter "id" was null or undefined when calling webhooksUpdate().'
             );
         }
 
         if (requestParameters['updateWebhookDto'] == null) {
             throw new runtime.RequiredError(
                 'updateWebhookDto',
-                'Required parameter "updateWebhookDto" was null or undefined when calling update().'
+                'Required parameter "updateWebhookDto" was null or undefined when calling webhooksUpdate().'
             );
         }
 
@@ -669,8 +669,8 @@ export class WebhooksApi extends runtime.BaseAPI {
     /**
      * Update a webhook endpoint
      */
-    async updateRaw(requestParameters: UpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookEndpointDto>> {
-        const requestOptions = await this.updateRequestOpts(requestParameters);
+    async webhooksUpdateRaw(requestParameters: WebhooksUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookEndpointDto>> {
+        const requestOptions = await this.webhooksUpdateRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => WebhookEndpointDtoFromJSON(jsonValue));
@@ -679,8 +679,8 @@ export class WebhooksApi extends runtime.BaseAPI {
     /**
      * Update a webhook endpoint
      */
-    async update(requestParameters: UpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookEndpointDto> {
-        const response = await this.updateRaw(requestParameters, initOverrides);
+    async webhooksUpdate(requestParameters: WebhooksUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookEndpointDto> {
+        const response = await this.webhooksUpdateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

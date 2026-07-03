@@ -4,22 +4,22 @@ All URIs are relative to *https://api.signvoy.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**audit**](DocumentsApi.md#audit) | **GET** /v1/documents/{id}/audit | Get document audit trail |
-| [**certificate**](DocumentsApi.md#certificate) | **GET** /v1/documents/{id}/certificate | Get certificate of completion URL |
-| [**create**](DocumentsApi.md#create) | **POST** /v1/documents | Create a new document |
-| [**findOne**](DocumentsApi.md#findone) | **GET** /v1/documents/{id} | Get document by ID |
-| [**list**](DocumentsApi.md#list) | **GET** /v1/documents | List documents |
-| [**remove**](DocumentsApi.md#remove) | **DELETE** /v1/documents/{id} | Delete document |
-| [**send**](DocumentsApi.md#send) | **POST** /v1/documents/{id}/send | Send document for signing |
-| [**signedPdf**](DocumentsApi.md#signedpdf) | **GET** /v1/documents/{id}/signed-pdf | Get signed PDF URL |
-| [**update**](DocumentsApi.md#update) | **PATCH** /v1/documents/{id} | Update document |
-| [**voidDoc**](DocumentsApi.md#voiddoc) | **POST** /v1/documents/{id}/void | Void document |
+| [**documentsAudit**](DocumentsApi.md#documentsaudit) | **GET** /v1/documents/{id}/audit | Get document audit trail |
+| [**documentsCertificate**](DocumentsApi.md#documentscertificate) | **GET** /v1/documents/{id}/certificate | Get certificate of completion URL |
+| [**documentsCreate**](DocumentsApi.md#documentscreate) | **POST** /v1/documents | Create a new document |
+| [**documentsFindOne**](DocumentsApi.md#documentsfindone) | **GET** /v1/documents/{id} | Get document by ID |
+| [**documentsList**](DocumentsApi.md#documentslist) | **GET** /v1/documents | List documents |
+| [**documentsRemove**](DocumentsApi.md#documentsremove) | **DELETE** /v1/documents/{id} | Delete document |
+| [**documentsSend**](DocumentsApi.md#documentssend) | **POST** /v1/documents/{id}/send | Send document for signing |
+| [**documentsSignedPdf**](DocumentsApi.md#documentssignedpdf) | **GET** /v1/documents/{id}/signed-pdf | Get signed PDF URL |
+| [**documentsUpdate**](DocumentsApi.md#documentsupdate) | **PATCH** /v1/documents/{id} | Update document |
+| [**documentsVoidDoc**](DocumentsApi.md#documentsvoiddoc) | **POST** /v1/documents/{id}/void | Void document |
 
 
 
-## audit
+## documentsAudit
 
-> Array&lt;AuditEventDto&gt; audit(id)
+> Array&lt;AuditEventDto&gt; documentsAudit(id)
 
 Get document audit trail
 
@@ -32,7 +32,7 @@ import {
   Configuration,
   DocumentsApi,
 } from '@signvoy/node';
-import type { AuditRequest } from '@signvoy/node';
+import type { DocumentsAuditRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -49,10 +49,10 @@ async function example() {
   const body = {
     // string | Document UUID
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-  } satisfies AuditRequest;
+  } satisfies DocumentsAuditRequest;
 
   try {
-    const data = await api.audit(body);
+    const data = await api.documentsAudit(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -94,9 +94,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## certificate
+## documentsCertificate
 
-> UrlResponseDto certificate(id)
+> UrlResponseDto documentsCertificate(id)
 
 Get certificate of completion URL
 
@@ -109,7 +109,7 @@ import {
   Configuration,
   DocumentsApi,
 } from '@signvoy/node';
-import type { CertificateRequest } from '@signvoy/node';
+import type { DocumentsCertificateRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -126,10 +126,10 @@ async function example() {
   const body = {
     // string | Document UUID
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-  } satisfies CertificateRequest;
+  } satisfies DocumentsCertificateRequest;
 
   try {
-    const data = await api.certificate(body);
+    const data = await api.documentsCertificate(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -171,9 +171,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## create
+## documentsCreate
 
-> DocumentDto create(createDocumentDto)
+> DocumentDto documentsCreate(createDocumentDto)
 
 Create a new document
 
@@ -186,7 +186,7 @@ import {
   Configuration,
   DocumentsApi,
 } from '@signvoy/node';
-import type { CreateRequest } from '@signvoy/node';
+import type { DocumentsCreateRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -203,10 +203,10 @@ async function example() {
   const body = {
     // CreateDocumentDto
     createDocumentDto: ...,
-  } satisfies CreateRequest;
+  } satisfies DocumentsCreateRequest;
 
   try {
-    const data = await api.create(body);
+    const data = await api.documentsCreate(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -249,9 +249,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## findOne
+## documentsFindOne
 
-> DocumentDto findOne(id)
+> DocumentDto documentsFindOne(id)
 
 Get document by ID
 
@@ -264,7 +264,7 @@ import {
   Configuration,
   DocumentsApi,
 } from '@signvoy/node';
-import type { FindOneRequest } from '@signvoy/node';
+import type { DocumentsFindOneRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -281,10 +281,10 @@ async function example() {
   const body = {
     // string | Document UUID
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-  } satisfies FindOneRequest;
+  } satisfies DocumentsFindOneRequest;
 
   try {
-    const data = await api.findOne(body);
+    const data = await api.documentsFindOne(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -326,9 +326,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## list
+## documentsList
 
-> Array&lt;DocumentDto&gt; list(status, templateId, q)
+> Array&lt;DocumentDto&gt; documentsList(status, templateId, q)
 
 List documents
 
@@ -341,7 +341,7 @@ import {
   Configuration,
   DocumentsApi,
 } from '@signvoy/node';
-import type { ListRequest } from '@signvoy/node';
+import type { DocumentsListRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -362,10 +362,10 @@ async function example() {
     templateId: 550e8400-e29b-41d4-a716-446655440000,
     // string | Search query for document name, recipient name, or email (optional)
     q: john,
-  } satisfies ListRequest;
+  } satisfies DocumentsListRequest;
 
   try {
-    const data = await api.list(body);
+    const data = await api.documentsList(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -407,9 +407,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## remove
+## documentsRemove
 
-> remove(id)
+> documentsRemove(id)
 
 Delete document
 
@@ -422,7 +422,7 @@ import {
   Configuration,
   DocumentsApi,
 } from '@signvoy/node';
-import type { RemoveRequest } from '@signvoy/node';
+import type { DocumentsRemoveRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -439,10 +439,10 @@ async function example() {
   const body = {
     // string | Document UUID
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-  } satisfies RemoveRequest;
+  } satisfies DocumentsRemoveRequest;
 
   try {
-    const data = await api.remove(body);
+    const data = await api.documentsRemove(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -484,9 +484,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## send
+## documentsSend
 
-> DocumentDto send(id)
+> DocumentDto documentsSend(id)
 
 Send document for signing
 
@@ -499,7 +499,7 @@ import {
   Configuration,
   DocumentsApi,
 } from '@signvoy/node';
-import type { SendRequest } from '@signvoy/node';
+import type { DocumentsSendRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -516,10 +516,10 @@ async function example() {
   const body = {
     // string | Document UUID
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-  } satisfies SendRequest;
+  } satisfies DocumentsSendRequest;
 
   try {
-    const data = await api.send(body);
+    const data = await api.documentsSend(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -562,9 +562,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## signedPdf
+## documentsSignedPdf
 
-> UrlResponseDto signedPdf(id)
+> UrlResponseDto documentsSignedPdf(id)
 
 Get signed PDF URL
 
@@ -577,7 +577,7 @@ import {
   Configuration,
   DocumentsApi,
 } from '@signvoy/node';
-import type { SignedPdfRequest } from '@signvoy/node';
+import type { DocumentsSignedPdfRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -594,10 +594,10 @@ async function example() {
   const body = {
     // string | Document UUID
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-  } satisfies SignedPdfRequest;
+  } satisfies DocumentsSignedPdfRequest;
 
   try {
-    const data = await api.signedPdf(body);
+    const data = await api.documentsSignedPdf(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -639,9 +639,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## update
+## documentsUpdate
 
-> DocumentDto update(id, updateDocumentDto)
+> DocumentDto documentsUpdate(id, updateDocumentDto)
 
 Update document
 
@@ -654,7 +654,7 @@ import {
   Configuration,
   DocumentsApi,
 } from '@signvoy/node';
-import type { UpdateRequest } from '@signvoy/node';
+import type { DocumentsUpdateRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -673,10 +673,10 @@ async function example() {
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
     // UpdateDocumentDto
     updateDocumentDto: ...,
-  } satisfies UpdateRequest;
+  } satisfies DocumentsUpdateRequest;
 
   try {
-    const data = await api.update(body);
+    const data = await api.documentsUpdate(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -720,9 +720,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## voidDoc
+## documentsVoidDoc
 
-> DocumentDto voidDoc(id)
+> DocumentDto documentsVoidDoc(id)
 
 Void document
 
@@ -735,7 +735,7 @@ import {
   Configuration,
   DocumentsApi,
 } from '@signvoy/node';
-import type { VoidDocRequest } from '@signvoy/node';
+import type { DocumentsVoidDocRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -752,10 +752,10 @@ async function example() {
   const body = {
     // string | Document UUID
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-  } satisfies VoidDocRequest;
+  } satisfies DocumentsVoidDocRequest;
 
   try {
-    const data = await api.voidDoc(body);
+    const data = await api.documentsVoidDoc(body);
     console.log(data);
   } catch (error) {
     console.error(error);

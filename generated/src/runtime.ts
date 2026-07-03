@@ -369,7 +369,7 @@ export function mapValues(data: any, fn: (item: any) => any) {
 
 export function canConsumeForm(consumes: Consume[]): boolean {
     for (const consume of consumes) {
-        if (consume.contentType?.startsWith('multipart/form-data') == true) {
+        if ('multipart/form-data' === consume.contentType) {
             return true;
         }
     }

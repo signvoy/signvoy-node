@@ -4,13 +4,13 @@ All URIs are relative to *https://api.signvoy.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**check**](HealthApi.md#check) | **GET** /v1/health | Health check |
+| [**healthCheck**](HealthApi.md#healthcheck) | **GET** /v1/health | Health check |
 
 
 
-## check
+## healthCheck
 
-> HealthCheck200Response check()
+> HealthCheck200Response healthCheck()
 
 Health check
 
@@ -23,14 +23,14 @@ import {
   Configuration,
   HealthApi,
 } from '@signvoy/node';
-import type { CheckRequest } from '@signvoy/node';
+import type { HealthCheckRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
   const api = new HealthApi();
 
   try {
-    const data = await api.check();
+    const data = await api.healthCheck();
     console.log(data);
   } catch (error) {
     console.error(error);

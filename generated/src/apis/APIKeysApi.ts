@@ -29,11 +29,11 @@ import {
     CreatedApiKeyDtoToJSON,
 } from '../models/CreatedApiKeyDto';
 
-export interface CreateRequest {
+export interface ApiKeysCreateRequest {
     createApiKeyDto: CreateApiKeyDto;
 }
 
-export interface RevokeRequest {
+export interface ApiKeysRevokeRequest {
     id: string;
 }
 
@@ -43,13 +43,13 @@ export interface RevokeRequest {
 export class APIKeysApi extends runtime.BaseAPI {
 
     /**
-     * Creates request options for create without sending the request
+     * Creates request options for apiKeysCreate without sending the request
      */
-    async createRequestOpts(requestParameters: CreateRequest): Promise<runtime.RequestOpts> {
+    async apiKeysCreateRequestOpts(requestParameters: ApiKeysCreateRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['createApiKeyDto'] == null) {
             throw new runtime.RequiredError(
                 'createApiKeyDto',
-                'Required parameter "createApiKeyDto" was null or undefined when calling create().'
+                'Required parameter "createApiKeyDto" was null or undefined when calling apiKeysCreate().'
             );
         }
 
@@ -87,8 +87,8 @@ export class APIKeysApi extends runtime.BaseAPI {
      * Creates a new secret API key scoped to this workspace. The plaintext key is returned **once** in this response and cannot be retrieved again — store it securely.
      * Create an API key
      */
-    async createRaw(requestParameters: CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatedApiKeyDto>> {
-        const requestOptions = await this.createRequestOpts(requestParameters);
+    async apiKeysCreateRaw(requestParameters: ApiKeysCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatedApiKeyDto>> {
+        const requestOptions = await this.apiKeysCreateRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreatedApiKeyDtoFromJSON(jsonValue));
@@ -98,15 +98,15 @@ export class APIKeysApi extends runtime.BaseAPI {
      * Creates a new secret API key scoped to this workspace. The plaintext key is returned **once** in this response and cannot be retrieved again — store it securely.
      * Create an API key
      */
-    async create(requestParameters: CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatedApiKeyDto> {
-        const response = await this.createRaw(requestParameters, initOverrides);
+    async apiKeysCreate(requestParameters: ApiKeysCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatedApiKeyDto> {
+        const response = await this.apiKeysCreateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for list without sending the request
+     * Creates request options for apiKeysList without sending the request
      */
-    async listRequestOpts(): Promise<runtime.RequestOpts> {
+    async apiKeysListRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -138,8 +138,8 @@ export class APIKeysApi extends runtime.BaseAPI {
      * Returns all API keys for the workspace. Secrets are never included — only the prefix and last 4 characters.
      * List API keys
      */
-    async listRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ApiKeyDto>>> {
-        const requestOptions = await this.listRequestOpts();
+    async apiKeysListRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ApiKeyDto>>> {
+        const requestOptions = await this.apiKeysListRequestOpts();
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ApiKeyDtoFromJSON));
@@ -149,19 +149,19 @@ export class APIKeysApi extends runtime.BaseAPI {
      * Returns all API keys for the workspace. Secrets are never included — only the prefix and last 4 characters.
      * List API keys
      */
-    async list(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ApiKeyDto>> {
-        const response = await this.listRaw(initOverrides);
+    async apiKeysList(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ApiKeyDto>> {
+        const response = await this.apiKeysListRaw(initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for revoke without sending the request
+     * Creates request options for apiKeysRevoke without sending the request
      */
-    async revokeRequestOpts(requestParameters: RevokeRequest): Promise<runtime.RequestOpts> {
+    async apiKeysRevokeRequestOpts(requestParameters: ApiKeysRevokeRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling revoke().'
+                'Required parameter "id" was null or undefined when calling apiKeysRevoke().'
             );
         }
 
@@ -197,8 +197,8 @@ export class APIKeysApi extends runtime.BaseAPI {
      * Immediately and permanently revokes the key. Any request using it will start failing at once. This cannot be undone.
      * Revoke an API key
      */
-    async revokeRaw(requestParameters: RevokeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiKeyDto>> {
-        const requestOptions = await this.revokeRequestOpts(requestParameters);
+    async apiKeysRevokeRaw(requestParameters: ApiKeysRevokeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiKeyDto>> {
+        const requestOptions = await this.apiKeysRevokeRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ApiKeyDtoFromJSON(jsonValue));
@@ -208,8 +208,8 @@ export class APIKeysApi extends runtime.BaseAPI {
      * Immediately and permanently revokes the key. Any request using it will start failing at once. This cannot be undone.
      * Revoke an API key
      */
-    async revoke(requestParameters: RevokeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiKeyDto> {
-        const response = await this.revokeRaw(requestParameters, initOverrides);
+    async apiKeysRevoke(requestParameters: ApiKeysRevokeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ApiKeyDto> {
+        const response = await this.apiKeysRevokeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

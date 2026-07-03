@@ -14,16 +14,16 @@
 
 import * as runtime from '../runtime';
 
-export interface DetectFieldsRequest {
+export interface AiTemplateDetectFieldsRequest {
     body: object;
 }
 
-export interface EditDraftRequest {
+export interface AiTemplateEditDraftRequest {
     templateId: string;
     body: object;
 }
 
-export interface GenerateRequest {
+export interface AiTemplateGenerateRequest {
     body: object;
 }
 
@@ -33,13 +33,13 @@ export interface GenerateRequest {
 export class AITemplatesApi extends runtime.BaseAPI {
 
     /**
-     * Creates request options for detectFields without sending the request
+     * Creates request options for aiTemplateDetectFields without sending the request
      */
-    async detectFieldsRequestOpts(requestParameters: DetectFieldsRequest): Promise<runtime.RequestOpts> {
+    async aiTemplateDetectFieldsRequestOpts(requestParameters: AiTemplateDetectFieldsRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['body'] == null) {
             throw new runtime.RequiredError(
                 'body',
-                'Required parameter "body" was null or undefined when calling detectFields().'
+                'Required parameter "body" was null or undefined when calling aiTemplateDetectFields().'
             );
         }
 
@@ -77,8 +77,8 @@ export class AITemplatesApi extends runtime.BaseAPI {
      * Analyses the uploaded PDF and returns a suggested TemplateVersionContent (recipients, fields with coordinates, conditional rules). The caller applies the suggestions through the editor (supports undo/redo via the Zustand store).
      * Detect fields on an already-uploaded PDF draft
      */
-    async detectFieldsRaw(requestParameters: DetectFieldsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.detectFieldsRequestOpts(requestParameters);
+    async aiTemplateDetectFieldsRaw(requestParameters: AiTemplateDetectFieldsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.aiTemplateDetectFieldsRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -88,25 +88,25 @@ export class AITemplatesApi extends runtime.BaseAPI {
      * Analyses the uploaded PDF and returns a suggested TemplateVersionContent (recipients, fields with coordinates, conditional rules). The caller applies the suggestions through the editor (supports undo/redo via the Zustand store).
      * Detect fields on an already-uploaded PDF draft
      */
-    async detectFields(requestParameters: DetectFieldsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.detectFieldsRaw(requestParameters, initOverrides);
+    async aiTemplateDetectFields(requestParameters: AiTemplateDetectFieldsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.aiTemplateDetectFieldsRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Creates request options for editDraft without sending the request
+     * Creates request options for aiTemplateEditDraft without sending the request
      */
-    async editDraftRequestOpts(requestParameters: EditDraftRequest): Promise<runtime.RequestOpts> {
+    async aiTemplateEditDraftRequestOpts(requestParameters: AiTemplateEditDraftRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['templateId'] == null) {
             throw new runtime.RequiredError(
                 'templateId',
-                'Required parameter "templateId" was null or undefined when calling editDraft().'
+                'Required parameter "templateId" was null or undefined when calling aiTemplateEditDraft().'
             );
         }
 
         if (requestParameters['body'] == null) {
             throw new runtime.RequiredError(
                 'body',
-                'Required parameter "body" was null or undefined when calling editDraft().'
+                'Required parameter "body" was null or undefined when calling aiTemplateEditDraft().'
             );
         }
 
@@ -145,8 +145,8 @@ export class AITemplatesApi extends runtime.BaseAPI {
      * Loads the current draft content, applies the instruction via LLM, validates the result with the rules engine, and returns the proposed updated content + a diff summary. The client applies the changes through the Zustand editor store so undo/redo still works.
      * Edit an existing draft template with a natural-language instruction
      */
-    async editDraftRaw(requestParameters: EditDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.editDraftRequestOpts(requestParameters);
+    async aiTemplateEditDraftRaw(requestParameters: AiTemplateEditDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.aiTemplateEditDraftRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -156,18 +156,18 @@ export class AITemplatesApi extends runtime.BaseAPI {
      * Loads the current draft content, applies the instruction via LLM, validates the result with the rules engine, and returns the proposed updated content + a diff summary. The client applies the changes through the Zustand editor store so undo/redo still works.
      * Edit an existing draft template with a natural-language instruction
      */
-    async editDraft(requestParameters: EditDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.editDraftRaw(requestParameters, initOverrides);
+    async aiTemplateEditDraft(requestParameters: AiTemplateEditDraftRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.aiTemplateEditDraftRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Creates request options for generate without sending the request
+     * Creates request options for aiTemplateGenerate without sending the request
      */
-    async generateRequestOpts(requestParameters: GenerateRequest): Promise<runtime.RequestOpts> {
+    async aiTemplateGenerateRequestOpts(requestParameters: AiTemplateGenerateRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['body'] == null) {
             throw new runtime.RequiredError(
                 'body',
-                'Required parameter "body" was null or undefined when calling generate().'
+                'Required parameter "body" was null or undefined when calling aiTemplateGenerate().'
             );
         }
 
@@ -205,8 +205,8 @@ export class AITemplatesApi extends runtime.BaseAPI {
      * Uses an LLM to design recipients, fields, conditional rules, and a backing PDF from your description. Returns a draft template ready to customize in the editor.
      * Generate a template from a natural-language prompt
      */
-    async generateRaw(requestParameters: GenerateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.generateRequestOpts(requestParameters);
+    async aiTemplateGenerateRaw(requestParameters: AiTemplateGenerateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.aiTemplateGenerateRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -216,8 +216,8 @@ export class AITemplatesApi extends runtime.BaseAPI {
      * Uses an LLM to design recipients, fields, conditional rules, and a backing PDF from your description. Returns a draft template ready to customize in the editor.
      * Generate a template from a natural-language prompt
      */
-    async generate(requestParameters: GenerateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.generateRaw(requestParameters, initOverrides);
+    async aiTemplateGenerate(requestParameters: AiTemplateGenerateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.aiTemplateGenerateRaw(requestParameters, initOverrides);
     }
 
 }

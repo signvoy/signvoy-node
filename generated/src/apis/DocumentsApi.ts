@@ -39,46 +39,46 @@ import {
     UrlResponseDtoToJSON,
 } from '../models/UrlResponseDto';
 
-export interface AuditRequest {
+export interface DocumentsAuditRequest {
     id: string;
 }
 
-export interface CertificateRequest {
+export interface DocumentsCertificateRequest {
     id: string;
 }
 
-export interface CreateRequest {
+export interface DocumentsCreateRequest {
     createDocumentDto: CreateDocumentDto;
 }
 
-export interface FindOneRequest {
+export interface DocumentsFindOneRequest {
     id: string;
 }
 
-export interface ListRequest {
-    status?: ListStatusEnum;
+export interface DocumentsListRequest {
+    status?: DocumentsListStatusEnum;
     templateId?: string;
     q?: string;
 }
 
-export interface RemoveRequest {
+export interface DocumentsRemoveRequest {
     id: string;
 }
 
-export interface SendRequest {
+export interface DocumentsSendRequest {
     id: string;
 }
 
-export interface SignedPdfRequest {
+export interface DocumentsSignedPdfRequest {
     id: string;
 }
 
-export interface UpdateRequest {
+export interface DocumentsUpdateRequest {
     id: string;
     updateDocumentDto: UpdateDocumentDto;
 }
 
-export interface VoidDocRequest {
+export interface DocumentsVoidDocRequest {
     id: string;
 }
 
@@ -88,13 +88,13 @@ export interface VoidDocRequest {
 export class DocumentsApi extends runtime.BaseAPI {
 
     /**
-     * Creates request options for audit without sending the request
+     * Creates request options for documentsAudit without sending the request
      */
-    async auditRequestOpts(requestParameters: AuditRequest): Promise<runtime.RequestOpts> {
+    async documentsAuditRequestOpts(requestParameters: DocumentsAuditRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling audit().'
+                'Required parameter "id" was null or undefined when calling documentsAudit().'
             );
         }
 
@@ -138,8 +138,8 @@ export class DocumentsApi extends runtime.BaseAPI {
      * Returns the ordered chain-of-custody events (sent, viewed, signed, declined, etc.) for the document
      * Get document audit trail
      */
-    async auditRaw(requestParameters: AuditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AuditEventDto>>> {
-        const requestOptions = await this.auditRequestOpts(requestParameters);
+    async documentsAuditRaw(requestParameters: DocumentsAuditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<AuditEventDto>>> {
+        const requestOptions = await this.documentsAuditRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(AuditEventDtoFromJSON));
@@ -149,19 +149,19 @@ export class DocumentsApi extends runtime.BaseAPI {
      * Returns the ordered chain-of-custody events (sent, viewed, signed, declined, etc.) for the document
      * Get document audit trail
      */
-    async audit(requestParameters: AuditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AuditEventDto>> {
-        const response = await this.auditRaw(requestParameters, initOverrides);
+    async documentsAudit(requestParameters: DocumentsAuditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<AuditEventDto>> {
+        const response = await this.documentsAuditRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for certificate without sending the request
+     * Creates request options for documentsCertificate without sending the request
      */
-    async certificateRequestOpts(requestParameters: CertificateRequest): Promise<runtime.RequestOpts> {
+    async documentsCertificateRequestOpts(requestParameters: DocumentsCertificateRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling certificate().'
+                'Required parameter "id" was null or undefined when calling documentsCertificate().'
             );
         }
 
@@ -205,8 +205,8 @@ export class DocumentsApi extends runtime.BaseAPI {
      * Retrieves a presigned URL to download the standalone certificate of completion
      * Get certificate of completion URL
      */
-    async certificateRaw(requestParameters: CertificateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UrlResponseDto>> {
-        const requestOptions = await this.certificateRequestOpts(requestParameters);
+    async documentsCertificateRaw(requestParameters: DocumentsCertificateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UrlResponseDto>> {
+        const requestOptions = await this.documentsCertificateRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UrlResponseDtoFromJSON(jsonValue));
@@ -216,19 +216,19 @@ export class DocumentsApi extends runtime.BaseAPI {
      * Retrieves a presigned URL to download the standalone certificate of completion
      * Get certificate of completion URL
      */
-    async certificate(requestParameters: CertificateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UrlResponseDto> {
-        const response = await this.certificateRaw(requestParameters, initOverrides);
+    async documentsCertificate(requestParameters: DocumentsCertificateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UrlResponseDto> {
+        const response = await this.documentsCertificateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for create without sending the request
+     * Creates request options for documentsCreate without sending the request
      */
-    async createRequestOpts(requestParameters: CreateRequest): Promise<runtime.RequestOpts> {
+    async documentsCreateRequestOpts(requestParameters: DocumentsCreateRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['createDocumentDto'] == null) {
             throw new runtime.RequiredError(
                 'createDocumentDto',
-                'Required parameter "createDocumentDto" was null or undefined when calling create().'
+                'Required parameter "createDocumentDto" was null or undefined when calling documentsCreate().'
             );
         }
 
@@ -274,8 +274,8 @@ export class DocumentsApi extends runtime.BaseAPI {
      * Creates a document from a template with recipients for signing
      * Create a new document
      */
-    async createRaw(requestParameters: CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentDto>> {
-        const requestOptions = await this.createRequestOpts(requestParameters);
+    async documentsCreateRaw(requestParameters: DocumentsCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentDto>> {
+        const requestOptions = await this.documentsCreateRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => DocumentDtoFromJSON(jsonValue));
@@ -285,19 +285,19 @@ export class DocumentsApi extends runtime.BaseAPI {
      * Creates a document from a template with recipients for signing
      * Create a new document
      */
-    async create(requestParameters: CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentDto> {
-        const response = await this.createRaw(requestParameters, initOverrides);
+    async documentsCreate(requestParameters: DocumentsCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentDto> {
+        const response = await this.documentsCreateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for findOne without sending the request
+     * Creates request options for documentsFindOne without sending the request
      */
-    async findOneRequestOpts(requestParameters: FindOneRequest): Promise<runtime.RequestOpts> {
+    async documentsFindOneRequestOpts(requestParameters: DocumentsFindOneRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling findOne().'
+                'Required parameter "id" was null or undefined when calling documentsFindOne().'
             );
         }
 
@@ -341,8 +341,8 @@ export class DocumentsApi extends runtime.BaseAPI {
      * Retrieves detailed information about a specific document
      * Get document by ID
      */
-    async findOneRaw(requestParameters: FindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentDto>> {
-        const requestOptions = await this.findOneRequestOpts(requestParameters);
+    async documentsFindOneRaw(requestParameters: DocumentsFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentDto>> {
+        const requestOptions = await this.documentsFindOneRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => DocumentDtoFromJSON(jsonValue));
@@ -352,15 +352,15 @@ export class DocumentsApi extends runtime.BaseAPI {
      * Retrieves detailed information about a specific document
      * Get document by ID
      */
-    async findOne(requestParameters: FindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentDto> {
-        const response = await this.findOneRaw(requestParameters, initOverrides);
+    async documentsFindOne(requestParameters: DocumentsFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentDto> {
+        const response = await this.documentsFindOneRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for list without sending the request
+     * Creates request options for documentsList without sending the request
      */
-    async listRequestOpts(requestParameters: ListRequest): Promise<runtime.RequestOpts> {
+    async documentsListRequestOpts(requestParameters: DocumentsListRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['status'] != null) {
@@ -412,8 +412,8 @@ export class DocumentsApi extends runtime.BaseAPI {
      * Retrieves all documents in the workspace with optional filtering by status, template, or search query
      * List documents
      */
-    async listRaw(requestParameters: ListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DocumentDto>>> {
-        const requestOptions = await this.listRequestOpts(requestParameters);
+    async documentsListRaw(requestParameters: DocumentsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DocumentDto>>> {
+        const requestOptions = await this.documentsListRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DocumentDtoFromJSON));
@@ -423,19 +423,19 @@ export class DocumentsApi extends runtime.BaseAPI {
      * Retrieves all documents in the workspace with optional filtering by status, template, or search query
      * List documents
      */
-    async list(requestParameters: ListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DocumentDto>> {
-        const response = await this.listRaw(requestParameters, initOverrides);
+    async documentsList(requestParameters: DocumentsListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DocumentDto>> {
+        const response = await this.documentsListRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for remove without sending the request
+     * Creates request options for documentsRemove without sending the request
      */
-    async removeRequestOpts(requestParameters: RemoveRequest): Promise<runtime.RequestOpts> {
+    async documentsRemoveRequestOpts(requestParameters: DocumentsRemoveRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling remove().'
+                'Required parameter "id" was null or undefined when calling documentsRemove().'
             );
         }
 
@@ -479,8 +479,8 @@ export class DocumentsApi extends runtime.BaseAPI {
      * Permanently deletes a document
      * Delete document
      */
-    async removeRaw(requestParameters: RemoveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.removeRequestOpts(requestParameters);
+    async documentsRemoveRaw(requestParameters: DocumentsRemoveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.documentsRemoveRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -490,18 +490,18 @@ export class DocumentsApi extends runtime.BaseAPI {
      * Permanently deletes a document
      * Delete document
      */
-    async remove(requestParameters: RemoveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.removeRaw(requestParameters, initOverrides);
+    async documentsRemove(requestParameters: DocumentsRemoveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.documentsRemoveRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Creates request options for send without sending the request
+     * Creates request options for documentsSend without sending the request
      */
-    async sendRequestOpts(requestParameters: SendRequest): Promise<runtime.RequestOpts> {
+    async documentsSendRequestOpts(requestParameters: DocumentsSendRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling send().'
+                'Required parameter "id" was null or undefined when calling documentsSend().'
             );
         }
 
@@ -545,8 +545,8 @@ export class DocumentsApi extends runtime.BaseAPI {
      * Sends the document to recipients and transitions it to \'sent\' state
      * Send document for signing
      */
-    async sendRaw(requestParameters: SendRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentDto>> {
-        const requestOptions = await this.sendRequestOpts(requestParameters);
+    async documentsSendRaw(requestParameters: DocumentsSendRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentDto>> {
+        const requestOptions = await this.documentsSendRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => DocumentDtoFromJSON(jsonValue));
@@ -556,19 +556,19 @@ export class DocumentsApi extends runtime.BaseAPI {
      * Sends the document to recipients and transitions it to \'sent\' state
      * Send document for signing
      */
-    async send(requestParameters: SendRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentDto> {
-        const response = await this.sendRaw(requestParameters, initOverrides);
+    async documentsSend(requestParameters: DocumentsSendRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentDto> {
+        const response = await this.documentsSendRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for signedPdf without sending the request
+     * Creates request options for documentsSignedPdf without sending the request
      */
-    async signedPdfRequestOpts(requestParameters: SignedPdfRequest): Promise<runtime.RequestOpts> {
+    async documentsSignedPdfRequestOpts(requestParameters: DocumentsSignedPdfRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling signedPdf().'
+                'Required parameter "id" was null or undefined when calling documentsSignedPdf().'
             );
         }
 
@@ -612,8 +612,8 @@ export class DocumentsApi extends runtime.BaseAPI {
      * Retrieves a presigned URL to download the completed signed PDF
      * Get signed PDF URL
      */
-    async signedPdfRaw(requestParameters: SignedPdfRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UrlResponseDto>> {
-        const requestOptions = await this.signedPdfRequestOpts(requestParameters);
+    async documentsSignedPdfRaw(requestParameters: DocumentsSignedPdfRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UrlResponseDto>> {
+        const requestOptions = await this.documentsSignedPdfRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UrlResponseDtoFromJSON(jsonValue));
@@ -623,26 +623,26 @@ export class DocumentsApi extends runtime.BaseAPI {
      * Retrieves a presigned URL to download the completed signed PDF
      * Get signed PDF URL
      */
-    async signedPdf(requestParameters: SignedPdfRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UrlResponseDto> {
-        const response = await this.signedPdfRaw(requestParameters, initOverrides);
+    async documentsSignedPdf(requestParameters: DocumentsSignedPdfRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UrlResponseDto> {
+        const response = await this.documentsSignedPdfRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for update without sending the request
+     * Creates request options for documentsUpdate without sending the request
      */
-    async updateRequestOpts(requestParameters: UpdateRequest): Promise<runtime.RequestOpts> {
+    async documentsUpdateRequestOpts(requestParameters: DocumentsUpdateRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling update().'
+                'Required parameter "id" was null or undefined when calling documentsUpdate().'
             );
         }
 
         if (requestParameters['updateDocumentDto'] == null) {
             throw new runtime.RequiredError(
                 'updateDocumentDto',
-                'Required parameter "updateDocumentDto" was null or undefined when calling update().'
+                'Required parameter "updateDocumentDto" was null or undefined when calling documentsUpdate().'
             );
         }
 
@@ -689,8 +689,8 @@ export class DocumentsApi extends runtime.BaseAPI {
      * Updates document details (only allowed in draft state)
      * Update document
      */
-    async updateRaw(requestParameters: UpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentDto>> {
-        const requestOptions = await this.updateRequestOpts(requestParameters);
+    async documentsUpdateRaw(requestParameters: DocumentsUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentDto>> {
+        const requestOptions = await this.documentsUpdateRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => DocumentDtoFromJSON(jsonValue));
@@ -700,19 +700,19 @@ export class DocumentsApi extends runtime.BaseAPI {
      * Updates document details (only allowed in draft state)
      * Update document
      */
-    async update(requestParameters: UpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentDto> {
-        const response = await this.updateRaw(requestParameters, initOverrides);
+    async documentsUpdate(requestParameters: DocumentsUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentDto> {
+        const response = await this.documentsUpdateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for voidDoc without sending the request
+     * Creates request options for documentsVoidDoc without sending the request
      */
-    async voidDocRequestOpts(requestParameters: VoidDocRequest): Promise<runtime.RequestOpts> {
+    async documentsVoidDocRequestOpts(requestParameters: DocumentsVoidDocRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling voidDoc().'
+                'Required parameter "id" was null or undefined when calling documentsVoidDoc().'
             );
         }
 
@@ -756,8 +756,8 @@ export class DocumentsApi extends runtime.BaseAPI {
      * Cancels the document and prevents further signing
      * Void document
      */
-    async voidDocRaw(requestParameters: VoidDocRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentDto>> {
-        const requestOptions = await this.voidDocRequestOpts(requestParameters);
+    async documentsVoidDocRaw(requestParameters: DocumentsVoidDocRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentDto>> {
+        const requestOptions = await this.documentsVoidDocRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => DocumentDtoFromJSON(jsonValue));
@@ -767,8 +767,8 @@ export class DocumentsApi extends runtime.BaseAPI {
      * Cancels the document and prevents further signing
      * Void document
      */
-    async voidDoc(requestParameters: VoidDocRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentDto> {
-        const response = await this.voidDocRaw(requestParameters, initOverrides);
+    async documentsVoidDoc(requestParameters: DocumentsVoidDocRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentDto> {
+        const response = await this.documentsVoidDocRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -777,7 +777,7 @@ export class DocumentsApi extends runtime.BaseAPI {
 /**
  * @export
  */
-export const ListStatusEnum = {
+export const DocumentsListStatusEnum = {
     DRAFT: 'draft',
     SENT: 'sent',
     IN_PROGRESS: 'in_progress',
@@ -786,4 +786,4 @@ export const ListStatusEnum = {
     VOIDED: 'voided',
     EXPIRED: 'expired'
 } as const;
-export type ListStatusEnum = typeof ListStatusEnum[keyof typeof ListStatusEnum];
+export type DocumentsListStatusEnum = typeof DocumentsListStatusEnum[keyof typeof DocumentsListStatusEnum];

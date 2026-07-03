@@ -24,7 +24,7 @@ import {
     EmbedSessionResponseDtoToJSON,
 } from '../models/EmbedSessionResponseDto';
 
-export interface CreateSessionRequest {
+export interface EmbedCreateSessionRequest {
     createEmbedSessionDto: CreateEmbedSessionDto;
 }
 
@@ -34,13 +34,13 @@ export interface CreateSessionRequest {
 export class EmbedApi extends runtime.BaseAPI {
 
     /**
-     * Creates request options for createSession without sending the request
+     * Creates request options for embedCreateSession without sending the request
      */
-    async createSessionRequestOpts(requestParameters: CreateSessionRequest): Promise<runtime.RequestOpts> {
+    async embedCreateSessionRequestOpts(requestParameters: EmbedCreateSessionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['createEmbedSessionDto'] == null) {
             throw new runtime.RequiredError(
                 'createEmbedSessionDto',
-                'Required parameter "createEmbedSessionDto" was null or undefined when calling createSession().'
+                'Required parameter "createEmbedSessionDto" was null or undefined when calling embedCreateSession().'
             );
         }
 
@@ -78,8 +78,8 @@ export class EmbedApi extends runtime.BaseAPI {
      * Mints a scoped, short-lived signing URL for a specific document recipient. Pass the returned `url` to an `<iframe src={url}>` or to the `@signvoy/react` `<SignvoyEmbed url={url} />` component. The document must be in `sent` state and the recipient must be `pending`.
      * Create an embed session
      */
-    async createSessionRaw(requestParameters: CreateSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmbedSessionResponseDto>> {
-        const requestOptions = await this.createSessionRequestOpts(requestParameters);
+    async embedCreateSessionRaw(requestParameters: EmbedCreateSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmbedSessionResponseDto>> {
+        const requestOptions = await this.embedCreateSessionRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => EmbedSessionResponseDtoFromJSON(jsonValue));
@@ -89,8 +89,8 @@ export class EmbedApi extends runtime.BaseAPI {
      * Mints a scoped, short-lived signing URL for a specific document recipient. Pass the returned `url` to an `<iframe src={url}>` or to the `@signvoy/react` `<SignvoyEmbed url={url} />` component. The document must be in `sent` state and the recipient must be `pending`.
      * Create an embed session
      */
-    async createSession(requestParameters: CreateSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmbedSessionResponseDto> {
-        const response = await this.createSessionRaw(requestParameters, initOverrides);
+    async embedCreateSession(requestParameters: EmbedCreateSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmbedSessionResponseDto> {
+        const response = await this.embedCreateSessionRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

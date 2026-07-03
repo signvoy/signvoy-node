@@ -4,15 +4,15 @@ All URIs are relative to *https://api.signvoy.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**findOne**](TemplateGalleryApi.md#findone) | **GET** /v1/template-gallery/{slug} | Get a single gallery template |
-| [**instantiate**](TemplateGalleryApi.md#instantiate) | **POST** /v1/template-gallery/{slug}/instantiate | Instantiate a gallery template into the workspace |
-| [**list**](TemplateGalleryApi.md#list) | **GET** /v1/template-gallery | List gallery templates |
+| [**templateGalleryFindOne**](TemplateGalleryApi.md#templategalleryfindone) | **GET** /v1/template-gallery/{slug} | Get a single gallery template |
+| [**templateGalleryInstantiate**](TemplateGalleryApi.md#templategalleryinstantiate) | **POST** /v1/template-gallery/{slug}/instantiate | Instantiate a gallery template into the workspace |
+| [**templateGalleryList**](TemplateGalleryApi.md#templategallerylist) | **GET** /v1/template-gallery | List gallery templates |
 
 
 
-## findOne
+## templateGalleryFindOne
 
-> findOne(slug)
+> templateGalleryFindOne(slug)
 
 Get a single gallery template
 
@@ -25,7 +25,7 @@ import {
   Configuration,
   TemplateGalleryApi,
 } from '@signvoy/node';
-import type { FindOneRequest } from '@signvoy/node';
+import type { TemplateGalleryFindOneRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -40,10 +40,10 @@ async function example() {
   const body = {
     // string
     slug: slug_example,
-  } satisfies FindOneRequest;
+  } satisfies TemplateGalleryFindOneRequest;
 
   try {
-    const data = await api.findOne(body);
+    const data = await api.templateGalleryFindOne(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -84,9 +84,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## instantiate
+## templateGalleryInstantiate
 
-> instantiate(slug, body)
+> templateGalleryInstantiate(slug, body)
 
 Instantiate a gallery template into the workspace
 
@@ -99,7 +99,7 @@ import {
   Configuration,
   TemplateGalleryApi,
 } from '@signvoy/node';
-import type { InstantiateRequest } from '@signvoy/node';
+import type { TemplateGalleryInstantiateRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -116,10 +116,10 @@ async function example() {
     slug: slug_example,
     // object
     body: Object,
-  } satisfies InstantiateRequest;
+  } satisfies TemplateGalleryInstantiateRequest;
 
   try {
-    const data = await api.instantiate(body);
+    const data = await api.templateGalleryInstantiate(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -162,9 +162,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## list
+## templateGalleryList
 
-> list(category)
+> templateGalleryList(category)
 
 List gallery templates
 
@@ -177,7 +177,7 @@ import {
   Configuration,
   TemplateGalleryApi,
 } from '@signvoy/node';
-import type { ListRequest } from '@signvoy/node';
+import type { TemplateGalleryListRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -192,10 +192,10 @@ async function example() {
   const body = {
     // string (optional)
     category: category_example,
-  } satisfies ListRequest;
+  } satisfies TemplateGalleryListRequest;
 
   try {
-    const data = await api.list(body);
+    const data = await api.templateGalleryList(body);
     console.log(data);
   } catch (error) {
     console.error(error);

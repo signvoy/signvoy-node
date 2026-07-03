@@ -4,13 +4,13 @@ All URIs are relative to *https://api.signvoy.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createSession**](EmbedApi.md#createsession) | **POST** /v1/embed/session | Create an embed session |
+| [**embedCreateSession**](EmbedApi.md#embedcreatesession) | **POST** /v1/embed/session | Create an embed session |
 
 
 
-## createSession
+## embedCreateSession
 
-> EmbedSessionResponseDto createSession(createEmbedSessionDto)
+> EmbedSessionResponseDto embedCreateSession(createEmbedSessionDto)
 
 Create an embed session
 
@@ -23,7 +23,7 @@ import {
   Configuration,
   EmbedApi,
 } from '@signvoy/node';
-import type { CreateSessionRequest } from '@signvoy/node';
+import type { EmbedCreateSessionRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -38,10 +38,10 @@ async function example() {
   const body = {
     // CreateEmbedSessionDto
     createEmbedSessionDto: ...,
-  } satisfies CreateSessionRequest;
+  } satisfies EmbedCreateSessionRequest;
 
   try {
-    const data = await api.createSession(body);
+    const data = await api.embedCreateSession(body);
     console.log(data);
   } catch (error) {
     console.error(error);

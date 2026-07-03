@@ -4,15 +4,15 @@ All URIs are relative to *https://api.signvoy.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**create**](APIKeysApi.md#create) | **POST** /v1/api-keys | Create an API key |
-| [**list**](APIKeysApi.md#list) | **GET** /v1/api-keys | List API keys |
-| [**revoke**](APIKeysApi.md#revoke) | **DELETE** /v1/api-keys/{id} | Revoke an API key |
+| [**apiKeysCreate**](APIKeysApi.md#apikeyscreate) | **POST** /v1/api-keys | Create an API key |
+| [**apiKeysList**](APIKeysApi.md#apikeyslist) | **GET** /v1/api-keys | List API keys |
+| [**apiKeysRevoke**](APIKeysApi.md#apikeysrevoke) | **DELETE** /v1/api-keys/{id} | Revoke an API key |
 
 
 
-## create
+## apiKeysCreate
 
-> CreatedApiKeyDto create(createApiKeyDto)
+> CreatedApiKeyDto apiKeysCreate(createApiKeyDto)
 
 Create an API key
 
@@ -25,7 +25,7 @@ import {
   Configuration,
   APIKeysApi,
 } from '@signvoy/node';
-import type { CreateRequest } from '@signvoy/node';
+import type { ApiKeysCreateRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -40,10 +40,10 @@ async function example() {
   const body = {
     // CreateApiKeyDto
     createApiKeyDto: ...,
-  } satisfies CreateRequest;
+  } satisfies ApiKeysCreateRequest;
 
   try {
-    const data = await api.create(body);
+    const data = await api.apiKeysCreate(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -84,9 +84,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## list
+## apiKeysList
 
-> Array&lt;ApiKeyDto&gt; list()
+> Array&lt;ApiKeyDto&gt; apiKeysList()
 
 List API keys
 
@@ -99,7 +99,7 @@ import {
   Configuration,
   APIKeysApi,
 } from '@signvoy/node';
-import type { ListRequest } from '@signvoy/node';
+import type { ApiKeysListRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -112,7 +112,7 @@ async function example() {
   const api = new APIKeysApi(config);
 
   try {
-    const data = await api.list();
+    const data = await api.apiKeysList();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -149,9 +149,9 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## revoke
+## apiKeysRevoke
 
-> ApiKeyDto revoke(id)
+> ApiKeyDto apiKeysRevoke(id)
 
 Revoke an API key
 
@@ -164,7 +164,7 @@ import {
   Configuration,
   APIKeysApi,
 } from '@signvoy/node';
-import type { RevokeRequest } from '@signvoy/node';
+import type { ApiKeysRevokeRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -179,10 +179,10 @@ async function example() {
   const body = {
     // string | API key ID
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-  } satisfies RevokeRequest;
+  } satisfies ApiKeysRevokeRequest;
 
   try {
-    const data = await api.revoke(body);
+    const data = await api.apiKeysRevoke(body);
     console.log(data);
   } catch (error) {
     console.error(error);

@@ -4,13 +4,13 @@ All URIs are relative to *https://api.signvoy.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**list**](SubmissionsApi.md#list) | **GET** /v1/submissions | List submissions for a document |
+| [**submissionsList**](SubmissionsApi.md#submissionslist) | **GET** /v1/submissions | List submissions for a document |
 
 
 
-## list
+## submissionsList
 
-> list(documentId)
+> submissionsList(documentId)
 
 List submissions for a document
 
@@ -23,7 +23,7 @@ import {
   Configuration,
   SubmissionsApi,
 } from '@signvoy/node';
-import type { ListRequest } from '@signvoy/node';
+import type { SubmissionsListRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -40,10 +40,10 @@ async function example() {
   const body = {
     // string | Document UUID to get submissions for
     documentId: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-  } satisfies ListRequest;
+  } satisfies SubmissionsListRequest;
 
   try {
-    const data = await api.list(body);
+    const data = await api.submissionsList(body);
     console.log(data);
   } catch (error) {
     console.error(error);

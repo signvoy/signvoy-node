@@ -4,23 +4,23 @@ All URIs are relative to *https://api.signvoy.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**create**](WorkspacesApi.md#create) | **POST** /v1/workspaces | Create a new workspace |
-| [**findOne**](WorkspacesApi.md#findone) | **GET** /v1/workspaces/{id} | Get workspace by ID |
-| [**invite**](WorkspacesApi.md#invite) | **POST** /v1/workspaces/{id}/members | Invite member to workspace |
-| [**list**](WorkspacesApi.md#list) | **GET** /v1/workspaces | List workspaces |
-| [**listInvitations**](WorkspacesApi.md#listinvitations) | **GET** /v1/workspaces/{id}/invitations | List pending invitations |
-| [**listMembers**](WorkspacesApi.md#listmembers) | **GET** /v1/workspaces/{id}/members | List workspace members |
-| [**remove**](WorkspacesApi.md#remove) | **DELETE** /v1/workspaces/{id} | Delete workspace |
-| [**removeMember**](WorkspacesApi.md#removemember) | **DELETE** /v1/workspaces/{id}/members/{userId} | Remove member from workspace |
-| [**revokeInvitation**](WorkspacesApi.md#revokeinvitation) | **DELETE** /v1/workspaces/{id}/invitations/{invitationId} | Revoke invitation |
-| [**update**](WorkspacesApi.md#update) | **PATCH** /v1/workspaces/{id} | Update workspace |
-| [**updateMember**](WorkspacesApi.md#updatemember) | **PATCH** /v1/workspaces/{id}/members/{userId} | Update member role |
+| [**workspacesCreate**](WorkspacesApi.md#workspacescreate) | **POST** /v1/workspaces | Create a new workspace |
+| [**workspacesFindOne**](WorkspacesApi.md#workspacesfindone) | **GET** /v1/workspaces/{id} | Get workspace by ID |
+| [**workspacesInvite**](WorkspacesApi.md#workspacesinvite) | **POST** /v1/workspaces/{id}/members | Invite member to workspace |
+| [**workspacesList**](WorkspacesApi.md#workspaceslist) | **GET** /v1/workspaces | List workspaces |
+| [**workspacesListInvitations**](WorkspacesApi.md#workspaceslistinvitations) | **GET** /v1/workspaces/{id}/invitations | List pending invitations |
+| [**workspacesListMembers**](WorkspacesApi.md#workspaceslistmembers) | **GET** /v1/workspaces/{id}/members | List workspace members |
+| [**workspacesRemove**](WorkspacesApi.md#workspacesremove) | **DELETE** /v1/workspaces/{id} | Delete workspace |
+| [**workspacesRemoveMember**](WorkspacesApi.md#workspacesremovemember) | **DELETE** /v1/workspaces/{id}/members/{userId} | Remove member from workspace |
+| [**workspacesRevokeInvitation**](WorkspacesApi.md#workspacesrevokeinvitation) | **DELETE** /v1/workspaces/{id}/invitations/{invitationId} | Revoke invitation |
+| [**workspacesUpdate**](WorkspacesApi.md#workspacesupdate) | **PATCH** /v1/workspaces/{id} | Update workspace |
+| [**workspacesUpdateMember**](WorkspacesApi.md#workspacesupdatemember) | **PATCH** /v1/workspaces/{id}/members/{userId} | Update member role |
 
 
 
-## create
+## workspacesCreate
 
-> create(createWorkspaceDto)
+> workspacesCreate(createWorkspaceDto)
 
 Create a new workspace
 
@@ -33,7 +33,7 @@ import {
   Configuration,
   WorkspacesApi,
 } from '@signvoy/node';
-import type { CreateRequest } from '@signvoy/node';
+import type { WorkspacesCreateRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -46,10 +46,10 @@ async function example() {
   const body = {
     // CreateWorkspaceDto
     createWorkspaceDto: ...,
-  } satisfies CreateRequest;
+  } satisfies WorkspacesCreateRequest;
 
   try {
-    const data = await api.create(body);
+    const data = await api.workspacesCreate(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -91,9 +91,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## findOne
+## workspacesFindOne
 
-> findOne(id)
+> workspacesFindOne(id)
 
 Get workspace by ID
 
@@ -106,7 +106,7 @@ import {
   Configuration,
   WorkspacesApi,
 } from '@signvoy/node';
-import type { FindOneRequest } from '@signvoy/node';
+import type { WorkspacesFindOneRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -119,10 +119,10 @@ async function example() {
   const body = {
     // string | Workspace UUID
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-  } satisfies FindOneRequest;
+  } satisfies WorkspacesFindOneRequest;
 
   try {
-    const data = await api.findOne(body);
+    const data = await api.workspacesFindOne(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -165,9 +165,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## invite
+## workspacesInvite
 
-> invite(id, inviteMemberDto)
+> workspacesInvite(id, inviteMemberDto)
 
 Invite member to workspace
 
@@ -180,7 +180,7 @@ import {
   Configuration,
   WorkspacesApi,
 } from '@signvoy/node';
-import type { InviteRequest } from '@signvoy/node';
+import type { WorkspacesInviteRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -195,10 +195,10 @@ async function example() {
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
     // InviteMemberDto
     inviteMemberDto: ...,
-  } satisfies InviteRequest;
+  } satisfies WorkspacesInviteRequest;
 
   try {
-    const data = await api.invite(body);
+    const data = await api.workspacesInvite(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -243,9 +243,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## list
+## workspacesList
 
-> list()
+> workspacesList()
 
 List workspaces
 
@@ -258,7 +258,7 @@ import {
   Configuration,
   WorkspacesApi,
 } from '@signvoy/node';
-import type { ListRequest } from '@signvoy/node';
+import type { WorkspacesListRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -269,7 +269,7 @@ async function example() {
   const api = new WorkspacesApi(config);
 
   try {
-    const data = await api.list();
+    const data = await api.workspacesList();
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -307,9 +307,9 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## listInvitations
+## workspacesListInvitations
 
-> listInvitations(id)
+> workspacesListInvitations(id)
 
 List pending invitations
 
@@ -322,7 +322,7 @@ import {
   Configuration,
   WorkspacesApi,
 } from '@signvoy/node';
-import type { ListInvitationsRequest } from '@signvoy/node';
+import type { WorkspacesListInvitationsRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -335,10 +335,10 @@ async function example() {
   const body = {
     // string | Workspace UUID
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-  } satisfies ListInvitationsRequest;
+  } satisfies WorkspacesListInvitationsRequest;
 
   try {
-    const data = await api.listInvitations(body);
+    const data = await api.workspacesListInvitations(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -381,9 +381,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## listMembers
+## workspacesListMembers
 
-> listMembers(id)
+> workspacesListMembers(id)
 
 List workspace members
 
@@ -396,7 +396,7 @@ import {
   Configuration,
   WorkspacesApi,
 } from '@signvoy/node';
-import type { ListMembersRequest } from '@signvoy/node';
+import type { WorkspacesListMembersRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -409,10 +409,10 @@ async function example() {
   const body = {
     // string | Workspace UUID
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-  } satisfies ListMembersRequest;
+  } satisfies WorkspacesListMembersRequest;
 
   try {
-    const data = await api.listMembers(body);
+    const data = await api.workspacesListMembers(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -455,9 +455,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## remove
+## workspacesRemove
 
-> remove(id)
+> workspacesRemove(id)
 
 Delete workspace
 
@@ -470,7 +470,7 @@ import {
   Configuration,
   WorkspacesApi,
 } from '@signvoy/node';
-import type { RemoveRequest } from '@signvoy/node';
+import type { WorkspacesRemoveRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -483,10 +483,10 @@ async function example() {
   const body = {
     // string | Workspace UUID
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-  } satisfies RemoveRequest;
+  } satisfies WorkspacesRemoveRequest;
 
   try {
-    const data = await api.remove(body);
+    const data = await api.workspacesRemove(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -529,9 +529,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## removeMember
+## workspacesRemoveMember
 
-> removeMember(id, userId)
+> workspacesRemoveMember(id, userId)
 
 Remove member from workspace
 
@@ -544,7 +544,7 @@ import {
   Configuration,
   WorkspacesApi,
 } from '@signvoy/node';
-import type { RemoveMemberRequest } from '@signvoy/node';
+import type { WorkspacesRemoveMemberRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -559,10 +559,10 @@ async function example() {
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
     // string | User ID of the member to remove
     userId: userId_example,
-  } satisfies RemoveMemberRequest;
+  } satisfies WorkspacesRemoveMemberRequest;
 
   try {
-    const data = await api.removeMember(body);
+    const data = await api.workspacesRemoveMember(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -607,9 +607,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## revokeInvitation
+## workspacesRevokeInvitation
 
-> revokeInvitation(id, invitationId)
+> workspacesRevokeInvitation(id, invitationId)
 
 Revoke invitation
 
@@ -622,7 +622,7 @@ import {
   Configuration,
   WorkspacesApi,
 } from '@signvoy/node';
-import type { RevokeInvitationRequest } from '@signvoy/node';
+import type { WorkspacesRevokeInvitationRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -637,10 +637,10 @@ async function example() {
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
     // string | Invitation UUID
     invitationId: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-  } satisfies RevokeInvitationRequest;
+  } satisfies WorkspacesRevokeInvitationRequest;
 
   try {
-    const data = await api.revokeInvitation(body);
+    const data = await api.workspacesRevokeInvitation(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -684,9 +684,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## update
+## workspacesUpdate
 
-> update(id, updateWorkspaceDto)
+> workspacesUpdate(id, updateWorkspaceDto)
 
 Update workspace
 
@@ -699,7 +699,7 @@ import {
   Configuration,
   WorkspacesApi,
 } from '@signvoy/node';
-import type { UpdateRequest } from '@signvoy/node';
+import type { WorkspacesUpdateRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -714,10 +714,10 @@ async function example() {
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
     // UpdateWorkspaceDto
     updateWorkspaceDto: ...,
-  } satisfies UpdateRequest;
+  } satisfies WorkspacesUpdateRequest;
 
   try {
-    const data = await api.update(body);
+    const data = await api.workspacesUpdate(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -762,9 +762,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## updateMember
+## workspacesUpdateMember
 
-> updateMember(id, userId, updateMemberDto)
+> workspacesUpdateMember(id, userId, updateMemberDto)
 
 Update member role
 
@@ -777,7 +777,7 @@ import {
   Configuration,
   WorkspacesApi,
 } from '@signvoy/node';
-import type { UpdateMemberRequest } from '@signvoy/node';
+import type { WorkspacesUpdateMemberRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -794,10 +794,10 @@ async function example() {
     userId: userId_example,
     // UpdateMemberDto
     updateMemberDto: ...,
-  } satisfies UpdateMemberRequest;
+  } satisfies WorkspacesUpdateMemberRequest;
 
   try {
-    const data = await api.updateMember(body);
+    const data = await api.workspacesUpdateMember(body);
     console.log(data);
   } catch (error) {
     console.error(error);

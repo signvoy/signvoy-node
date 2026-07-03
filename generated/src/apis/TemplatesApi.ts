@@ -39,35 +39,35 @@ import {
     UpdateTemplateDtoToJSON,
 } from '../models/UpdateTemplateDto';
 
-export interface ArchiveRequest {
+export interface TemplatesArchiveRequest {
     id: string;
 }
 
-export interface CreateRequest {
+export interface TemplatesCreateRequest {
     createTemplateDto: CreateTemplateDto;
 }
 
-export interface FindOneRequest {
+export interface TemplatesFindOneRequest {
     id: string;
 }
 
-export interface GetPdfUrlRequest {
+export interface TemplatesGetPdfUrlRequest {
     id: string;
 }
 
-export interface ListRequest {
-    status?: ListStatusEnum;
+export interface TemplatesListRequest {
+    status?: TemplatesListStatusEnum;
 }
 
-export interface RemoveRequest {
+export interface TemplatesRemoveRequest {
     id: string;
 }
 
-export interface UnarchiveRequest {
+export interface TemplatesUnarchiveRequest {
     id: string;
 }
 
-export interface UpdateRequest {
+export interface TemplatesUpdateRequest {
     id: string;
     updateTemplateDto: UpdateTemplateDto;
 }
@@ -78,13 +78,13 @@ export interface UpdateRequest {
 export class TemplatesApi extends runtime.BaseAPI {
 
     /**
-     * Creates request options for archive without sending the request
+     * Creates request options for templatesArchive without sending the request
      */
-    async archiveRequestOpts(requestParameters: ArchiveRequest): Promise<runtime.RequestOpts> {
+    async templatesArchiveRequestOpts(requestParameters: TemplatesArchiveRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling archive().'
+                'Required parameter "id" was null or undefined when calling templatesArchive().'
             );
         }
 
@@ -127,8 +127,8 @@ export class TemplatesApi extends runtime.BaseAPI {
     /**
      * Archive template
      */
-    async archiveRaw(requestParameters: ArchiveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TemplateWithVersionsDto>> {
-        const requestOptions = await this.archiveRequestOpts(requestParameters);
+    async templatesArchiveRaw(requestParameters: TemplatesArchiveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TemplateWithVersionsDto>> {
+        const requestOptions = await this.templatesArchiveRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => TemplateWithVersionsDtoFromJSON(jsonValue));
@@ -137,19 +137,19 @@ export class TemplatesApi extends runtime.BaseAPI {
     /**
      * Archive template
      */
-    async archive(requestParameters: ArchiveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TemplateWithVersionsDto> {
-        const response = await this.archiveRaw(requestParameters, initOverrides);
+    async templatesArchive(requestParameters: TemplatesArchiveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TemplateWithVersionsDto> {
+        const response = await this.templatesArchiveRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for create without sending the request
+     * Creates request options for templatesCreate without sending the request
      */
-    async createRequestOpts(requestParameters: CreateRequest): Promise<runtime.RequestOpts> {
+    async templatesCreateRequestOpts(requestParameters: TemplatesCreateRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['createTemplateDto'] == null) {
             throw new runtime.RequiredError(
                 'createTemplateDto',
-                'Required parameter "createTemplateDto" was null or undefined when calling create().'
+                'Required parameter "createTemplateDto" was null or undefined when calling templatesCreate().'
             );
         }
 
@@ -195,8 +195,8 @@ export class TemplatesApi extends runtime.BaseAPI {
      * Reserves a template id and the initial draft version, plus a presigned URL the browser uses to upload the source PDF directly.
      * Create a new template
      */
-    async createRaw(requestParameters: CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTemplateResponseDto>> {
-        const requestOptions = await this.createRequestOpts(requestParameters);
+    async templatesCreateRaw(requestParameters: TemplatesCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTemplateResponseDto>> {
+        const requestOptions = await this.templatesCreateRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateTemplateResponseDtoFromJSON(jsonValue));
@@ -206,19 +206,19 @@ export class TemplatesApi extends runtime.BaseAPI {
      * Reserves a template id and the initial draft version, plus a presigned URL the browser uses to upload the source PDF directly.
      * Create a new template
      */
-    async create(requestParameters: CreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTemplateResponseDto> {
-        const response = await this.createRaw(requestParameters, initOverrides);
+    async templatesCreate(requestParameters: TemplatesCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTemplateResponseDto> {
+        const response = await this.templatesCreateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for findOne without sending the request
+     * Creates request options for templatesFindOne without sending the request
      */
-    async findOneRequestOpts(requestParameters: FindOneRequest): Promise<runtime.RequestOpts> {
+    async templatesFindOneRequestOpts(requestParameters: TemplatesFindOneRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling findOne().'
+                'Required parameter "id" was null or undefined when calling templatesFindOne().'
             );
         }
 
@@ -262,8 +262,8 @@ export class TemplatesApi extends runtime.BaseAPI {
      * Returns the lightweight template row bundled with its current draft + published version (when each exists).
      * Get template by id
      */
-    async findOneRaw(requestParameters: FindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TemplateWithVersionsDto>> {
-        const requestOptions = await this.findOneRequestOpts(requestParameters);
+    async templatesFindOneRaw(requestParameters: TemplatesFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TemplateWithVersionsDto>> {
+        const requestOptions = await this.templatesFindOneRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => TemplateWithVersionsDtoFromJSON(jsonValue));
@@ -273,19 +273,19 @@ export class TemplatesApi extends runtime.BaseAPI {
      * Returns the lightweight template row bundled with its current draft + published version (when each exists).
      * Get template by id
      */
-    async findOne(requestParameters: FindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TemplateWithVersionsDto> {
-        const response = await this.findOneRaw(requestParameters, initOverrides);
+    async templatesFindOne(requestParameters: TemplatesFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TemplateWithVersionsDto> {
+        const response = await this.templatesFindOneRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for getPdfUrl without sending the request
+     * Creates request options for templatesGetPdfUrl without sending the request
      */
-    async getPdfUrlRequestOpts(requestParameters: GetPdfUrlRequest): Promise<runtime.RequestOpts> {
+    async templatesGetPdfUrlRequestOpts(requestParameters: TemplatesGetPdfUrlRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling getPdfUrl().'
+                'Required parameter "id" was null or undefined when calling templatesGetPdfUrl().'
             );
         }
 
@@ -328,8 +328,8 @@ export class TemplatesApi extends runtime.BaseAPI {
     /**
      * Get a presigned PDF URL for the latest version
      */
-    async getPdfUrlRaw(requestParameters: GetPdfUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TemplateUrlResponseDto>> {
-        const requestOptions = await this.getPdfUrlRequestOpts(requestParameters);
+    async templatesGetPdfUrlRaw(requestParameters: TemplatesGetPdfUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TemplateUrlResponseDto>> {
+        const requestOptions = await this.templatesGetPdfUrlRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => TemplateUrlResponseDtoFromJSON(jsonValue));
@@ -338,15 +338,15 @@ export class TemplatesApi extends runtime.BaseAPI {
     /**
      * Get a presigned PDF URL for the latest version
      */
-    async getPdfUrl(requestParameters: GetPdfUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TemplateUrlResponseDto> {
-        const response = await this.getPdfUrlRaw(requestParameters, initOverrides);
+    async templatesGetPdfUrl(requestParameters: TemplatesGetPdfUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TemplateUrlResponseDto> {
+        const response = await this.templatesGetPdfUrlRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for list without sending the request
+     * Creates request options for templatesList without sending the request
      */
-    async listRequestOpts(requestParameters: ListRequest): Promise<runtime.RequestOpts> {
+    async templatesListRequestOpts(requestParameters: TemplatesListRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['status'] != null) {
@@ -389,8 +389,8 @@ export class TemplatesApi extends runtime.BaseAPI {
     /**
      * List templates in the workspace
      */
-    async listRaw(requestParameters: ListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TemplateWithVersionsDto>>> {
-        const requestOptions = await this.listRequestOpts(requestParameters);
+    async templatesListRaw(requestParameters: TemplatesListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TemplateWithVersionsDto>>> {
+        const requestOptions = await this.templatesListRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(TemplateWithVersionsDtoFromJSON));
@@ -399,19 +399,19 @@ export class TemplatesApi extends runtime.BaseAPI {
     /**
      * List templates in the workspace
      */
-    async list(requestParameters: ListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<TemplateWithVersionsDto>> {
-        const response = await this.listRaw(requestParameters, initOverrides);
+    async templatesList(requestParameters: TemplatesListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<TemplateWithVersionsDto>> {
+        const response = await this.templatesListRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for remove without sending the request
+     * Creates request options for templatesRemove without sending the request
      */
-    async removeRequestOpts(requestParameters: RemoveRequest): Promise<runtime.RequestOpts> {
+    async templatesRemoveRequestOpts(requestParameters: TemplatesRemoveRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling remove().'
+                'Required parameter "id" was null or undefined when calling templatesRemove().'
             );
         }
 
@@ -454,8 +454,8 @@ export class TemplatesApi extends runtime.BaseAPI {
     /**
      * Delete template
      */
-    async removeRaw(requestParameters: RemoveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.removeRequestOpts(requestParameters);
+    async templatesRemoveRaw(requestParameters: TemplatesRemoveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.templatesRemoveRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -464,18 +464,18 @@ export class TemplatesApi extends runtime.BaseAPI {
     /**
      * Delete template
      */
-    async remove(requestParameters: RemoveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.removeRaw(requestParameters, initOverrides);
+    async templatesRemove(requestParameters: TemplatesRemoveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.templatesRemoveRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Creates request options for unarchive without sending the request
+     * Creates request options for templatesUnarchive without sending the request
      */
-    async unarchiveRequestOpts(requestParameters: UnarchiveRequest): Promise<runtime.RequestOpts> {
+    async templatesUnarchiveRequestOpts(requestParameters: TemplatesUnarchiveRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling unarchive().'
+                'Required parameter "id" was null or undefined when calling templatesUnarchive().'
             );
         }
 
@@ -518,8 +518,8 @@ export class TemplatesApi extends runtime.BaseAPI {
     /**
      * Unarchive template
      */
-    async unarchiveRaw(requestParameters: UnarchiveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TemplateWithVersionsDto>> {
-        const requestOptions = await this.unarchiveRequestOpts(requestParameters);
+    async templatesUnarchiveRaw(requestParameters: TemplatesUnarchiveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TemplateWithVersionsDto>> {
+        const requestOptions = await this.templatesUnarchiveRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => TemplateWithVersionsDtoFromJSON(jsonValue));
@@ -528,26 +528,26 @@ export class TemplatesApi extends runtime.BaseAPI {
     /**
      * Unarchive template
      */
-    async unarchive(requestParameters: UnarchiveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TemplateWithVersionsDto> {
-        const response = await this.unarchiveRaw(requestParameters, initOverrides);
+    async templatesUnarchive(requestParameters: TemplatesUnarchiveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TemplateWithVersionsDto> {
+        const response = await this.templatesUnarchiveRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Creates request options for update without sending the request
+     * Creates request options for templatesUpdate without sending the request
      */
-    async updateRequestOpts(requestParameters: UpdateRequest): Promise<runtime.RequestOpts> {
+    async templatesUpdateRequestOpts(requestParameters: TemplatesUpdateRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling update().'
+                'Required parameter "id" was null or undefined when calling templatesUpdate().'
             );
         }
 
         if (requestParameters['updateTemplateDto'] == null) {
             throw new runtime.RequiredError(
                 'updateTemplateDto',
-                'Required parameter "updateTemplateDto" was null or undefined when calling update().'
+                'Required parameter "updateTemplateDto" was null or undefined when calling templatesUpdate().'
             );
         }
 
@@ -593,8 +593,8 @@ export class TemplatesApi extends runtime.BaseAPI {
     /**
      * Update template metadata (name only)
      */
-    async updateRaw(requestParameters: UpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TemplateWithVersionsDto>> {
-        const requestOptions = await this.updateRequestOpts(requestParameters);
+    async templatesUpdateRaw(requestParameters: TemplatesUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TemplateWithVersionsDto>> {
+        const requestOptions = await this.templatesUpdateRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => TemplateWithVersionsDtoFromJSON(jsonValue));
@@ -603,8 +603,8 @@ export class TemplatesApi extends runtime.BaseAPI {
     /**
      * Update template metadata (name only)
      */
-    async update(requestParameters: UpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TemplateWithVersionsDto> {
-        const response = await this.updateRaw(requestParameters, initOverrides);
+    async templatesUpdate(requestParameters: TemplatesUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TemplateWithVersionsDto> {
+        const response = await this.templatesUpdateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -613,9 +613,9 @@ export class TemplatesApi extends runtime.BaseAPI {
 /**
  * @export
  */
-export const ListStatusEnum = {
+export const TemplatesListStatusEnum = {
     ACTIVE: 'active',
     ARCHIVED: 'archived',
     ALL: 'all'
 } as const;
-export type ListStatusEnum = typeof ListStatusEnum[keyof typeof ListStatusEnum];
+export type TemplatesListStatusEnum = typeof TemplatesListStatusEnum[keyof typeof TemplatesListStatusEnum];

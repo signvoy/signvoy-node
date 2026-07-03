@@ -4,20 +4,20 @@ All URIs are relative to *https://api.signvoy.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**archive**](TemplatesApi.md#archive) | **POST** /v1/templates/{id}/archive | Archive template |
-| [**create**](TemplatesApi.md#create) | **POST** /v1/templates | Create a new template |
-| [**findOne**](TemplatesApi.md#findone) | **GET** /v1/templates/{id} | Get template by id |
-| [**getPdfUrl**](TemplatesApi.md#getpdfurl) | **GET** /v1/templates/{id}/pdf | Get a presigned PDF URL for the latest version |
-| [**list**](TemplatesApi.md#list) | **GET** /v1/templates | List templates in the workspace |
-| [**remove**](TemplatesApi.md#remove) | **DELETE** /v1/templates/{id} | Delete template |
-| [**unarchive**](TemplatesApi.md#unarchive) | **POST** /v1/templates/{id}/unarchive | Unarchive template |
-| [**update**](TemplatesApi.md#update) | **PATCH** /v1/templates/{id} | Update template metadata (name only) |
+| [**templatesArchive**](TemplatesApi.md#templatesarchive) | **POST** /v1/templates/{id}/archive | Archive template |
+| [**templatesCreate**](TemplatesApi.md#templatescreate) | **POST** /v1/templates | Create a new template |
+| [**templatesFindOne**](TemplatesApi.md#templatesfindone) | **GET** /v1/templates/{id} | Get template by id |
+| [**templatesGetPdfUrl**](TemplatesApi.md#templatesgetpdfurl) | **GET** /v1/templates/{id}/pdf | Get a presigned PDF URL for the latest version |
+| [**templatesList**](TemplatesApi.md#templateslist) | **GET** /v1/templates | List templates in the workspace |
+| [**templatesRemove**](TemplatesApi.md#templatesremove) | **DELETE** /v1/templates/{id} | Delete template |
+| [**templatesUnarchive**](TemplatesApi.md#templatesunarchive) | **POST** /v1/templates/{id}/unarchive | Unarchive template |
+| [**templatesUpdate**](TemplatesApi.md#templatesupdate) | **PATCH** /v1/templates/{id} | Update template metadata (name only) |
 
 
 
-## archive
+## templatesArchive
 
-> TemplateWithVersionsDto archive(id)
+> TemplateWithVersionsDto templatesArchive(id)
 
 Archive template
 
@@ -28,7 +28,7 @@ import {
   Configuration,
   TemplatesApi,
 } from '@signvoy/node';
-import type { ArchiveRequest } from '@signvoy/node';
+import type { TemplatesArchiveRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -45,10 +45,10 @@ async function example() {
   const body = {
     // string
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-  } satisfies ArchiveRequest;
+  } satisfies TemplatesArchiveRequest;
 
   try {
-    const data = await api.archive(body);
+    const data = await api.templatesArchive(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -88,9 +88,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## create
+## templatesCreate
 
-> CreateTemplateResponseDto create(createTemplateDto)
+> CreateTemplateResponseDto templatesCreate(createTemplateDto)
 
 Create a new template
 
@@ -103,7 +103,7 @@ import {
   Configuration,
   TemplatesApi,
 } from '@signvoy/node';
-import type { CreateRequest } from '@signvoy/node';
+import type { TemplatesCreateRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -120,10 +120,10 @@ async function example() {
   const body = {
     // CreateTemplateDto
     createTemplateDto: ...,
-  } satisfies CreateRequest;
+  } satisfies TemplatesCreateRequest;
 
   try {
-    const data = await api.create(body);
+    const data = await api.templatesCreate(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -163,9 +163,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## findOne
+## templatesFindOne
 
-> TemplateWithVersionsDto findOne(id)
+> TemplateWithVersionsDto templatesFindOne(id)
 
 Get template by id
 
@@ -178,7 +178,7 @@ import {
   Configuration,
   TemplatesApi,
 } from '@signvoy/node';
-import type { FindOneRequest } from '@signvoy/node';
+import type { TemplatesFindOneRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -195,10 +195,10 @@ async function example() {
   const body = {
     // string
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-  } satisfies FindOneRequest;
+  } satisfies TemplatesFindOneRequest;
 
   try {
-    const data = await api.findOne(body);
+    const data = await api.templatesFindOne(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -238,9 +238,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## getPdfUrl
+## templatesGetPdfUrl
 
-> TemplateUrlResponseDto getPdfUrl(id)
+> TemplateUrlResponseDto templatesGetPdfUrl(id)
 
 Get a presigned PDF URL for the latest version
 
@@ -251,7 +251,7 @@ import {
   Configuration,
   TemplatesApi,
 } from '@signvoy/node';
-import type { GetPdfUrlRequest } from '@signvoy/node';
+import type { TemplatesGetPdfUrlRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -268,10 +268,10 @@ async function example() {
   const body = {
     // string
     id: id_example,
-  } satisfies GetPdfUrlRequest;
+  } satisfies TemplatesGetPdfUrlRequest;
 
   try {
-    const data = await api.getPdfUrl(body);
+    const data = await api.templatesGetPdfUrl(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -311,9 +311,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## list
+## templatesList
 
-> Array&lt;TemplateWithVersionsDto&gt; list(status)
+> Array&lt;TemplateWithVersionsDto&gt; templatesList(status)
 
 List templates in the workspace
 
@@ -324,7 +324,7 @@ import {
   Configuration,
   TemplatesApi,
 } from '@signvoy/node';
-import type { ListRequest } from '@signvoy/node';
+import type { TemplatesListRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -341,10 +341,10 @@ async function example() {
   const body = {
     // 'active' | 'archived' | 'all' | Filter templates by status (optional)
     status: active,
-  } satisfies ListRequest;
+  } satisfies TemplatesListRequest;
 
   try {
-    const data = await api.list(body);
+    const data = await api.templatesList(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -384,9 +384,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## remove
+## templatesRemove
 
-> remove(id)
+> templatesRemove(id)
 
 Delete template
 
@@ -397,7 +397,7 @@ import {
   Configuration,
   TemplatesApi,
 } from '@signvoy/node';
-import type { RemoveRequest } from '@signvoy/node';
+import type { TemplatesRemoveRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -414,10 +414,10 @@ async function example() {
   const body = {
     // string
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-  } satisfies RemoveRequest;
+  } satisfies TemplatesRemoveRequest;
 
   try {
-    const data = await api.remove(body);
+    const data = await api.templatesRemove(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -457,9 +457,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## unarchive
+## templatesUnarchive
 
-> TemplateWithVersionsDto unarchive(id)
+> TemplateWithVersionsDto templatesUnarchive(id)
 
 Unarchive template
 
@@ -470,7 +470,7 @@ import {
   Configuration,
   TemplatesApi,
 } from '@signvoy/node';
-import type { UnarchiveRequest } from '@signvoy/node';
+import type { TemplatesUnarchiveRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -487,10 +487,10 @@ async function example() {
   const body = {
     // string
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-  } satisfies UnarchiveRequest;
+  } satisfies TemplatesUnarchiveRequest;
 
   try {
-    const data = await api.unarchive(body);
+    const data = await api.templatesUnarchive(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -530,9 +530,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## update
+## templatesUpdate
 
-> TemplateWithVersionsDto update(id, updateTemplateDto)
+> TemplateWithVersionsDto templatesUpdate(id, updateTemplateDto)
 
 Update template metadata (name only)
 
@@ -543,7 +543,7 @@ import {
   Configuration,
   TemplatesApi,
 } from '@signvoy/node';
-import type { UpdateRequest } from '@signvoy/node';
+import type { TemplatesUpdateRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -562,10 +562,10 @@ async function example() {
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
     // UpdateTemplateDto
     updateTemplateDto: ...,
-  } satisfies UpdateRequest;
+  } satisfies TemplatesUpdateRequest;
 
   try {
-    const data = await api.update(body);
+    const data = await api.templatesUpdate(body);
     console.log(data);
   } catch (error) {
     console.error(error);

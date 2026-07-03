@@ -18,7 +18,7 @@ import {
   Configuration,
   AITemplatesApi,
 } from '@signvoy/node';
-import type { DetectFieldsRequest } from '@signvoy/node';
+import type { AiTemplateDetectFieldsRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -33,10 +33,10 @@ async function example() {
   const body = {
     // object
     body: Object,
-  } satisfies DetectFieldsRequest;
+  } satisfies AiTemplateDetectFieldsRequest;
 
   try {
-    const data = await api.detectFields(body);
+    const data = await api.aiTemplateDetectFields(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -56,68 +56,68 @@ All URIs are relative to *https://api.signvoy.com*
 
 | Class | Method | HTTP request | Description
 | ----- | ------ | ------------ | -------------
-*AITemplatesApi* | [**detectFields**](docs/AITemplatesApi.md#detectfields) | **POST** /v1/ai/templates/detect-fields | Detect fields on an already-uploaded PDF draft
-*AITemplatesApi* | [**editDraft**](docs/AITemplatesApi.md#editdraft) | **POST** /v1/ai/templates/{templateId}/edit | Edit an existing draft template with a natural-language instruction
-*AITemplatesApi* | [**generate**](docs/AITemplatesApi.md#generate) | **POST** /v1/ai/templates/generate | Generate a template from a natural-language prompt
-*APIKeysApi* | [**create**](docs/APIKeysApi.md#create) | **POST** /v1/api-keys | Create an API key
-*APIKeysApi* | [**list**](docs/APIKeysApi.md#list) | **GET** /v1/api-keys | List API keys
-*APIKeysApi* | [**revoke**](docs/APIKeysApi.md#revoke) | **DELETE** /v1/api-keys/{id} | Revoke an API key
-*DocumentsApi* | [**audit**](docs/DocumentsApi.md#audit) | **GET** /v1/documents/{id}/audit | Get document audit trail
-*DocumentsApi* | [**certificate**](docs/DocumentsApi.md#certificate) | **GET** /v1/documents/{id}/certificate | Get certificate of completion URL
-*DocumentsApi* | [**create**](docs/DocumentsApi.md#create) | **POST** /v1/documents | Create a new document
-*DocumentsApi* | [**findOne**](docs/DocumentsApi.md#findone) | **GET** /v1/documents/{id} | Get document by ID
-*DocumentsApi* | [**list**](docs/DocumentsApi.md#list) | **GET** /v1/documents | List documents
-*DocumentsApi* | [**remove**](docs/DocumentsApi.md#remove) | **DELETE** /v1/documents/{id} | Delete document
-*DocumentsApi* | [**send**](docs/DocumentsApi.md#send) | **POST** /v1/documents/{id}/send | Send document for signing
-*DocumentsApi* | [**signedPdf**](docs/DocumentsApi.md#signedpdf) | **GET** /v1/documents/{id}/signed-pdf | Get signed PDF URL
-*DocumentsApi* | [**update**](docs/DocumentsApi.md#update) | **PATCH** /v1/documents/{id} | Update document
-*DocumentsApi* | [**voidDoc**](docs/DocumentsApi.md#voiddoc) | **POST** /v1/documents/{id}/void | Void document
-*EmbedApi* | [**createSession**](docs/EmbedApi.md#createsession) | **POST** /v1/embed/session | Create an embed session
-*HealthApi* | [**check**](docs/HealthApi.md#check) | **GET** /v1/health | Health check
-*SigningApi* | [**decline**](docs/SigningApi.md#decline) | **POST** /v1/sign/{token}/decline | Decline to sign
-*SigningApi* | [**getContext**](docs/SigningApi.md#getcontext) | **GET** /v1/sign/{token} | Get signing context
-*SigningApi* | [**getDraft**](docs/SigningApi.md#getdraft) | **GET** /v1/sign/{token}/draft | Get saved draft
-*SigningApi* | [**saveDraft**](docs/SigningApi.md#savedraft) | **POST** /v1/sign/{token}/draft | Save draft
-*SigningApi* | [**submit**](docs/SigningApi.md#submit) | **POST** /v1/sign/{token}/submit | Submit signature
-*SubmissionsApi* | [**list**](docs/SubmissionsApi.md#list) | **GET** /v1/submissions | List submissions for a document
-*TemplateGalleryApi* | [**findOne**](docs/TemplateGalleryApi.md#findone) | **GET** /v1/template-gallery/{slug} | Get a single gallery template
-*TemplateGalleryApi* | [**instantiate**](docs/TemplateGalleryApi.md#instantiate) | **POST** /v1/template-gallery/{slug}/instantiate | Instantiate a gallery template into the workspace
-*TemplateGalleryApi* | [**list**](docs/TemplateGalleryApi.md#list) | **GET** /v1/template-gallery | List gallery templates
-*TemplateVersionsApi* | [**discardDraft**](docs/TemplateVersionsApi.md#discarddraft) | **DELETE** /v1/templates/{templateId}/draft | Discard the current draft
-*TemplateVersionsApi* | [**ensureDraft**](docs/TemplateVersionsApi.md#ensuredraft) | **POST** /v1/templates/{templateId}/draft/ensure | Lazily create a draft from the published version (or empty)
-*TemplateVersionsApi* | [**findOne**](docs/TemplateVersionsApi.md#findone) | **GET** /v1/templates/{templateId}/versions/{versionId} | Get a specific version (read-only)
-*TemplateVersionsApi* | [**getDraft**](docs/TemplateVersionsApi.md#getdraft) | **GET** /v1/templates/{templateId}/draft | Get current draft version
-*TemplateVersionsApi* | [**listVersions**](docs/TemplateVersionsApi.md#listversions) | **GET** /v1/templates/{templateId}/versions | List all published + draft versions
-*TemplateVersionsApi* | [**publish**](docs/TemplateVersionsApi.md#publish) | **POST** /v1/templates/{templateId}/draft/publish | Publish the draft
-*TemplateVersionsApi* | [**upsertDraft**](docs/TemplateVersionsApi.md#upsertdraft) | **PATCH** /v1/templates/{templateId}/draft | Upsert draft content
-*TemplatesApi* | [**archive**](docs/TemplatesApi.md#archive) | **POST** /v1/templates/{id}/archive | Archive template
-*TemplatesApi* | [**create**](docs/TemplatesApi.md#create) | **POST** /v1/templates | Create a new template
-*TemplatesApi* | [**findOne**](docs/TemplatesApi.md#findone) | **GET** /v1/templates/{id} | Get template by id
-*TemplatesApi* | [**getPdfUrl**](docs/TemplatesApi.md#getpdfurl) | **GET** /v1/templates/{id}/pdf | Get a presigned PDF URL for the latest version
-*TemplatesApi* | [**list**](docs/TemplatesApi.md#list) | **GET** /v1/templates | List templates in the workspace
-*TemplatesApi* | [**remove**](docs/TemplatesApi.md#remove) | **DELETE** /v1/templates/{id} | Delete template
-*TemplatesApi* | [**unarchive**](docs/TemplatesApi.md#unarchive) | **POST** /v1/templates/{id}/unarchive | Unarchive template
-*TemplatesApi* | [**update**](docs/TemplatesApi.md#update) | **PATCH** /v1/templates/{id} | Update template metadata (name only)
-*WebhooksApi* | [**create**](docs/WebhooksApi.md#create) | **POST** /v1/webhooks | Create a webhook endpoint
-*WebhooksApi* | [**get**](docs/WebhooksApi.md#get) | **GET** /v1/webhooks/{id} | Get a single webhook endpoint
-*WebhooksApi* | [**list**](docs/WebhooksApi.md#list) | **GET** /v1/webhooks | List webhook endpoints for the workspace
-*WebhooksApi* | [**listDeliveries**](docs/WebhooksApi.md#listdeliveries) | **GET** /v1/webhooks/{id}/deliveries | List recent deliveries for an endpoint
-*WebhooksApi* | [**ping**](docs/WebhooksApi.md#ping) | **POST** /v1/webhooks/{id}/ping | Send a test event
-*WebhooksApi* | [**remove**](docs/WebhooksApi.md#remove) | **DELETE** /v1/webhooks/{id} | Delete a webhook endpoint
-*WebhooksApi* | [**retryDelivery**](docs/WebhooksApi.md#retrydelivery) | **POST** /v1/webhooks/{id}/deliveries/{deliveryId}/retry | Manually retry a failed delivery
-*WebhooksApi* | [**rotateSecret**](docs/WebhooksApi.md#rotatesecret) | **POST** /v1/webhooks/{id}/rotate-secret | Rotate the signing secret
-*WebhooksApi* | [**update**](docs/WebhooksApi.md#update) | **PATCH** /v1/webhooks/{id} | Update a webhook endpoint
-*WorkspacesApi* | [**create**](docs/WorkspacesApi.md#create) | **POST** /v1/workspaces | Create a new workspace
-*WorkspacesApi* | [**findOne**](docs/WorkspacesApi.md#findone) | **GET** /v1/workspaces/{id} | Get workspace by ID
-*WorkspacesApi* | [**invite**](docs/WorkspacesApi.md#invite) | **POST** /v1/workspaces/{id}/members | Invite member to workspace
-*WorkspacesApi* | [**list**](docs/WorkspacesApi.md#list) | **GET** /v1/workspaces | List workspaces
-*WorkspacesApi* | [**listInvitations**](docs/WorkspacesApi.md#listinvitations) | **GET** /v1/workspaces/{id}/invitations | List pending invitations
-*WorkspacesApi* | [**listMembers**](docs/WorkspacesApi.md#listmembers) | **GET** /v1/workspaces/{id}/members | List workspace members
-*WorkspacesApi* | [**remove**](docs/WorkspacesApi.md#remove) | **DELETE** /v1/workspaces/{id} | Delete workspace
-*WorkspacesApi* | [**removeMember**](docs/WorkspacesApi.md#removemember) | **DELETE** /v1/workspaces/{id}/members/{userId} | Remove member from workspace
-*WorkspacesApi* | [**revokeInvitation**](docs/WorkspacesApi.md#revokeinvitation) | **DELETE** /v1/workspaces/{id}/invitations/{invitationId} | Revoke invitation
-*WorkspacesApi* | [**update**](docs/WorkspacesApi.md#update) | **PATCH** /v1/workspaces/{id} | Update workspace
-*WorkspacesApi* | [**updateMember**](docs/WorkspacesApi.md#updatemember) | **PATCH** /v1/workspaces/{id}/members/{userId} | Update member role
+*AITemplatesApi* | [**aiTemplateDetectFields**](docs/AITemplatesApi.md#aitemplatedetectfields) | **POST** /v1/ai/templates/detect-fields | Detect fields on an already-uploaded PDF draft
+*AITemplatesApi* | [**aiTemplateEditDraft**](docs/AITemplatesApi.md#aitemplateeditdraft) | **POST** /v1/ai/templates/{templateId}/edit | Edit an existing draft template with a natural-language instruction
+*AITemplatesApi* | [**aiTemplateGenerate**](docs/AITemplatesApi.md#aitemplategenerate) | **POST** /v1/ai/templates/generate | Generate a template from a natural-language prompt
+*APIKeysApi* | [**apiKeysCreate**](docs/APIKeysApi.md#apikeyscreate) | **POST** /v1/api-keys | Create an API key
+*APIKeysApi* | [**apiKeysList**](docs/APIKeysApi.md#apikeyslist) | **GET** /v1/api-keys | List API keys
+*APIKeysApi* | [**apiKeysRevoke**](docs/APIKeysApi.md#apikeysrevoke) | **DELETE** /v1/api-keys/{id} | Revoke an API key
+*DocumentsApi* | [**documentsAudit**](docs/DocumentsApi.md#documentsaudit) | **GET** /v1/documents/{id}/audit | Get document audit trail
+*DocumentsApi* | [**documentsCertificate**](docs/DocumentsApi.md#documentscertificate) | **GET** /v1/documents/{id}/certificate | Get certificate of completion URL
+*DocumentsApi* | [**documentsCreate**](docs/DocumentsApi.md#documentscreate) | **POST** /v1/documents | Create a new document
+*DocumentsApi* | [**documentsFindOne**](docs/DocumentsApi.md#documentsfindone) | **GET** /v1/documents/{id} | Get document by ID
+*DocumentsApi* | [**documentsList**](docs/DocumentsApi.md#documentslist) | **GET** /v1/documents | List documents
+*DocumentsApi* | [**documentsRemove**](docs/DocumentsApi.md#documentsremove) | **DELETE** /v1/documents/{id} | Delete document
+*DocumentsApi* | [**documentsSend**](docs/DocumentsApi.md#documentssend) | **POST** /v1/documents/{id}/send | Send document for signing
+*DocumentsApi* | [**documentsSignedPdf**](docs/DocumentsApi.md#documentssignedpdf) | **GET** /v1/documents/{id}/signed-pdf | Get signed PDF URL
+*DocumentsApi* | [**documentsUpdate**](docs/DocumentsApi.md#documentsupdate) | **PATCH** /v1/documents/{id} | Update document
+*DocumentsApi* | [**documentsVoidDoc**](docs/DocumentsApi.md#documentsvoiddoc) | **POST** /v1/documents/{id}/void | Void document
+*EmbedApi* | [**embedCreateSession**](docs/EmbedApi.md#embedcreatesession) | **POST** /v1/embed/session | Create an embed session
+*HealthApi* | [**healthCheck**](docs/HealthApi.md#healthcheck) | **GET** /v1/health | Health check
+*SigningApi* | [**signingDecline**](docs/SigningApi.md#signingdecline) | **POST** /v1/sign/{token}/decline | Decline to sign
+*SigningApi* | [**signingGetContext**](docs/SigningApi.md#signinggetcontext) | **GET** /v1/sign/{token} | Get signing context
+*SigningApi* | [**signingGetDraft**](docs/SigningApi.md#signinggetdraft) | **GET** /v1/sign/{token}/draft | Get saved draft
+*SigningApi* | [**signingSaveDraft**](docs/SigningApi.md#signingsavedraft) | **POST** /v1/sign/{token}/draft | Save draft
+*SigningApi* | [**signingSubmit**](docs/SigningApi.md#signingsubmit) | **POST** /v1/sign/{token}/submit | Submit signature
+*SubmissionsApi* | [**submissionsList**](docs/SubmissionsApi.md#submissionslist) | **GET** /v1/submissions | List submissions for a document
+*TemplateGalleryApi* | [**templateGalleryFindOne**](docs/TemplateGalleryApi.md#templategalleryfindone) | **GET** /v1/template-gallery/{slug} | Get a single gallery template
+*TemplateGalleryApi* | [**templateGalleryInstantiate**](docs/TemplateGalleryApi.md#templategalleryinstantiate) | **POST** /v1/template-gallery/{slug}/instantiate | Instantiate a gallery template into the workspace
+*TemplateGalleryApi* | [**templateGalleryList**](docs/TemplateGalleryApi.md#templategallerylist) | **GET** /v1/template-gallery | List gallery templates
+*TemplateVersionsApi* | [**templateVersionsDiscardDraft**](docs/TemplateVersionsApi.md#templateversionsdiscarddraft) | **DELETE** /v1/templates/{templateId}/draft | Discard the current draft
+*TemplateVersionsApi* | [**templateVersionsEnsureDraft**](docs/TemplateVersionsApi.md#templateversionsensuredraft) | **POST** /v1/templates/{templateId}/draft/ensure | Lazily create a draft from the published version (or empty)
+*TemplateVersionsApi* | [**templateVersionsFindOne**](docs/TemplateVersionsApi.md#templateversionsfindone) | **GET** /v1/templates/{templateId}/versions/{versionId} | Get a specific version (read-only)
+*TemplateVersionsApi* | [**templateVersionsGetDraft**](docs/TemplateVersionsApi.md#templateversionsgetdraft) | **GET** /v1/templates/{templateId}/draft | Get current draft version
+*TemplateVersionsApi* | [**templateVersionsListVersions**](docs/TemplateVersionsApi.md#templateversionslistversions) | **GET** /v1/templates/{templateId}/versions | List all published + draft versions
+*TemplateVersionsApi* | [**templateVersionsPublish**](docs/TemplateVersionsApi.md#templateversionspublish) | **POST** /v1/templates/{templateId}/draft/publish | Publish the draft
+*TemplateVersionsApi* | [**templateVersionsUpsertDraft**](docs/TemplateVersionsApi.md#templateversionsupsertdraft) | **PATCH** /v1/templates/{templateId}/draft | Upsert draft content
+*TemplatesApi* | [**templatesArchive**](docs/TemplatesApi.md#templatesarchive) | **POST** /v1/templates/{id}/archive | Archive template
+*TemplatesApi* | [**templatesCreate**](docs/TemplatesApi.md#templatescreate) | **POST** /v1/templates | Create a new template
+*TemplatesApi* | [**templatesFindOne**](docs/TemplatesApi.md#templatesfindone) | **GET** /v1/templates/{id} | Get template by id
+*TemplatesApi* | [**templatesGetPdfUrl**](docs/TemplatesApi.md#templatesgetpdfurl) | **GET** /v1/templates/{id}/pdf | Get a presigned PDF URL for the latest version
+*TemplatesApi* | [**templatesList**](docs/TemplatesApi.md#templateslist) | **GET** /v1/templates | List templates in the workspace
+*TemplatesApi* | [**templatesRemove**](docs/TemplatesApi.md#templatesremove) | **DELETE** /v1/templates/{id} | Delete template
+*TemplatesApi* | [**templatesUnarchive**](docs/TemplatesApi.md#templatesunarchive) | **POST** /v1/templates/{id}/unarchive | Unarchive template
+*TemplatesApi* | [**templatesUpdate**](docs/TemplatesApi.md#templatesupdate) | **PATCH** /v1/templates/{id} | Update template metadata (name only)
+*WebhooksApi* | [**webhooksCreate**](docs/WebhooksApi.md#webhookscreate) | **POST** /v1/webhooks | Create a webhook endpoint
+*WebhooksApi* | [**webhooksGet**](docs/WebhooksApi.md#webhooksget) | **GET** /v1/webhooks/{id} | Get a single webhook endpoint
+*WebhooksApi* | [**webhooksList**](docs/WebhooksApi.md#webhookslist) | **GET** /v1/webhooks | List webhook endpoints for the workspace
+*WebhooksApi* | [**webhooksListDeliveries**](docs/WebhooksApi.md#webhookslistdeliveries) | **GET** /v1/webhooks/{id}/deliveries | List recent deliveries for an endpoint
+*WebhooksApi* | [**webhooksPing**](docs/WebhooksApi.md#webhooksping) | **POST** /v1/webhooks/{id}/ping | Send a test event
+*WebhooksApi* | [**webhooksRemove**](docs/WebhooksApi.md#webhooksremove) | **DELETE** /v1/webhooks/{id} | Delete a webhook endpoint
+*WebhooksApi* | [**webhooksRetryDelivery**](docs/WebhooksApi.md#webhooksretrydelivery) | **POST** /v1/webhooks/{id}/deliveries/{deliveryId}/retry | Manually retry a failed delivery
+*WebhooksApi* | [**webhooksRotateSecret**](docs/WebhooksApi.md#webhooksrotatesecret) | **POST** /v1/webhooks/{id}/rotate-secret | Rotate the signing secret
+*WebhooksApi* | [**webhooksUpdate**](docs/WebhooksApi.md#webhooksupdate) | **PATCH** /v1/webhooks/{id} | Update a webhook endpoint
+*WorkspacesApi* | [**workspacesCreate**](docs/WorkspacesApi.md#workspacescreate) | **POST** /v1/workspaces | Create a new workspace
+*WorkspacesApi* | [**workspacesFindOne**](docs/WorkspacesApi.md#workspacesfindone) | **GET** /v1/workspaces/{id} | Get workspace by ID
+*WorkspacesApi* | [**workspacesInvite**](docs/WorkspacesApi.md#workspacesinvite) | **POST** /v1/workspaces/{id}/members | Invite member to workspace
+*WorkspacesApi* | [**workspacesList**](docs/WorkspacesApi.md#workspaceslist) | **GET** /v1/workspaces | List workspaces
+*WorkspacesApi* | [**workspacesListInvitations**](docs/WorkspacesApi.md#workspaceslistinvitations) | **GET** /v1/workspaces/{id}/invitations | List pending invitations
+*WorkspacesApi* | [**workspacesListMembers**](docs/WorkspacesApi.md#workspaceslistmembers) | **GET** /v1/workspaces/{id}/members | List workspace members
+*WorkspacesApi* | [**workspacesRemove**](docs/WorkspacesApi.md#workspacesremove) | **DELETE** /v1/workspaces/{id} | Delete workspace
+*WorkspacesApi* | [**workspacesRemoveMember**](docs/WorkspacesApi.md#workspacesremovemember) | **DELETE** /v1/workspaces/{id}/members/{userId} | Remove member from workspace
+*WorkspacesApi* | [**workspacesRevokeInvitation**](docs/WorkspacesApi.md#workspacesrevokeinvitation) | **DELETE** /v1/workspaces/{id}/invitations/{invitationId} | Revoke invitation
+*WorkspacesApi* | [**workspacesUpdate**](docs/WorkspacesApi.md#workspacesupdate) | **PATCH** /v1/workspaces/{id} | Update workspace
+*WorkspacesApi* | [**workspacesUpdateMember**](docs/WorkspacesApi.md#workspacesupdatemember) | **PATCH** /v1/workspaces/{id}/members/{userId} | Update member role
 
 
 ### Models
@@ -186,7 +186,7 @@ and is automatically generated by the
 
 - API version: `1.0`
 - Package version: `0.1.0`
-- Generator version: `7.24.0-SNAPSHOT`
+- Generator version: `7.23.0`
 - Build package: `org.openapitools.codegen.languages.TypeScriptFetchClientCodegen`
 
 The generated npm module supports the following:

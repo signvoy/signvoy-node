@@ -10,7 +10,7 @@ import type {
   CreateDocumentDto,
   UpdateDocumentDto,
   ApiKeyDto,
-} from "../generated/models/index.js";
+} from "../generated/src/models/index.js";
 
 export type { DocumentDto, CreateDocumentDto, UpdateDocumentDto, ApiKeyDto };
 

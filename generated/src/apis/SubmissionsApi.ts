@@ -14,7 +14,7 @@
 
 import * as runtime from '../runtime';
 
-export interface ListRequest {
+export interface SubmissionsListRequest {
     documentId: string;
 }
 
@@ -24,13 +24,13 @@ export interface ListRequest {
 export class SubmissionsApi extends runtime.BaseAPI {
 
     /**
-     * Creates request options for list without sending the request
+     * Creates request options for submissionsList without sending the request
      */
-    async listRequestOpts(requestParameters: ListRequest): Promise<runtime.RequestOpts> {
+    async submissionsListRequestOpts(requestParameters: SubmissionsListRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['documentId'] == null) {
             throw new runtime.RequiredError(
                 'documentId',
-                'Required parameter "documentId" was null or undefined when calling list().'
+                'Required parameter "documentId" was null or undefined when calling submissionsList().'
             );
         }
 
@@ -77,8 +77,8 @@ export class SubmissionsApi extends runtime.BaseAPI {
      * Retrieves all recipient submissions for a specific document including their signature data
      * List submissions for a document
      */
-    async listRaw(requestParameters: ListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const requestOptions = await this.listRequestOpts(requestParameters);
+    async submissionsListRaw(requestParameters: SubmissionsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.submissionsListRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -88,8 +88,8 @@ export class SubmissionsApi extends runtime.BaseAPI {
      * Retrieves all recipient submissions for a specific document including their signature data
      * List submissions for a document
      */
-    async list(requestParameters: ListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.listRaw(requestParameters, initOverrides);
+    async submissionsList(requestParameters: SubmissionsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.submissionsListRaw(requestParameters, initOverrides);
     }
 
 }

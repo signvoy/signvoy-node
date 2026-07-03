@@ -4,15 +4,15 @@ All URIs are relative to *https://api.signvoy.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**detectFields**](AITemplatesApi.md#detectfields) | **POST** /v1/ai/templates/detect-fields | Detect fields on an already-uploaded PDF draft |
-| [**editDraft**](AITemplatesApi.md#editdraft) | **POST** /v1/ai/templates/{templateId}/edit | Edit an existing draft template with a natural-language instruction |
-| [**generate**](AITemplatesApi.md#generate) | **POST** /v1/ai/templates/generate | Generate a template from a natural-language prompt |
+| [**aiTemplateDetectFields**](AITemplatesApi.md#aitemplatedetectfields) | **POST** /v1/ai/templates/detect-fields | Detect fields on an already-uploaded PDF draft |
+| [**aiTemplateEditDraft**](AITemplatesApi.md#aitemplateeditdraft) | **POST** /v1/ai/templates/{templateId}/edit | Edit an existing draft template with a natural-language instruction |
+| [**aiTemplateGenerate**](AITemplatesApi.md#aitemplategenerate) | **POST** /v1/ai/templates/generate | Generate a template from a natural-language prompt |
 
 
 
-## detectFields
+## aiTemplateDetectFields
 
-> detectFields(body)
+> aiTemplateDetectFields(body)
 
 Detect fields on an already-uploaded PDF draft
 
@@ -25,7 +25,7 @@ import {
   Configuration,
   AITemplatesApi,
 } from '@signvoy/node';
-import type { DetectFieldsRequest } from '@signvoy/node';
+import type { AiTemplateDetectFieldsRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -40,10 +40,10 @@ async function example() {
   const body = {
     // object
     body: Object,
-  } satisfies DetectFieldsRequest;
+  } satisfies AiTemplateDetectFieldsRequest;
 
   try {
-    const data = await api.detectFields(body);
+    const data = await api.aiTemplateDetectFields(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -83,9 +83,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## editDraft
+## aiTemplateEditDraft
 
-> editDraft(templateId, body)
+> aiTemplateEditDraft(templateId, body)
 
 Edit an existing draft template with a natural-language instruction
 
@@ -98,7 +98,7 @@ import {
   Configuration,
   AITemplatesApi,
 } from '@signvoy/node';
-import type { EditDraftRequest } from '@signvoy/node';
+import type { AiTemplateEditDraftRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -115,10 +115,10 @@ async function example() {
     templateId: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
     // object
     body: Object,
-  } satisfies EditDraftRequest;
+  } satisfies AiTemplateEditDraftRequest;
 
   try {
-    const data = await api.editDraft(body);
+    const data = await api.aiTemplateEditDraft(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -159,9 +159,9 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
-## generate
+## aiTemplateGenerate
 
-> generate(body)
+> aiTemplateGenerate(body)
 
 Generate a template from a natural-language prompt
 
@@ -174,7 +174,7 @@ import {
   Configuration,
   AITemplatesApi,
 } from '@signvoy/node';
-import type { GenerateRequest } from '@signvoy/node';
+import type { AiTemplateGenerateRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -189,10 +189,10 @@ async function example() {
   const body = {
     // object
     body: Object,
-  } satisfies GenerateRequest;
+  } satisfies AiTemplateGenerateRequest;
 
   try {
-    const data = await api.generate(body);
+    const data = await api.aiTemplateGenerate(body);
     console.log(data);
   } catch (error) {
     console.error(error);
