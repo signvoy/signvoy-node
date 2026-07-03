@@ -1,0 +1,53 @@
+{
+  "name": "@signvoy/node",
+  "version": "0.1.0",
+  "description": "Official Node.js SDK for the Signvoy e-signature API",
+  "license": "MIT",
+  "author": "Signvoy Inc.",
+  "homepage": "https://www.signvoy.com/developers",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/signvoy/signvoy-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/signvoy/signvoy-node/issues"
+  },
+  "keywords": [
+    "signvoy",
+    "esignature",
+    "e-signature",
+    "pdf",
+    "signing",
+    "docusign-alternative",
+    "signing-api"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/src/index.js",
+      "types": "./dist/src/index.d.ts"
+    },
+    "./webhooks": {
+      "import": "./dist/src/webhooks.js",
+      "types": "./dist/src/webhooks.d.ts"
+    }
+  },
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "cross-fetch": "^4.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
