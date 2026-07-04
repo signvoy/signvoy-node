@@ -26,6 +26,7 @@ docs/ErrorResponseDtoMessage.md
 docs/HealthApi.md
 docs/HealthCheck200Response.md
 docs/InviteMemberDto.md
+docs/ReminderSettingsDto.md
 docs/SaveDraftDto.md
 docs/SigningApi.md
 docs/SubmissionsApi.md
@@ -81,6 +82,7 @@ src/models/ErrorResponseDto.ts
 src/models/ErrorResponseDtoMessage.ts
 src/models/HealthCheck200Response.ts
 src/models/InviteMemberDto.ts
+src/models/ReminderSettingsDto.ts
 src/models/SaveDraftDto.ts
 src/models/SubmitSigningDto.ts
 src/models/TemplateUrlResponseDto.ts

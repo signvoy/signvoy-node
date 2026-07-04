@@ -10,6 +10,7 @@ Name | Type
 `name` | string
 `message` | string
 `routingMode` | string
+`reminders` | [ReminderSettingsDto](ReminderSettingsDto.md)
 `recipients` | [Array&lt;CreateDocumentRecipientDto&gt;](CreateDocumentRecipientDto.md)
 
 ## Example
@@ -23,6 +24,7 @@ const example = {
   "name": Q4 2025 Contract Agreement,
   "message": Please review and sign this document at your earliest convenience.,
   "routingMode": null,
+  "reminders": null,
   "recipients": null,
 } satisfies CreateDocumentDto
 

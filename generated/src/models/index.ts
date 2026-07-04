@@ -19,6 +19,7 @@ export * from './ErrorResponseDto';
 export * from './ErrorResponseDtoMessage';
 export * from './HealthCheck200Response';
 export * from './InviteMemberDto';
+export * from './ReminderSettingsDto';
 export * from './SaveDraftDto';
 export * from './SubmitSigningDto';
 export * from './TemplateUrlResponseDto';

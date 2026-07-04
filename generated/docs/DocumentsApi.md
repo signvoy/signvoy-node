@@ -9,6 +9,7 @@ All URIs are relative to *https://api.signvoy.com*
 | [**documentsCreate**](DocumentsApi.md#documentscreate) | **POST** /v1/documents | Create a new document |
 | [**documentsFindOne**](DocumentsApi.md#documentsfindone) | **GET** /v1/documents/{id} | Get document by ID |
 | [**documentsList**](DocumentsApi.md#documentslist) | **GET** /v1/documents | List documents |
+| [**documentsRemind**](DocumentsApi.md#documentsremind) | **POST** /v1/documents/{id}/remind | Send a manual reminder |
 | [**documentsRemove**](DocumentsApi.md#documentsremove) | **DELETE** /v1/documents/{id} | Delete document |
 | [**documentsSend**](DocumentsApi.md#documentssend) | **POST** /v1/documents/{id}/send | Send document for signing |
 | [**documentsSignedPdf**](DocumentsApi.md#documentssignedpdf) | **GET** /v1/documents/{id}/signed-pdf | Get signed PDF URL |
@@ -403,6 +404,84 @@ example().catch(console.error);
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | List of documents retrieved successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## documentsRemind
+
+> DocumentDto documentsRemind(id)
+
+Send a manual reminder
+
+Immediately emails a reminder to every pending recipient with an active signing link. Does not consume the automatic reminder budget.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DocumentsApi,
+} from '@signvoy/node';
+import type { DocumentsRemindRequest } from '@signvoy/node';
+
+async function example() {
+  console.log("🚀 Testing @signvoy/node SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: clerk-jwt
+    accessToken: "YOUR BEARER TOKEN",
+    // Configure HTTP bearer authorization: api-key
+    accessToken: "YOUR BEARER TOKEN",
+    // To configure API key authorization: workspace-id
+    apiKey: "YOUR API KEY",
+  });
+  const api = new DocumentsApi(config);
+
+  const body = {
+    // string | Document UUID
+    id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
+  } satisfies DocumentsRemindRequest;
+
+  try {
+    const data = await api.documentsRemind(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | `string` | Document UUID | [Defaults to `undefined`] |
+
+### Return type
+
+[**DocumentDto**](DocumentDto.md)
+
+### Authorization
+
+[clerk-jwt](../README.md#clerk-jwt), [api-key](../README.md#api-key), [workspace-id](../README.md#workspace-id)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+| **400** | No pending recipients, or document not in a remindable state |  -  |
+| **403** | Forbidden - Not the document owner |  -  |
+| **404** | Document not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
