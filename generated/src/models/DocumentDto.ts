@@ -124,6 +124,36 @@ export interface DocumentDto {
      */
     certifiedAt?: number;
     /**
+     * Whether automatic reminders are enabled
+     * @type {boolean}
+     * @memberof DocumentDto
+     */
+    reminderEnabled: boolean;
+    /**
+     * Days between automatic reminders
+     * @type {number}
+     * @memberof DocumentDto
+     */
+    reminderIntervalDays: number;
+    /**
+     * Max automatic reminders
+     * @type {number}
+     * @memberof DocumentDto
+     */
+    reminderMaxCount: number;
+    /**
+     * Automatic reminders sent so far
+     * @type {number}
+     * @memberof DocumentDto
+     */
+    reminderCount: number;
+    /**
+     * Unix ms of the most recent reminder (auto or manual)
+     * @type {number}
+     * @memberof DocumentDto
+     */
+    lastReminderAt?: number;
+    /**
      * 
      * @type {Array<DocumentRecipientDto>}
      * @memberof DocumentDto
@@ -168,6 +198,10 @@ export function instanceOfDocumentDto(value: object): value is DocumentDto {
     if (!('status' in value) || value['status'] === undefined) return false;
     if (!('routingMode' in value) || value['routingMode'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if (!('reminderEnabled' in value) || value['reminderEnabled'] === undefined) return false;
+    if (!('reminderIntervalDays' in value) || value['reminderIntervalDays'] === undefined) return false;
+    if (!('reminderMaxCount' in value) || value['reminderMaxCount'] === undefined) return false;
+    if (!('reminderCount' in value) || value['reminderCount'] === undefined) return false;
     if (!('recipients' in value) || value['recipients'] === undefined) return false;
     return true;
 }
@@ -198,6 +232,11 @@ export function DocumentDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'expiresAt': json['expiresAt'] == null ? undefined : json['expiresAt'],
         'documentHash': json['documentHash'] == null ? undefined : json['documentHash'],
         'certifiedAt': json['certifiedAt'] == null ? undefined : json['certifiedAt'],
+        'reminderEnabled': json['reminderEnabled'],
+        'reminderIntervalDays': json['reminderIntervalDays'],
+        'reminderMaxCount': json['reminderMaxCount'],
+        'reminderCount': json['reminderCount'],
+        'lastReminderAt': json['lastReminderAt'] == null ? undefined : json['lastReminderAt'],
         'recipients': ((json['recipients'] as Array<any>).map(DocumentRecipientDtoFromJSON)),
     };
 }
@@ -229,6 +268,11 @@ export function DocumentDtoToJSONTyped(value?: DocumentDto | null, ignoreDiscrim
         'expiresAt': value['expiresAt'],
         'documentHash': value['documentHash'],
         'certifiedAt': value['certifiedAt'],
+        'reminderEnabled': value['reminderEnabled'],
+        'reminderIntervalDays': value['reminderIntervalDays'],
+        'reminderMaxCount': value['reminderMaxCount'],
+        'reminderCount': value['reminderCount'],
+        'lastReminderAt': value['lastReminderAt'],
         'recipients': ((value['recipients'] as Array<any>).map(DocumentRecipientDtoToJSON)),
     };
 }

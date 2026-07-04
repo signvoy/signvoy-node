@@ -20,6 +20,13 @@ import {
     CreateDocumentRecipientDtoToJSON,
     CreateDocumentRecipientDtoToJSONTyped,
 } from './CreateDocumentRecipientDto';
+import type { ReminderSettingsDto } from './ReminderSettingsDto';
+import {
+    ReminderSettingsDtoFromJSON,
+    ReminderSettingsDtoFromJSONTyped,
+    ReminderSettingsDtoToJSON,
+    ReminderSettingsDtoToJSONTyped,
+} from './ReminderSettingsDto';
 
 /**
  * 
@@ -51,6 +58,12 @@ export interface CreateDocumentDto {
      * @memberof CreateDocumentDto
      */
     routingMode?: CreateDocumentDtoRoutingModeEnum;
+    /**
+     * Automatic reminder cadence for this document. When omitted, the template's reminder default (or the product default) is used.
+     * @type {ReminderSettingsDto}
+     * @memberof CreateDocumentDto
+     */
+    reminders?: ReminderSettingsDto;
     /**
      * List of recipients who will sign the document
      * @type {Array<CreateDocumentRecipientDto>}
@@ -93,6 +106,7 @@ export function CreateDocumentDtoFromJSONTyped(json: any, ignoreDiscriminator: b
         'name': json['name'] == null ? undefined : json['name'],
         'message': json['message'] == null ? undefined : json['message'],
         'routingMode': json['routingMode'] == null ? undefined : json['routingMode'],
+        'reminders': json['reminders'] == null ? undefined : ReminderSettingsDtoFromJSON(json['reminders']),
         'recipients': ((json['recipients'] as Array<any>).map(CreateDocumentRecipientDtoFromJSON)),
     };
 }
@@ -112,6 +126,7 @@ export function CreateDocumentDtoToJSONTyped(value?: CreateDocumentDto | null, i
         'name': value['name'],
         'message': value['message'],
         'routingMode': value['routingMode'],
+        'reminders': ReminderSettingsDtoToJSON(value['reminders']),
         'recipients': ((value['recipients'] as Array<any>).map(CreateDocumentRecipientDtoToJSON)),
     };
 }

@@ -61,6 +61,10 @@ export interface DocumentsListRequest {
     q?: string;
 }
 
+export interface DocumentsRemindRequest {
+    id: string;
+}
+
 export interface DocumentsRemoveRequest {
     id: string;
 }
@@ -425,6 +429,73 @@ export class DocumentsApi extends runtime.BaseAPI {
      */
     async documentsList(requestParameters: DocumentsListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DocumentDto>> {
         const response = await this.documentsListRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for documentsRemind without sending the request
+     */
+    async documentsRemindRequestOpts(requestParameters: DocumentsRemindRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling documentsRemind().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("clerk-jwt", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("api-key", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Workspace-Id"] = await this.configuration.apiKey("X-Workspace-Id"); // workspace-id authentication
+        }
+
+
+        let urlPath = `/v1/documents/{id}/remind`;
+        urlPath = urlPath.replace('{id}', encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Immediately emails a reminder to every pending recipient with an active signing link. Does not consume the automatic reminder budget.
+     * Send a manual reminder
+     */
+    async documentsRemindRaw(requestParameters: DocumentsRemindRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentDto>> {
+        const requestOptions = await this.documentsRemindRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => DocumentDtoFromJSON(jsonValue));
+    }
+
+    /**
+     * Immediately emails a reminder to every pending recipient with an active signing link. Does not consume the automatic reminder budget.
+     * Send a manual reminder
+     */
+    async documentsRemind(requestParameters: DocumentsRemindRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentDto> {
+        const response = await this.documentsRemindRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

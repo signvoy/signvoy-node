@@ -22,6 +22,11 @@ Name | Type
 `expiresAt` | number
 `documentHash` | string
 `certifiedAt` | number
+`reminderEnabled` | boolean
+`reminderIntervalDays` | number
+`reminderMaxCount` | number
+`reminderCount` | number
+`lastReminderAt` | number
 `recipients` | [Array&lt;DocumentRecipientDto&gt;](DocumentRecipientDto.md)
 
 ## Example
@@ -47,6 +52,11 @@ const example = {
   "expiresAt": null,
   "documentHash": null,
   "certifiedAt": null,
+  "reminderEnabled": null,
+  "reminderIntervalDays": null,
+  "reminderMaxCount": null,
+  "reminderCount": null,
+  "lastReminderAt": null,
   "recipients": null,
 } satisfies DocumentDto
 
