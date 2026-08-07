@@ -21,29 +21,36 @@ import { mapValues } from '../runtime';
 export interface CreateTemplateDto {
     /**
      * Template name
-     * @type {string}
-     * @memberof CreateTemplateDto
      */
     name: string;
     /**
      * Original PDF filename
-     * @type {string}
-     * @memberof CreateTemplateDto
      */
     fileName: string;
     /**
      * Number of pages
-     * @type {number}
-     * @memberof CreateTemplateDto
      */
     pageCount: number;
     /**
-     * Optional initial draft content (recipients/fields/rules).
-     * @type {object}
-     * @memberof CreateTemplateDto
+     * Optional initial draft content (recipients/fields/rules, plus the `sourceFiles` manifest when several PDFs were merged on upload).
      */
     content?: object;
+    /**
+     * Whether this is a reusable template or the single-use container behind a one-off document. One-off templates are hidden from the templates list and are published implicitly when a document is created from them.
+     */
+    kind?: CreateTemplateDtoKindEnum;
 }
+
+
+/**
+ * @export
+ */
+export const CreateTemplateDtoKindEnum = {
+    REUSABLE: 'reusable',
+    ONEOFF: 'oneoff'
+} as const;
+export type CreateTemplateDtoKindEnum = typeof CreateTemplateDtoKindEnum[keyof typeof CreateTemplateDtoKindEnum];
+
 
 /**
  * Check if a given object implements the CreateTemplateDto interface.
@@ -69,6 +76,7 @@ export function CreateTemplateDtoFromJSONTyped(json: any, ignoreDiscriminator: b
         'fileName': json['fileName'],
         'pageCount': json['pageCount'],
         'content': json['content'] == null ? undefined : json['content'],
+        'kind': json['kind'] == null ? undefined : json['kind'],
     };
 }
 
@@ -87,6 +95,7 @@ export function CreateTemplateDtoToJSONTyped(value?: CreateTemplateDto | null, i
         'fileName': value['fileName'],
         'pageCount': value['pageCount'],
         'content': value['content'],
+        'kind': value['kind'],
     };
 }
 

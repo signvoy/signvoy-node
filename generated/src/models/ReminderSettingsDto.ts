@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface ReminderSettingsDto {
     /**
      * Whether automatic reminders are enabled for this document
-     * @type {boolean}
-     * @memberof ReminderSettingsDto
      */
     enabled?: boolean;
     /**
      * Days between automatic reminder emails
-     * @type {number}
-     * @memberof ReminderSettingsDto
      */
     intervalDays?: number;
     /**
      * Maximum number of automatic reminders before giving up
-     * @type {number}
-     * @memberof ReminderSettingsDto
      */
     maxReminders?: number;
 }

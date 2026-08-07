@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface CreateApiKeyDto {
     /**
      * Human-readable label to identify this key in the dashboard
-     * @type {string}
-     * @memberof CreateApiKeyDto
      */
     name: string;
     /**
      * Optional expiry, in days from now. Omit for a key that never expires.
-     * @type {number}
-     * @memberof CreateApiKeyDto
      */
     expiresInDays?: number;
 }

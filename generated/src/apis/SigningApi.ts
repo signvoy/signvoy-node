@@ -30,25 +30,49 @@ import {
 } from '../models/SubmitSigningDto';
 
 export interface SigningDeclineRequest {
+    /**
+     * Unique signing token sent to recipient
+     */
     token: string;
+    /**
+     * 
+     */
     declineDto: DeclineDto;
 }
 
 export interface SigningGetContextRequest {
+    /**
+     * Unique signing token sent to recipient
+     */
     token: string;
 }
 
 export interface SigningGetDraftRequest {
+    /**
+     * Unique signing token sent to recipient
+     */
     token: string;
 }
 
 export interface SigningSaveDraftRequest {
+    /**
+     * Unique signing token sent to recipient
+     */
     token: string;
+    /**
+     * 
+     */
     saveDraftDto: SaveDraftDto;
 }
 
 export interface SigningSubmitRequest {
+    /**
+     * Unique signing token sent to recipient
+     */
     token: string;
+    /**
+     * 
+     */
     submitSigningDto: SubmitSigningDto;
 }
 

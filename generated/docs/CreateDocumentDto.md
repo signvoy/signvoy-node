@@ -11,6 +11,7 @@ Name | Type
 `message` | string
 `routingMode` | string
 `reminders` | [ReminderSettingsDto](ReminderSettingsDto.md)
+`expiry` | [ExpirySettingsDto](ExpirySettingsDto.md)
 `recipients` | [Array&lt;CreateDocumentRecipientDto&gt;](CreateDocumentRecipientDto.md)
 
 ## Example
@@ -25,6 +26,7 @@ const example = {
   "message": Please review and sign this document at your earliest convenience.,
   "routingMode": null,
   "reminders": null,
+  "expiry": null,
   "recipients": null,
 } satisfies CreateDocumentDto
 

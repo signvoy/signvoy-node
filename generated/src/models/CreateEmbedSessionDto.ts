@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface CreateEmbedSessionDto {
     /**
      * UUID of the document whose signing session to embed
-     * @type {string}
-     * @memberof CreateEmbedSessionDto
      */
     documentId: string;
     /**
      * UUID of the specific recipient whose signing view to embed
-     * @type {string}
-     * @memberof CreateEmbedSessionDto
      */
     documentRecipientId: string;
     /**
      * How long (seconds) the returned signing URL should remain valid. Defaults to 1 hour. Maximum is 24 hours.
-     * @type {number}
-     * @memberof CreateEmbedSessionDto
      */
     expiresInSeconds?: number;
 }

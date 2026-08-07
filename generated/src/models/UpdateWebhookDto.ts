@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface UpdateWebhookDto {
     /**
      * New HTTPS URL for this endpoint
-     * @type {string}
-     * @memberof UpdateWebhookDto
      */
     url?: string;
     /**
      * Human-readable label
-     * @type {string}
-     * @memberof UpdateWebhookDto
      */
     description?: string;
     /**
      * Events to subscribe to
-     * @type {Array<string>}
-     * @memberof UpdateWebhookDto
      */
     enabledEvents?: Array<string>;
     /**
      * Enable or disable this endpoint
-     * @type {UpdateWebhookDtoStatusEnum}
-     * @memberof UpdateWebhookDto
      */
     status?: UpdateWebhookDtoStatusEnum;
 }

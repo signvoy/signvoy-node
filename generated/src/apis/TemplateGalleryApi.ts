@@ -13,17 +13,34 @@
  */
 
 import * as runtime from '../runtime';
+import {
+    type GalleryTemplateDto,
+    GalleryTemplateDtoFromJSON,
+    GalleryTemplateDtoToJSON,
+} from '../models/GalleryTemplateDto';
 
 export interface TemplateGalleryFindOneRequest {
+    /**
+     * 
+     */
     slug: string;
 }
 
 export interface TemplateGalleryInstantiateRequest {
+    /**
+     * 
+     */
     slug: string;
+    /**
+     * 
+     */
     body: object;
 }
 
 export interface TemplateGalleryListRequest {
+    /**
+     * 
+     */
     category?: string;
 }
 
@@ -72,22 +89,23 @@ export class TemplateGalleryApi extends runtime.BaseAPI {
     }
 
     /**
-     * Includes a short-lived presigned PDF preview URL.
+     * Includes the full normalized `content` so the client can render the template itself, plus a short-lived presigned PDF preview URL for `sourceKind: \'pdf\'` templates only.
      * Get a single gallery template
      */
-    async templateGalleryFindOneRaw(requestParameters: TemplateGalleryFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async templateGalleryFindOneRaw(requestParameters: TemplateGalleryFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GalleryTemplateDto>> {
         const requestOptions = await this.templateGalleryFindOneRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => GalleryTemplateDtoFromJSON(jsonValue));
     }
 
     /**
-     * Includes a short-lived presigned PDF preview URL.
+     * Includes the full normalized `content` so the client can render the template itself, plus a short-lived presigned PDF preview URL for `sourceKind: \'pdf\'` templates only.
      * Get a single gallery template
      */
-    async templateGalleryFindOne(requestParameters: TemplateGalleryFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.templateGalleryFindOneRaw(requestParameters, initOverrides);
+    async templateGalleryFindOne(requestParameters: TemplateGalleryFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GalleryTemplateDto> {
+        const response = await this.templateGalleryFindOneRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -194,22 +212,23 @@ export class TemplateGalleryApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns the curated gallery catalog. Optionally filter by category.
+     * Returns the curated gallery catalog. Optionally filter by category. Card-sized: includes recipients and a field count, but not `fields`, `body`, or a preview URL — fetch a single template for those.
      * List gallery templates
      */
-    async templateGalleryListRaw(requestParameters: TemplateGalleryListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async templateGalleryListRaw(requestParameters: TemplateGalleryListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<GalleryTemplateDto>>> {
         const requestOptions = await this.templateGalleryListRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(GalleryTemplateDtoFromJSON));
     }
 
     /**
-     * Returns the curated gallery catalog. Optionally filter by category.
+     * Returns the curated gallery catalog. Optionally filter by category. Card-sized: includes recipients and a field count, but not `fields`, `body`, or a preview URL — fetch a single template for those.
      * List gallery templates
      */
-    async templateGalleryList(requestParameters: TemplateGalleryListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.templateGalleryListRaw(requestParameters, initOverrides);
+    async templateGalleryList(requestParameters: TemplateGalleryListRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<GalleryTemplateDto>> {
+        const response = await this.templateGalleryListRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
 }

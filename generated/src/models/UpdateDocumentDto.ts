@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { ExpirySettingsDto } from './ExpirySettingsDto';
+import {
+    ExpirySettingsDtoFromJSON,
+    ExpirySettingsDtoFromJSONTyped,
+    ExpirySettingsDtoToJSON,
+    ExpirySettingsDtoToJSONTyped,
+} from './ExpirySettingsDto';
 import type { CreateDocumentRecipientDto } from './CreateDocumentRecipientDto';
 import {
     CreateDocumentRecipientDtoFromJSON,
@@ -20,6 +27,13 @@ import {
     CreateDocumentRecipientDtoToJSON,
     CreateDocumentRecipientDtoToJSONTyped,
 } from './CreateDocumentRecipientDto';
+import type { ReminderSettingsDto } from './ReminderSettingsDto';
+import {
+    ReminderSettingsDtoFromJSON,
+    ReminderSettingsDtoFromJSONTyped,
+    ReminderSettingsDtoToJSON,
+    ReminderSettingsDtoToJSONTyped,
+} from './ReminderSettingsDto';
 
 /**
  * 
@@ -28,24 +42,41 @@ import {
  */
 export interface UpdateDocumentDto {
     /**
-     * Updated name for the document
-     * @type {string}
-     * @memberof UpdateDocumentDto
+     * Custom name for the document
      */
     name?: string;
     /**
-     * Updated message for the signing request
-     * @type {string}
-     * @memberof UpdateDocumentDto
+     * Message to include with the signing request
      */
     message?: string;
     /**
-     * Updated list of recipients (replaces existing)
-     * @type {Array<CreateDocumentRecipientDto>}
-     * @memberof UpdateDocumentDto
+     * Signing-order mode. parallel (default): all recipients are invited at once. sequential: recipients are activated group-by-group by ascending order value — the next group is only activated once the current group has fully signed.
+     */
+    routingMode?: UpdateDocumentDtoRoutingModeEnum;
+    /**
+     * Automatic reminder cadence for this document. When omitted, the template's reminder default (or the product default) is used.
+     */
+    reminders?: ReminderSettingsDto;
+    /**
+     * Signing deadline for this document. When omitted, the template's deadline default (or the product default) is used.
+     */
+    expiry?: ExpirySettingsDto;
+    /**
+     * List of recipients who will sign the document
      */
     recipients?: Array<CreateDocumentRecipientDto>;
 }
+
+
+/**
+ * @export
+ */
+export const UpdateDocumentDtoRoutingModeEnum = {
+    PARALLEL: 'parallel',
+    SEQUENTIAL: 'sequential'
+} as const;
+export type UpdateDocumentDtoRoutingModeEnum = typeof UpdateDocumentDtoRoutingModeEnum[keyof typeof UpdateDocumentDtoRoutingModeEnum];
+
 
 /**
  * Check if a given object implements the UpdateDocumentDto interface.
@@ -66,6 +97,9 @@ export function UpdateDocumentDtoFromJSONTyped(json: any, ignoreDiscriminator: b
         
         'name': json['name'] == null ? undefined : json['name'],
         'message': json['message'] == null ? undefined : json['message'],
+        'routingMode': json['routingMode'] == null ? undefined : json['routingMode'],
+        'reminders': json['reminders'] == null ? undefined : ReminderSettingsDtoFromJSON(json['reminders']),
+        'expiry': json['expiry'] == null ? undefined : ExpirySettingsDtoFromJSON(json['expiry']),
         'recipients': json['recipients'] == null ? undefined : ((json['recipients'] as Array<any>).map(CreateDocumentRecipientDtoFromJSON)),
     };
 }
@@ -83,6 +117,9 @@ export function UpdateDocumentDtoToJSONTyped(value?: UpdateDocumentDto | null, i
         
         'name': value['name'],
         'message': value['message'],
+        'routingMode': value['routingMode'],
+        'reminders': ReminderSettingsDtoToJSON(value['reminders']),
+        'expiry': ExpirySettingsDtoToJSON(value['expiry']),
         'recipients': value['recipients'] == null ? undefined : ((value['recipients'] as Array<any>).map(CreateDocumentRecipientDtoToJSON)),
     };
 }

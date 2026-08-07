@@ -40,36 +40,66 @@ import {
 } from '../models/WebhookEndpointWithSecretDto';
 
 export interface WebhooksCreateRequest {
+    /**
+     * 
+     */
     createWebhookDto: CreateWebhookDto;
 }
 
 export interface WebhooksGetRequest {
+    /**
+     * Webhook endpoint ID
+     */
     id: string;
 }
 
 export interface WebhooksListDeliveriesRequest {
+    /**
+     * Webhook endpoint ID
+     */
     id: string;
 }
 
 export interface WebhooksPingRequest {
+    /**
+     * Webhook endpoint ID
+     */
     id: string;
 }
 
 export interface WebhooksRemoveRequest {
+    /**
+     * Webhook endpoint ID
+     */
     id: string;
 }
 
 export interface WebhooksRetryDeliveryRequest {
+    /**
+     * Webhook endpoint ID
+     */
     id: string;
+    /**
+     * Delivery ID
+     */
     deliveryId: string;
 }
 
 export interface WebhooksRotateSecretRequest {
+    /**
+     * Webhook endpoint ID
+     */
     id: string;
 }
 
 export interface WebhooksUpdateRequest {
+    /**
+     * Webhook endpoint ID
+     */
     id: string;
+    /**
+     * 
+     */
     updateWebhookDto: UpdateWebhookDto;
 }
 

@@ -21,76 +21,60 @@ import { mapValues } from '../runtime';
 export interface DocumentRecipientDto {
     /**
      * 
-     * @type {string}
-     * @memberof DocumentRecipientDto
      */
     id: string;
     /**
      * Matches template version recipient key
-     * @type {string}
-     * @memberof DocumentRecipientDto
      */
     roleKey: string;
     /**
      * Role display name snapshot at send time
-     * @type {string}
-     * @memberof DocumentRecipientDto
      */
     roleName: string;
     /**
      * 
-     * @type {string}
-     * @memberof DocumentRecipientDto
      */
     name: string;
     /**
      * Recipient email address
-     * @type {string}
-     * @memberof DocumentRecipientDto
      */
     email?: string;
     /**
      * Hex colour assigned to this recipient
-     * @type {string}
-     * @memberof DocumentRecipientDto
      */
     color: string;
     /**
      * Signing order (0-based)
-     * @type {number}
-     * @memberof DocumentRecipientDto
      */
     order: number;
     /**
      * 
-     * @type {DocumentRecipientDtoStatusEnum}
-     * @memberof DocumentRecipientDto
      */
     status: DocumentRecipientDtoStatusEnum;
     /**
      * Unix ms timestamp when recipient signed
-     * @type {number}
-     * @memberof DocumentRecipientDto
      */
     signedAt?: number;
     /**
      * Unix ms timestamp when recipient declined
-     * @type {number}
-     * @memberof DocumentRecipientDto
      */
     declinedAt?: number;
     /**
      * Reason for declining
-     * @type {string}
-     * @memberof DocumentRecipientDto
      */
     declineReason?: string;
     /**
      * URL where this recipient can complete signing
-     * @type {string}
-     * @memberof DocumentRecipientDto
      */
     signUrl?: string;
+    /**
+     * Unix ms timestamp when recipient was last reminded (manual or automatic)
+     */
+    lastRemindedAt?: number;
+    /**
+     * Whether this recipient has an active signing link (can currently sign)
+     */
+    hasActiveSigningLink?: boolean;
 }
 
 
@@ -141,6 +125,8 @@ export function DocumentRecipientDtoFromJSONTyped(json: any, ignoreDiscriminator
         'declinedAt': json['declinedAt'] == null ? undefined : json['declinedAt'],
         'declineReason': json['declineReason'] == null ? undefined : json['declineReason'],
         'signUrl': json['signUrl'] == null ? undefined : json['signUrl'],
+        'lastRemindedAt': json['lastRemindedAt'] == null ? undefined : json['lastRemindedAt'],
+        'hasActiveSigningLink': json['hasActiveSigningLink'] == null ? undefined : json['hasActiveSigningLink'],
     };
 }
 
@@ -167,6 +153,8 @@ export function DocumentRecipientDtoToJSONTyped(value?: DocumentRecipientDto | n
         'declinedAt': value['declinedAt'],
         'declineReason': value['declineReason'],
         'signUrl': value['signUrl'],
+        'lastRemindedAt': value['lastRemindedAt'],
+        'hasActiveSigningLink': value['hasActiveSigningLink'],
     };
 }
 

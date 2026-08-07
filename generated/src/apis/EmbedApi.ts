@@ -25,6 +25,9 @@ import {
 } from '../models/EmbedSessionResponseDto';
 
 export interface EmbedCreateSessionRequest {
+    /**
+     * 
+     */
     createEmbedSessionDto: CreateEmbedSessionDto;
 }
 

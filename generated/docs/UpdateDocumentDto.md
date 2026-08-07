@@ -8,6 +8,9 @@ Name | Type
 ------------ | -------------
 `name` | string
 `message` | string
+`routingMode` | string
+`reminders` | [ReminderSettingsDto](ReminderSettingsDto.md)
+`expiry` | [ExpirySettingsDto](ExpirySettingsDto.md)
 `recipients` | [Array&lt;CreateDocumentRecipientDto&gt;](CreateDocumentRecipientDto.md)
 
 ## Example
@@ -17,8 +20,11 @@ import type { UpdateDocumentDto } from '@signvoy/node'
 
 // TODO: Update the object below with actual values
 const example = {
-  "name": Revised Contract Agreement,
-  "message": Please review the updated terms and sign.,
+  "name": Q4 2025 Contract Agreement,
+  "message": Please review and sign this document at your earliest convenience.,
+  "routingMode": null,
+  "reminders": null,
+  "expiry": null,
   "recipients": null,
 } satisfies UpdateDocumentDto
 

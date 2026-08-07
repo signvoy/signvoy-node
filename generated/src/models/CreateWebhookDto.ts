@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface CreateWebhookDto {
     /**
      * HTTPS URL that Signvoy will POST events to
-     * @type {string}
-     * @memberof CreateWebhookDto
      */
     url: string;
     /**
      * Human-readable label for this endpoint (shown in the dashboard)
-     * @type {string}
-     * @memberof CreateWebhookDto
      */
     description?: string;
     /**
      * Events to subscribe to. Pass an empty array to subscribe to all events.
-     * @type {Array<string>}
-     * @memberof CreateWebhookDto
      */
     enabledEvents: Array<string>;
 }

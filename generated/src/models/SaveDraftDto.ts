@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface SaveDraftDto {
     /**
      * Field values as key-value pairs (fieldId -> value)
-     * @type {object}
-     * @memberof SaveDraftDto
      */
     values: object;
 }

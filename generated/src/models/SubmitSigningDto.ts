@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface SubmitSigningDto {
     /**
      * Completed field values as key-value pairs (fieldId -> value)
-     * @type {object}
-     * @memberof SubmitSigningDto
      */
     values: object;
     /**
      * Name of the person signing
-     * @type {string}
-     * @memberof SubmitSigningDto
      */
     signerName: string;
     /**
      * Email of the person signing
-     * @type {string}
-     * @memberof SubmitSigningDto
      */
     signerEmail?: string;
     /**
      * Unix timestamp (milliseconds) when consent was accepted
-     * @type {number}
-     * @memberof SubmitSigningDto
      */
     consentAcceptedAt: number;
 }

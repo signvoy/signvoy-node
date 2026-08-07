@@ -15,31 +15,55 @@
 import * as runtime from '../runtime';
 
 export interface TemplateVersionsDiscardDraftRequest {
+    /**
+     * 
+     */
     templateId: string;
 }
 
 export interface TemplateVersionsEnsureDraftRequest {
+    /**
+     * 
+     */
     templateId: string;
 }
 
 export interface TemplateVersionsFindOneRequest {
+    /**
+     * 
+     */
     templateId: string;
+    /**
+     * 
+     */
     versionId: string;
 }
 
 export interface TemplateVersionsGetDraftRequest {
+    /**
+     * 
+     */
     templateId: string;
 }
 
 export interface TemplateVersionsListVersionsRequest {
+    /**
+     * 
+     */
     templateId: string;
 }
 
 export interface TemplateVersionsPublishRequest {
+    /**
+     * 
+     */
     templateId: string;
 }
 
 export interface TemplateVersionsUpsertDraftRequest {
+    /**
+     * 
+     */
     templateId: string;
 }
 

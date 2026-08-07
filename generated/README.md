@@ -16,9 +16,9 @@ Next, try it out.
 ```ts
 import {
   Configuration,
-  AITemplatesApi,
+  APIKeysApi,
 } from '@signvoy/node';
-import type { AiTemplateDetectFieldsRequest } from '@signvoy/node';
+import type { ApiKeysCreateRequest } from '@signvoy/node';
 
 async function example() {
   console.log("🚀 Testing @signvoy/node SDK...");
@@ -28,15 +28,15 @@ async function example() {
     // To configure API key authorization: workspace-id
     apiKey: "YOUR API KEY",
   });
-  const api = new AITemplatesApi(config);
+  const api = new APIKeysApi(config);
 
   const body = {
-    // object
-    body: Object,
-  } satisfies AiTemplateDetectFieldsRequest;
+    // CreateApiKeyDto
+    createApiKeyDto: ...,
+  } satisfies ApiKeysCreateRequest;
 
   try {
-    const data = await api.aiTemplateDetectFields(body);
+    const data = await api.apiKeysCreate(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -56,18 +56,23 @@ All URIs are relative to *https://api.signvoy.com*
 
 | Class | Method | HTTP request | Description
 | ----- | ------ | ------------ | -------------
-*AITemplatesApi* | [**aiTemplateDetectFields**](docs/AITemplatesApi.md#aitemplatedetectfields) | **POST** /v1/ai/templates/detect-fields | Detect fields on an already-uploaded PDF draft
-*AITemplatesApi* | [**aiTemplateEditDraft**](docs/AITemplatesApi.md#aitemplateeditdraft) | **POST** /v1/ai/templates/{templateId}/edit | Edit an existing draft template with a natural-language instruction
-*AITemplatesApi* | [**aiTemplateGenerate**](docs/AITemplatesApi.md#aitemplategenerate) | **POST** /v1/ai/templates/generate | Generate a template from a natural-language prompt
 *APIKeysApi* | [**apiKeysCreate**](docs/APIKeysApi.md#apikeyscreate) | **POST** /v1/api-keys | Create an API key
 *APIKeysApi* | [**apiKeysList**](docs/APIKeysApi.md#apikeyslist) | **GET** /v1/api-keys | List API keys
 *APIKeysApi* | [**apiKeysRevoke**](docs/APIKeysApi.md#apikeysrevoke) | **DELETE** /v1/api-keys/{id} | Revoke an API key
+*AgentApi* | [**agentChat**](docs/AgentApi.md#agentchat) | **POST** /v1/agent/chat | Stream a chat turn (Server-Sent Events)
+*AgentApi* | [**agentCreateSession**](docs/AgentApi.md#agentcreatesession) | **POST** /v1/agent/sessions | Create a new agent conversation
+*AgentApi* | [**agentDeleteSession**](docs/AgentApi.md#agentdeletesession) | **DELETE** /v1/agent/sessions/{id} | Delete a conversation
+*AgentApi* | [**agentDetectFields**](docs/AgentApi.md#agentdetectfields) | **POST** /v1/agent/detect-fields | Detect fields on a draft PDF (AcroForm + text)
+*AgentApi* | [**agentGenerate**](docs/AgentApi.md#agentgenerate) | **POST** /v1/agent/generate | Generate a new template draft from a prompt
+*AgentApi* | [**agentGetSession**](docs/AgentApi.md#agentgetsession) | **GET** /v1/agent/sessions/{id} | Load a conversation with rehydrated messages
+*AgentApi* | [**agentListSessions**](docs/AgentApi.md#agentlistsessions) | **GET** /v1/agent/sessions | List agent conversations (optionally by template)
 *DocumentsApi* | [**documentsAudit**](docs/DocumentsApi.md#documentsaudit) | **GET** /v1/documents/{id}/audit | Get document audit trail
 *DocumentsApi* | [**documentsCertificate**](docs/DocumentsApi.md#documentscertificate) | **GET** /v1/documents/{id}/certificate | Get certificate of completion URL
 *DocumentsApi* | [**documentsCreate**](docs/DocumentsApi.md#documentscreate) | **POST** /v1/documents | Create a new document
 *DocumentsApi* | [**documentsFindOne**](docs/DocumentsApi.md#documentsfindone) | **GET** /v1/documents/{id} | Get document by ID
 *DocumentsApi* | [**documentsList**](docs/DocumentsApi.md#documentslist) | **GET** /v1/documents | List documents
 *DocumentsApi* | [**documentsRemind**](docs/DocumentsApi.md#documentsremind) | **POST** /v1/documents/{id}/remind | Send a manual reminder
+*DocumentsApi* | [**documentsRemindRecipient**](docs/DocumentsApi.md#documentsremindrecipient) | **POST** /v1/documents/{id}/recipients/{recipientId}/remind | Send a reminder to a specific recipient
 *DocumentsApi* | [**documentsRemove**](docs/DocumentsApi.md#documentsremove) | **DELETE** /v1/documents/{id} | Delete document
 *DocumentsApi* | [**documentsSend**](docs/DocumentsApi.md#documentssend) | **POST** /v1/documents/{id}/send | Send document for signing
 *DocumentsApi* | [**documentsSignedPdf**](docs/DocumentsApi.md#documentssignedpdf) | **GET** /v1/documents/{id}/signed-pdf | Get signed PDF URL
@@ -75,6 +80,13 @@ All URIs are relative to *https://api.signvoy.com*
 *DocumentsApi* | [**documentsVoidDoc**](docs/DocumentsApi.md#documentsvoiddoc) | **POST** /v1/documents/{id}/void | Void document
 *EmbedApi* | [**embedCreateSession**](docs/EmbedApi.md#embedcreatesession) | **POST** /v1/embed/session | Create an embed session
 *HealthApi* | [**healthCheck**](docs/HealthApi.md#healthcheck) | **GET** /v1/health | Health check
+*MCPApi* | [**mcpGrantsCreate**](docs/MCPApi.md#mcpgrantscreate) | **POST** /v1/mcp-grants | Authorise an OAuth client to call the MCP endpoint
+*MCPApi* | [**mcpGrantsList**](docs/MCPApi.md#mcpgrantslist) | **GET** /v1/mcp-grants | List active MCP grants for the current user
+*MCPApi* | [**mcpGrantsRevoke**](docs/MCPApi.md#mcpgrantsrevoke) | **DELETE** /v1/mcp-grants/{id} | Revoke an MCP grant
+*NotificationsApi* | [**notificationsList**](docs/NotificationsApi.md#notificationslist) | **GET** /v1/notifications | List notifications for the current user
+*NotificationsApi* | [**notificationsMarkAllRead**](docs/NotificationsApi.md#notificationsmarkallread) | **POST** /v1/notifications/read-all | Mark all notifications as read
+*NotificationsApi* | [**notificationsMarkRead**](docs/NotificationsApi.md#notificationsmarkread) | **PATCH** /v1/notifications/{id}/read | Mark a notification as read
+*NotificationsApi* | [**notificationsUnreadCount**](docs/NotificationsApi.md#notificationsunreadcount) | **GET** /v1/notifications/unread-count | Get the unread notification count
 *SigningApi* | [**signingDecline**](docs/SigningApi.md#signingdecline) | **POST** /v1/sign/{token}/decline | Decline to sign
 *SigningApi* | [**signingGetContext**](docs/SigningApi.md#signinggetcontext) | **GET** /v1/sign/{token} | Get signing context
 *SigningApi* | [**signingGetDraft**](docs/SigningApi.md#signinggetdraft) | **GET** /v1/sign/{token}/draft | Get saved draft
@@ -136,18 +148,24 @@ All URIs are relative to *https://api.signvoy.com*
 - [CreatedApiKeyDto](docs/CreatedApiKeyDto.md)
 - [DeclineDto](docs/DeclineDto.md)
 - [DocumentDto](docs/DocumentDto.md)
+- [DocumentDtoSendBlockersInner](docs/DocumentDtoSendBlockersInner.md)
 - [DocumentRecipientDto](docs/DocumentRecipientDto.md)
 - [EmbedSessionResponseDto](docs/EmbedSessionResponseDto.md)
 - [ErrorResponseDto](docs/ErrorResponseDto.md)
 - [ErrorResponseDtoMessage](docs/ErrorResponseDtoMessage.md)
+- [ExpirySettingsDto](docs/ExpirySettingsDto.md)
+- [GalleryRecipientDto](docs/GalleryRecipientDto.md)
+- [GalleryTemplateDto](docs/GalleryTemplateDto.md)
 - [HealthCheck200Response](docs/HealthCheck200Response.md)
 - [InviteMemberDto](docs/InviteMemberDto.md)
+- [NotificationDto](docs/NotificationDto.md)
 - [ReminderSettingsDto](docs/ReminderSettingsDto.md)
 - [SaveDraftDto](docs/SaveDraftDto.md)
 - [SubmitSigningDto](docs/SubmitSigningDto.md)
 - [TemplateUrlResponseDto](docs/TemplateUrlResponseDto.md)
 - [TemplateVersionDto](docs/TemplateVersionDto.md)
 - [TemplateWithVersionsDto](docs/TemplateWithVersionsDto.md)
+- [UnreadCountDto](docs/UnreadCountDto.md)
 - [UpdateDocumentDto](docs/UpdateDocumentDto.md)
 - [UpdateMemberDto](docs/UpdateMemberDto.md)
 - [UpdateTemplateDto](docs/UpdateTemplateDto.md)
@@ -188,7 +206,7 @@ and is automatically generated by the
 
 - API version: `1.0`
 - Package version: `0.1.0`
-- Generator version: `7.24.0-SNAPSHOT`
+- Generator version: `7.25.0-SNAPSHOT`
 - Build package: `org.openapitools.codegen.languages.TypeScriptFetchClientCodegen`
 
 The generated npm module supports the following:

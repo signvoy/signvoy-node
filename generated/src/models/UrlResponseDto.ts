@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface UrlResponseDto {
     /**
      * Presigned download URL
-     * @type {string}
-     * @memberof UrlResponseDto
      */
     url: string;
 }

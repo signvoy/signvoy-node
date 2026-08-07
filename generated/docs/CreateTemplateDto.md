@@ -10,6 +10,7 @@ Name | Type
 `fileName` | string
 `pageCount` | number
 `content` | object
+`kind` | string
 
 ## Example
 
@@ -22,6 +23,7 @@ const example = {
   "fileName": nda.pdf,
   "pageCount": 3,
   "content": null,
+  "kind": null,
 } satisfies CreateTemplateDto
 
 console.log(example)

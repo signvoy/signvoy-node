@@ -21,50 +21,34 @@ import { mapValues } from '../runtime';
 export interface ApiKeyDto {
     /**
      * Unique API key identifier
-     * @type {string}
-     * @memberof ApiKeyDto
      */
     id: string;
     /**
      * Human-readable label
-     * @type {string}
-     * @memberof ApiKeyDto
      */
     name: string;
     /**
      * Non-secret leading segment of the key
-     * @type {string}
-     * @memberof ApiKeyDto
      */
     prefix: string;
     /**
      * Last 4 characters of the key
-     * @type {string}
-     * @memberof ApiKeyDto
      */
     last4: string;
     /**
      * When the key was last used to authenticate a request
-     * @type {object}
-     * @memberof ApiKeyDto
      */
     lastUsedAt?: object | null;
     /**
      * When the key expires (null = never)
-     * @type {object}
-     * @memberof ApiKeyDto
      */
     expiresAt?: object | null;
     /**
      * Whether the key has been revoked
-     * @type {boolean}
-     * @memberof ApiKeyDto
      */
     revoked: boolean;
     /**
      * Creation timestamp
-     * @type {Date}
-     * @memberof ApiKeyDto
      */
     createdAt: Date;
 }
@@ -96,8 +80,8 @@ export function ApiKeyDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'name': json['name'],
         'prefix': json['prefix'],
         'last4': json['last4'],
-        'lastUsedAt': json['lastUsedAt'] == null ? undefined : json['lastUsedAt'],
-        'expiresAt': json['expiresAt'] == null ? undefined : json['expiresAt'],
+        'lastUsedAt': json['lastUsedAt'] === undefined ? undefined : json['lastUsedAt'] === null ? null : json['lastUsedAt'],
+        'expiresAt': json['expiresAt'] === undefined ? undefined : json['expiresAt'] === null ? null : json['expiresAt'],
         'revoked': json['revoked'],
         'createdAt': (new Date(json['createdAt'])),
     };

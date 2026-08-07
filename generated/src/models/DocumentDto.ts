@@ -20,6 +20,13 @@ import {
     DocumentRecipientDtoToJSON,
     DocumentRecipientDtoToJSONTyped,
 } from './DocumentRecipientDto';
+import type { DocumentDtoSendBlockersInner } from './DocumentDtoSendBlockersInner';
+import {
+    DocumentDtoSendBlockersInnerFromJSON,
+    DocumentDtoSendBlockersInnerFromJSONTyped,
+    DocumentDtoSendBlockersInnerToJSON,
+    DocumentDtoSendBlockersInnerToJSONTyped,
+} from './DocumentDtoSendBlockersInner';
 
 /**
  * 
@@ -29,136 +36,96 @@ import {
 export interface DocumentDto {
     /**
      * 
-     * @type {string}
-     * @memberof DocumentDto
      */
     id: string;
     /**
      * 
-     * @type {string}
-     * @memberof DocumentDto
      */
     workspaceId: string;
     /**
      * 
-     * @type {string}
-     * @memberof DocumentDto
      */
     templateId: string;
     /**
      * 
-     * @type {string}
-     * @memberof DocumentDto
      */
     templateVersionId: string;
     /**
      * Clerk user ID of the document owner
-     * @type {string}
-     * @memberof DocumentDto
      */
     ownerId: string;
     /**
      * Human-readable document name
-     * @type {string}
-     * @memberof DocumentDto
      */
     name: string;
     /**
      * Current document lifecycle state
-     * @type {DocumentDtoStatusEnum}
-     * @memberof DocumentDto
      */
     status: DocumentDtoStatusEnum;
     /**
      * Signing-order mode
-     * @type {DocumentDtoRoutingModeEnum}
-     * @memberof DocumentDto
      */
     routingMode: DocumentDtoRoutingModeEnum;
     /**
      * Custom message sent with the signing request
-     * @type {string}
-     * @memberof DocumentDto
      */
     message?: string;
     /**
      * Creation timestamp (Unix ms)
-     * @type {number}
-     * @memberof DocumentDto
      */
     createdAt: number;
     /**
      * Unix ms when sent
-     * @type {number}
-     * @memberof DocumentDto
      */
     sentAt?: number;
     /**
      * Unix ms when all signed
-     * @type {number}
-     * @memberof DocumentDto
      */
     completedAt?: number;
     /**
      * Unix ms when voided
-     * @type {number}
-     * @memberof DocumentDto
      */
     voidedAt?: number;
     /**
      * Unix ms when expires/expired
-     * @type {number}
-     * @memberof DocumentDto
      */
     expiresAt?: number;
     /**
      * SHA-256 fingerprint of the certified final PDF
-     * @type {string}
-     * @memberof DocumentDto
      */
     documentHash?: string;
     /**
      * Unix ms when certified
-     * @type {number}
-     * @memberof DocumentDto
      */
     certifiedAt?: number;
     /**
      * Whether automatic reminders are enabled
-     * @type {boolean}
-     * @memberof DocumentDto
      */
     reminderEnabled: boolean;
     /**
      * Days between automatic reminders
-     * @type {number}
-     * @memberof DocumentDto
      */
     reminderIntervalDays: number;
     /**
      * Max automatic reminders
-     * @type {number}
-     * @memberof DocumentDto
      */
     reminderMaxCount: number;
     /**
      * Automatic reminders sent so far
-     * @type {number}
-     * @memberof DocumentDto
      */
     reminderCount: number;
     /**
      * Unix ms of the most recent reminder (auto or manual)
-     * @type {number}
-     * @memberof DocumentDto
      */
     lastReminderAt?: number;
     /**
      * 
-     * @type {Array<DocumentRecipientDto>}
-     * @memberof DocumentDto
      */
     recipients: Array<DocumentRecipientDto>;
+    /**
+     * Reasons a draft cannot yet be sent. Empty array when the document is ready to send or is not in draft state.
+     */
+    sendBlockers: Array<DocumentDtoSendBlockersInner>;
 }
 
 
@@ -168,6 +135,7 @@ export interface DocumentDto {
 export const DocumentDtoStatusEnum = {
     DRAFT: 'draft',
     SENT: 'sent',
+    IN_PROGRESS: 'in_progress',
     COMPLETED: 'completed',
     DECLINED: 'declined',
     VOIDED: 'voided',
@@ -203,6 +171,7 @@ export function instanceOfDocumentDto(value: object): value is DocumentDto {
     if (!('reminderMaxCount' in value) || value['reminderMaxCount'] === undefined) return false;
     if (!('reminderCount' in value) || value['reminderCount'] === undefined) return false;
     if (!('recipients' in value) || value['recipients'] === undefined) return false;
+    if (!('sendBlockers' in value) || value['sendBlockers'] === undefined) return false;
     return true;
 }
 
@@ -238,6 +207,7 @@ export function DocumentDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'reminderCount': json['reminderCount'],
         'lastReminderAt': json['lastReminderAt'] == null ? undefined : json['lastReminderAt'],
         'recipients': ((json['recipients'] as Array<any>).map(DocumentRecipientDtoFromJSON)),
+        'sendBlockers': ((json['sendBlockers'] as Array<any>).map(DocumentDtoSendBlockersInnerFromJSON)),
     };
 }
 
@@ -274,6 +244,7 @@ export function DocumentDtoToJSONTyped(value?: DocumentDto | null, ignoreDiscrim
         'reminderCount': value['reminderCount'],
         'lastReminderAt': value['lastReminderAt'],
         'recipients': ((value['recipients'] as Array<any>).map(DocumentRecipientDtoToJSON)),
+        'sendBlockers': ((value['sendBlockers'] as Array<any>).map(DocumentDtoSendBlockersInnerToJSON)),
     };
 }
 

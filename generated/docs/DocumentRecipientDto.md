@@ -18,6 +18,8 @@ Name | Type
 `declinedAt` | number
 `declineReason` | string
 `signUrl` | string
+`lastRemindedAt` | number
+`hasActiveSigningLink` | boolean
 
 ## Example
 
@@ -38,6 +40,8 @@ const example = {
   "declinedAt": null,
   "declineReason": null,
   "signUrl": null,
+  "lastRemindedAt": null,
+  "hasActiveSigningLink": null,
 } satisfies DocumentRecipientDto
 
 console.log(example)

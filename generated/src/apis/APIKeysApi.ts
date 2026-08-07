@@ -30,10 +30,16 @@ import {
 } from '../models/CreatedApiKeyDto';
 
 export interface ApiKeysCreateRequest {
+    /**
+     * 
+     */
     createApiKeyDto: CreateApiKeyDto;
 }
 
 export interface ApiKeysRevokeRequest {
+    /**
+     * API key ID
+     */
     id: string;
 }
 

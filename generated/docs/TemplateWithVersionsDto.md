@@ -10,6 +10,7 @@ Name | Type
 `workspaceId` | string
 `ownerId` | string
 `name` | string
+`kind` | string
 `archivedAt` | number
 `createdAt` | number
 `updatedAt` | number
@@ -29,6 +30,7 @@ const example = {
   "workspaceId": null,
   "ownerId": null,
   "name": null,
+  "kind": null,
   "archivedAt": null,
   "createdAt": null,
   "updatedAt": null,

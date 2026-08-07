@@ -12,11 +12,11 @@ All URIs are relative to *https://api.signvoy.com*
 
 ## templateGalleryFindOne
 
-> templateGalleryFindOne(slug)
+> GalleryTemplateDto templateGalleryFindOne(slug)
 
 Get a single gallery template
 
-Includes a short-lived presigned PDF preview URL.
+Includes the full normalized &#x60;content&#x60; so the client can render the template itself, plus a short-lived presigned PDF preview URL for &#x60;sourceKind: \&#39;pdf\&#39;&#x60; templates only.
 
 ### Example
 
@@ -63,7 +63,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**GalleryTemplateDto**](GalleryTemplateDto.md)
 
 ### Authorization
 
@@ -72,13 +72,13 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Gallery template with preview URL. |  -  |
+| **200** |  |  -  |
 | **404** | Not found. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
@@ -164,11 +164,11 @@ example().catch(console.error);
 
 ## templateGalleryList
 
-> templateGalleryList(category)
+> Array&lt;GalleryTemplateDto&gt; templateGalleryList(category)
 
 List gallery templates
 
-Returns the curated gallery catalog. Optionally filter by category.
+Returns the curated gallery catalog. Optionally filter by category. Card-sized: includes recipients and a field count, but not &#x60;fields&#x60;, &#x60;body&#x60;, or a preview URL — fetch a single template for those.
 
 ### Example
 
@@ -215,7 +215,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**Array&lt;GalleryTemplateDto&gt;**](GalleryTemplateDto.md)
 
 ### Authorization
 
@@ -224,7 +224,7 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
