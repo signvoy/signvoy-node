@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface HealthCheck200Response {
     /**
      * Health status
-     * @type {string}
-     * @memberof HealthCheck200Response
      */
     status?: string;
     /**
      * Current server timestamp in ISO format
-     * @type {Date}
-     * @memberof HealthCheck200Response
      */
     timestamp?: Date;
 }

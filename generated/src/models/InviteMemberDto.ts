@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface InviteMemberDto {
     /**
      * Email address of the person to invite
-     * @type {string}
-     * @memberof InviteMemberDto
      */
     email: string;
     /**
      * Role to assign (defaults to 'member')
-     * @type {InviteMemberDtoRoleEnum}
-     * @memberof InviteMemberDto
      */
     role?: InviteMemberDtoRoleEnum;
 }

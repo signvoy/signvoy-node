@@ -40,49 +40,106 @@ import {
 } from '../models/UrlResponseDto';
 
 export interface DocumentsAuditRequest {
+    /**
+     * Document UUID
+     */
     id: string;
 }
 
 export interface DocumentsCertificateRequest {
+    /**
+     * Document UUID
+     */
     id: string;
 }
 
 export interface DocumentsCreateRequest {
+    /**
+     * 
+     */
     createDocumentDto: CreateDocumentDto;
 }
 
 export interface DocumentsFindOneRequest {
+    /**
+     * Document UUID
+     */
     id: string;
 }
 
 export interface DocumentsListRequest {
+    /**
+     * Filter by document status
+     */
     status?: DocumentsListStatusEnum;
+    /**
+     * Filter by template UUID
+     */
     templateId?: string;
+    /**
+     * Search query for document name, recipient name, or email
+     */
     q?: string;
 }
 
 export interface DocumentsRemindRequest {
+    /**
+     * Document UUID
+     */
+    id: string;
+}
+
+export interface DocumentsRemindRecipientRequest {
+    /**
+     * Recipient UUID
+     */
+    recipientId: string;
+    /**
+     * Document UUID
+     */
     id: string;
 }
 
 export interface DocumentsRemoveRequest {
+    /**
+     * Document UUID
+     */
     id: string;
 }
 
 export interface DocumentsSendRequest {
+    /**
+     * Document UUID
+     */
     id: string;
 }
 
 export interface DocumentsSignedPdfRequest {
+    /**
+     * Document UUID
+     */
     id: string;
+    /**
+     * Force an attachment download instead of inline rendering
+     */
+    download?: boolean;
 }
 
 export interface DocumentsUpdateRequest {
+    /**
+     * Document UUID
+     */
     id: string;
+    /**
+     * 
+     */
     updateDocumentDto: UpdateDocumentDto;
 }
 
 export interface DocumentsVoidDocRequest {
+    /**
+     * Document UUID
+     */
     id: string;
 }
 
@@ -275,7 +332,7 @@ export class DocumentsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates a document from a template with recipients for signing
+     * Creates a document from a template with recipients for signing. Reusable templates must already be published. One-off templates — the single-use containers behind the \'upload and send\' flow — are published implicitly here, so their draft must pass rules-engine validation.
      * Create a new document
      */
     async documentsCreateRaw(requestParameters: DocumentsCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentDto>> {
@@ -286,7 +343,7 @@ export class DocumentsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates a document from a template with recipients for signing
+     * Creates a document from a template with recipients for signing. Reusable templates must already be published. One-off templates — the single-use containers behind the \'upload and send\' flow — are published implicitly here, so their draft must pass rules-engine validation.
      * Create a new document
      */
     async documentsCreate(requestParameters: DocumentsCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentDto> {
@@ -500,6 +557,81 @@ export class DocumentsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for documentsRemindRecipient without sending the request
+     */
+    async documentsRemindRecipientRequestOpts(requestParameters: DocumentsRemindRecipientRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['recipientId'] == null) {
+            throw new runtime.RequiredError(
+                'recipientId',
+                'Required parameter "recipientId" was null or undefined when calling documentsRemindRecipient().'
+            );
+        }
+
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling documentsRemindRecipient().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("clerk-jwt", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("api-key", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Workspace-Id"] = await this.configuration.apiKey("X-Workspace-Id"); // workspace-id authentication
+        }
+
+
+        let urlPath = `/v1/documents/{id}/recipients/{recipientId}/remind`;
+        urlPath = urlPath.replace('{recipientId}', encodeURIComponent(String(requestParameters['recipientId'])));
+        urlPath = urlPath.replace('{id}', encodeURIComponent(String(requestParameters['id'])));
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Immediately emails a reminder to a single pending recipient with an active signing link. Does not consume the automatic reminder budget.
+     * Send a reminder to a specific recipient
+     */
+    async documentsRemindRecipientRaw(requestParameters: DocumentsRemindRecipientRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DocumentDto>> {
+        const requestOptions = await this.documentsRemindRecipientRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => DocumentDtoFromJSON(jsonValue));
+    }
+
+    /**
+     * Immediately emails a reminder to a single pending recipient with an active signing link. Does not consume the automatic reminder budget.
+     * Send a reminder to a specific recipient
+     */
+    async documentsRemindRecipient(requestParameters: DocumentsRemindRecipientRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DocumentDto> {
+        const response = await this.documentsRemindRecipientRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Creates request options for documentsRemove without sending the request
      */
     async documentsRemoveRequestOpts(requestParameters: DocumentsRemoveRequest): Promise<runtime.RequestOpts> {
@@ -645,6 +777,10 @@ export class DocumentsApi extends runtime.BaseAPI {
 
         const queryParameters: any = {};
 
+        if (requestParameters['download'] != null) {
+            queryParameters['download'] = requestParameters['download'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.accessToken) {
@@ -680,7 +816,7 @@ export class DocumentsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves a presigned URL to download the completed signed PDF
+     * Retrieves a presigned URL for the completed signed PDF. By default the URL renders inline (for previewing in a browser); pass `download=true` to force an attachment download with a friendly filename.
      * Get signed PDF URL
      */
     async documentsSignedPdfRaw(requestParameters: DocumentsSignedPdfRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UrlResponseDto>> {
@@ -691,7 +827,7 @@ export class DocumentsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves a presigned URL to download the completed signed PDF
+     * Retrieves a presigned URL for the completed signed PDF. By default the URL renders inline (for previewing in a browser); pass `download=true` to force an attachment download with a friendly filename.
      * Get signed PDF URL
      */
     async documentsSignedPdf(requestParameters: DocumentsSignedPdfRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UrlResponseDto> {

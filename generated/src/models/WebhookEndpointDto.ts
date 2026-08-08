@@ -21,68 +21,46 @@ import { mapValues } from '../runtime';
 export interface WebhookEndpointDto {
     /**
      * 
-     * @type {string}
-     * @memberof WebhookEndpointDto
      */
     id: string;
     /**
      * 
-     * @type {string}
-     * @memberof WebhookEndpointDto
      */
     workspaceId: string;
     /**
      * HTTPS URL Signvoy will POST events to
-     * @type {string}
-     * @memberof WebhookEndpointDto
      */
     url: string;
     /**
      * Human-readable label
-     * @type {object}
-     * @memberof WebhookEndpointDto
      */
     description?: object;
     /**
      * Subscribed events. Empty array = all events.
-     * @type {Array<string>}
-     * @memberof WebhookEndpointDto
      */
     enabledEvents: Array<string>;
     /**
      * 
-     * @type {WebhookEndpointDtoStatusEnum}
-     * @memberof WebhookEndpointDto
      */
     status: WebhookEndpointDtoStatusEnum;
     /**
      * Count of consecutive delivery failures
-     * @type {number}
-     * @memberof WebhookEndpointDto
      */
     consecutiveFailures: number;
     /**
      * 
-     * @type {object}
-     * @memberof WebhookEndpointDto
      */
     disabledAt?: object | null;
     /**
      * Percentage of successful deliveries (null if no deliveries yet)
-     * @type {number}
-     * @memberof WebhookEndpointDto
      */
     successRate?: number | null;
     /**
      * 
-     * @type {Date}
-     * @memberof WebhookEndpointDto
      */
     createdAt: Date;
     /**
      * 
-     * @type {Date}
-     * @memberof WebhookEndpointDto
      */
     updatedAt: Date;
 }
@@ -130,8 +108,8 @@ export function WebhookEndpointDtoFromJSONTyped(json: any, ignoreDiscriminator: 
         'enabledEvents': json['enabledEvents'],
         'status': json['status'],
         'consecutiveFailures': json['consecutiveFailures'],
-        'disabledAt': json['disabledAt'] == null ? undefined : json['disabledAt'],
-        'successRate': json['successRate'] == null ? undefined : json['successRate'],
+        'disabledAt': json['disabledAt'] === undefined ? undefined : json['disabledAt'] === null ? null : json['disabledAt'],
+        'successRate': json['successRate'] === undefined ? undefined : json['successRate'] === null ? null : json['successRate'],
         'createdAt': (new Date(json['createdAt'])),
         'updatedAt': (new Date(json['updatedAt'])),
     };

@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface EmbedSessionResponseDto {
     /**
      * Scoped signing URL for the specified recipient. Embed this in an <iframe> or pass it to the @signvoy/react <SignvoyEmbed /> component. The URL is single-use and expires after the requested window.
-     * @type {string}
-     * @memberof EmbedSessionResponseDto
      */
     url: string;
     /**
      * ISO 8601 timestamp when this session URL expires
-     * @type {Date}
-     * @memberof EmbedSessionResponseDto
      */
     expiresAt: Date;
     /**
      * Document ID this session belongs to
-     * @type {string}
-     * @memberof EmbedSessionResponseDto
      */
     documentId: string;
     /**
      * Recipient ID this session was issued for
-     * @type {string}
-     * @memberof EmbedSessionResponseDto
      */
     documentRecipientId: string;
 }

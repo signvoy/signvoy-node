@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface UpdateWorkspaceDto {
     /**
      * Updated workspace name
-     * @type {string}
-     * @memberof UpdateWorkspaceDto
      */
     name?: string;
     /**
      * Updated URL-friendly slug. Must be lowercase alphanumeric with optional hyphens.
-     * @type {string}
-     * @memberof UpdateWorkspaceDto
      */
     slug?: string;
 }

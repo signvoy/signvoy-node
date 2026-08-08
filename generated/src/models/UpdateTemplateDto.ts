@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface UpdateTemplateDto {
     /**
      * Updated template name
-     * @type {string}
-     * @memberof UpdateTemplateDto
      */
     name?: string;
 }

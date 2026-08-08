@@ -28,6 +28,7 @@ Name | Type
 `reminderCount` | number
 `lastReminderAt` | number
 `recipients` | [Array&lt;DocumentRecipientDto&gt;](DocumentRecipientDto.md)
+`sendBlockers` | [Array&lt;DocumentDtoSendBlockersInner&gt;](DocumentDtoSendBlockersInner.md)
 
 ## Example
 
@@ -58,6 +59,7 @@ const example = {
   "reminderCount": null,
   "lastReminderAt": null,
   "recipients": null,
+  "sendBlockers": null,
 } satisfies DocumentDto
 
 console.log(example)

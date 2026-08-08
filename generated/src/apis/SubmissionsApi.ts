@@ -15,6 +15,9 @@
 import * as runtime from '../runtime';
 
 export interface SubmissionsListRequest {
+    /**
+     * Document UUID to get submissions for
+     */
     documentId: string;
 }
 

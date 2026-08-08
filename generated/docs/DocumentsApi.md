@@ -10,6 +10,7 @@ All URIs are relative to *https://api.signvoy.com*
 | [**documentsFindOne**](DocumentsApi.md#documentsfindone) | **GET** /v1/documents/{id} | Get document by ID |
 | [**documentsList**](DocumentsApi.md#documentslist) | **GET** /v1/documents | List documents |
 | [**documentsRemind**](DocumentsApi.md#documentsremind) | **POST** /v1/documents/{id}/remind | Send a manual reminder |
+| [**documentsRemindRecipient**](DocumentsApi.md#documentsremindrecipient) | **POST** /v1/documents/{id}/recipients/{recipientId}/remind | Send a reminder to a specific recipient |
 | [**documentsRemove**](DocumentsApi.md#documentsremove) | **DELETE** /v1/documents/{id} | Delete document |
 | [**documentsSend**](DocumentsApi.md#documentssend) | **POST** /v1/documents/{id}/send | Send document for signing |
 | [**documentsSignedPdf**](DocumentsApi.md#documentssignedpdf) | **GET** /v1/documents/{id}/signed-pdf | Get signed PDF URL |
@@ -178,7 +179,7 @@ example().catch(console.error);
 
 Create a new document
 
-Creates a document from a template with recipients for signing
+Creates a document from a template with recipients for signing. Reusable templates must already be published. One-off templates — the single-use containers behind the \&#39;upload and send\&#39; flow — are published implicitly here, so their draft must pass rules-engine validation.
 
 ### Example
 
@@ -243,7 +244,7 @@ example().catch(console.error);
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Document created successfully |  -  |
-| **400** | Invalid input data |  -  |
+| **400** | Invalid input data, an unknown role key, an archived template, a reusable template with no published version (&#x60;NO_PUBLISHED_VERSION&#x60;), or a one-off template whose draft has blocking rule diagnostics. |  -  |
 | **401** | Unauthorized - Invalid or missing JWT token |  -  |
 | **404** | Template not found |  -  |
 
@@ -486,6 +487,87 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
+## documentsRemindRecipient
+
+> DocumentDto documentsRemindRecipient(recipientId, id)
+
+Send a reminder to a specific recipient
+
+Immediately emails a reminder to a single pending recipient with an active signing link. Does not consume the automatic reminder budget.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DocumentsApi,
+} from '@signvoy/node';
+import type { DocumentsRemindRecipientRequest } from '@signvoy/node';
+
+async function example() {
+  console.log("🚀 Testing @signvoy/node SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: clerk-jwt
+    accessToken: "YOUR BEARER TOKEN",
+    // Configure HTTP bearer authorization: api-key
+    accessToken: "YOUR BEARER TOKEN",
+    // To configure API key authorization: workspace-id
+    apiKey: "YOUR API KEY",
+  });
+  const api = new DocumentsApi(config);
+
+  const body = {
+    // string | Recipient UUID
+    recipientId: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
+    // string | Document UUID
+    id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
+  } satisfies DocumentsRemindRecipientRequest;
+
+  try {
+    const data = await api.documentsRemindRecipient(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **recipientId** | `string` | Recipient UUID | [Defaults to `undefined`] |
+| **id** | `string` | Document UUID | [Defaults to `undefined`] |
+
+### Return type
+
+[**DocumentDto**](DocumentDto.md)
+
+### Authorization
+
+[clerk-jwt](../README.md#clerk-jwt), [api-key](../README.md#api-key), [workspace-id](../README.md#workspace-id)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+| **400** | Recipient not pending or does not have an active signing link |  -  |
+| **403** | Forbidden - Not the document owner |  -  |
+| **404** | Document or recipient not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
 ## documentsRemove
 
 > documentsRemove(id)
@@ -643,11 +725,11 @@ example().catch(console.error);
 
 ## documentsSignedPdf
 
-> UrlResponseDto documentsSignedPdf(id)
+> UrlResponseDto documentsSignedPdf(id, download)
 
 Get signed PDF URL
 
-Retrieves a presigned URL to download the completed signed PDF
+Retrieves a presigned URL for the completed signed PDF. By default the URL renders inline (for previewing in a browser); pass &#x60;download&#x3D;true&#x60; to force an attachment download with a friendly filename.
 
 ### Example
 
@@ -673,6 +755,8 @@ async function example() {
   const body = {
     // string | Document UUID
     id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
+    // boolean | Force an attachment download instead of inline rendering (optional)
+    download: true,
   } satisfies DocumentsSignedPdfRequest;
 
   try {
@@ -693,6 +777,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | `string` | Document UUID | [Defaults to `undefined`] |
+| **download** | `boolean` | Force an attachment download instead of inline rendering | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 

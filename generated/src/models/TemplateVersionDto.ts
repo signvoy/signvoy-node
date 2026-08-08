@@ -21,62 +21,42 @@ import { mapValues } from '../runtime';
 export interface TemplateVersionDto {
     /**
      * 
-     * @type {string}
-     * @memberof TemplateVersionDto
      */
     id: string;
     /**
      * 
-     * @type {string}
-     * @memberof TemplateVersionDto
      */
     templateId: string;
     /**
      * 
-     * @type {number}
-     * @memberof TemplateVersionDto
      */
     version: number;
     /**
      * 
-     * @type {TemplateVersionDtoStatusEnum}
-     * @memberof TemplateVersionDto
      */
     status: TemplateVersionDtoStatusEnum;
     /**
      * Original PDF file name
-     * @type {string}
-     * @memberof TemplateVersionDto
      */
     fileName: string;
     /**
      * 
-     * @type {number}
-     * @memberof TemplateVersionDto
      */
     pageCount: number;
     /**
      * Creation timestamp (Unix ms)
-     * @type {number}
-     * @memberof TemplateVersionDto
      */
     createdAt: number;
     /**
      * Unix ms when published
-     * @type {number}
-     * @memberof TemplateVersionDto
      */
     publishedAt?: number;
     /**
      * Clerk user ID of the publisher
-     * @type {string}
-     * @memberof TemplateVersionDto
      */
     publishedBy?: string;
     /**
      * Presigned PDF URL (included when explicitly requested)
-     * @type {string}
-     * @memberof TemplateVersionDto
      */
     pdfUrl?: string;
 }

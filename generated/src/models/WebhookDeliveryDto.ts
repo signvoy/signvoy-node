@@ -21,56 +21,38 @@ import { mapValues } from '../runtime';
 export interface WebhookDeliveryDto {
     /**
      * 
-     * @type {string}
-     * @memberof WebhookDeliveryDto
      */
     id: string;
     /**
      * 
-     * @type {string}
-     * @memberof WebhookDeliveryDto
      */
     endpointId: string;
     /**
      * Event type
-     * @type {string}
-     * @memberof WebhookDeliveryDto
      */
     eventType: string;
     /**
      * 
-     * @type {WebhookDeliveryDtoStatusEnum}
-     * @memberof WebhookDeliveryDto
      */
     status: WebhookDeliveryDtoStatusEnum;
     /**
      * HTTP status code received
-     * @type {number}
-     * @memberof WebhookDeliveryDto
      */
     responseStatus?: number;
     /**
      * First 500 chars of response body
-     * @type {object}
-     * @memberof WebhookDeliveryDto
      */
     responseBody?: object;
     /**
      * Delivery attempt count
-     * @type {number}
-     * @memberof WebhookDeliveryDto
      */
     attempts: number;
     /**
      * Last attempt timestamp
-     * @type {Date}
-     * @memberof WebhookDeliveryDto
      */
     lastAttemptAt: Date;
     /**
      * 
-     * @type {Date}
-     * @memberof WebhookDeliveryDto
      */
     createdAt: Date;
 }

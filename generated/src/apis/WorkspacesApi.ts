@@ -35,48 +35,96 @@ import {
 } from '../models/UpdateWorkspaceDto';
 
 export interface WorkspacesCreateRequest {
+    /**
+     * 
+     */
     createWorkspaceDto: CreateWorkspaceDto;
 }
 
 export interface WorkspacesFindOneRequest {
+    /**
+     * Workspace UUID
+     */
     id: string;
 }
 
 export interface WorkspacesInviteRequest {
+    /**
+     * Workspace UUID
+     */
     id: string;
+    /**
+     * 
+     */
     inviteMemberDto: InviteMemberDto;
 }
 
 export interface WorkspacesListInvitationsRequest {
+    /**
+     * Workspace UUID
+     */
     id: string;
 }
 
 export interface WorkspacesListMembersRequest {
+    /**
+     * Workspace UUID
+     */
     id: string;
 }
 
 export interface WorkspacesRemoveRequest {
+    /**
+     * Workspace UUID
+     */
     id: string;
 }
 
 export interface WorkspacesRemoveMemberRequest {
+    /**
+     * Workspace UUID
+     */
     id: string;
+    /**
+     * User ID of the member to remove
+     */
     userId: string;
 }
 
 export interface WorkspacesRevokeInvitationRequest {
+    /**
+     * Workspace UUID
+     */
     id: string;
+    /**
+     * Invitation UUID
+     */
     invitationId: string;
 }
 
 export interface WorkspacesUpdateRequest {
+    /**
+     * Workspace UUID
+     */
     id: string;
+    /**
+     * 
+     */
     updateWorkspaceDto: UpdateWorkspaceDto;
 }
 
 export interface WorkspacesUpdateMemberRequest {
+    /**
+     * Workspace UUID
+     */
     id: string;
+    /**
+     * User ID of the member to update
+     */
     userId: string;
+    /**
+     * 
+     */
     updateMemberDto: UpdateMemberDto;
 }
 

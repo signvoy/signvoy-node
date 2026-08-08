@@ -29,71 +29,64 @@ import {
 export interface TemplateWithVersionsDto {
     /**
      * 
-     * @type {string}
-     * @memberof TemplateWithVersionsDto
      */
     id: string;
     /**
      * 
-     * @type {string}
-     * @memberof TemplateWithVersionsDto
      */
     workspaceId: string;
     /**
      * Clerk user ID of the owner
-     * @type {string}
-     * @memberof TemplateWithVersionsDto
      */
     ownerId: string;
     /**
      * 
-     * @type {string}
-     * @memberof TemplateWithVersionsDto
      */
     name: string;
     /**
+     * Reusable templates appear in the templates list. One-off templates back a single 'upload and send' document and are hidden from every listing.
+     */
+    kind: TemplateWithVersionsDtoKindEnum;
+    /**
      * Unix ms when archived (null if active)
-     * @type {number}
-     * @memberof TemplateWithVersionsDto
      */
     archivedAt?: number;
     /**
      * 
-     * @type {number}
-     * @memberof TemplateWithVersionsDto
      */
     createdAt: number;
     /**
      * 
-     * @type {number}
-     * @memberof TemplateWithVersionsDto
      */
     updatedAt: number;
     /**
      * 
-     * @type {object}
-     * @memberof TemplateWithVersionsDto
      */
     currentDraftVersionId?: object | null;
     /**
      * 
-     * @type {object}
-     * @memberof TemplateWithVersionsDto
      */
     currentPublishedVersionId?: object | null;
     /**
      * Current draft version (null if none exists)
-     * @type {TemplateVersionDto}
-     * @memberof TemplateWithVersionsDto
      */
     draftVersion?: TemplateVersionDto | null;
     /**
      * Current published version (null if never published)
-     * @type {TemplateVersionDto}
-     * @memberof TemplateWithVersionsDto
      */
     publishedVersion?: TemplateVersionDto | null;
 }
+
+
+/**
+ * @export
+ */
+export const TemplateWithVersionsDtoKindEnum = {
+    REUSABLE: 'reusable',
+    ONEOFF: 'oneoff'
+} as const;
+export type TemplateWithVersionsDtoKindEnum = typeof TemplateWithVersionsDtoKindEnum[keyof typeof TemplateWithVersionsDtoKindEnum];
+
 
 /**
  * Check if a given object implements the TemplateWithVersionsDto interface.
@@ -103,6 +96,7 @@ export function instanceOfTemplateWithVersionsDto(value: object): value is Templ
     if (!('workspaceId' in value) || value['workspaceId'] === undefined) return false;
     if (!('ownerId' in value) || value['ownerId'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('kind' in value) || value['kind'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     return true;
@@ -122,13 +116,14 @@ export function TemplateWithVersionsDtoFromJSONTyped(json: any, ignoreDiscrimina
         'workspaceId': json['workspaceId'],
         'ownerId': json['ownerId'],
         'name': json['name'],
+        'kind': json['kind'],
         'archivedAt': json['archivedAt'] == null ? undefined : json['archivedAt'],
         'createdAt': json['createdAt'],
         'updatedAt': json['updatedAt'],
-        'currentDraftVersionId': json['currentDraftVersionId'] == null ? undefined : json['currentDraftVersionId'],
-        'currentPublishedVersionId': json['currentPublishedVersionId'] == null ? undefined : json['currentPublishedVersionId'],
-        'draftVersion': json['draftVersion'] == null ? undefined : TemplateVersionDtoFromJSON(json['draftVersion']),
-        'publishedVersion': json['publishedVersion'] == null ? undefined : TemplateVersionDtoFromJSON(json['publishedVersion']),
+        'currentDraftVersionId': json['currentDraftVersionId'] === undefined ? undefined : json['currentDraftVersionId'] === null ? null : json['currentDraftVersionId'],
+        'currentPublishedVersionId': json['currentPublishedVersionId'] === undefined ? undefined : json['currentPublishedVersionId'] === null ? null : json['currentPublishedVersionId'],
+        'draftVersion': json['draftVersion'] === undefined ? undefined : json['draftVersion'] === null ? null : TemplateVersionDtoFromJSON(json['draftVersion']),
+        'publishedVersion': json['publishedVersion'] === undefined ? undefined : json['publishedVersion'] === null ? null : TemplateVersionDtoFromJSON(json['publishedVersion']),
     };
 }
 
@@ -147,6 +142,7 @@ export function TemplateWithVersionsDtoToJSONTyped(value?: TemplateWithVersionsD
         'workspaceId': value['workspaceId'],
         'ownerId': value['ownerId'],
         'name': value['name'],
+        'kind': value['kind'],
         'archivedAt': value['archivedAt'],
         'createdAt': value['createdAt'],
         'updatedAt': value['updatedAt'],

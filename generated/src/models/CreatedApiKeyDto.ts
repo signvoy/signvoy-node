@@ -21,56 +21,38 @@ import { mapValues } from '../runtime';
 export interface CreatedApiKeyDto {
     /**
      * Unique API key identifier
-     * @type {string}
-     * @memberof CreatedApiKeyDto
      */
     id: string;
     /**
      * Human-readable label
-     * @type {string}
-     * @memberof CreatedApiKeyDto
      */
     name: string;
     /**
      * Non-secret leading segment of the key
-     * @type {string}
-     * @memberof CreatedApiKeyDto
      */
     prefix: string;
     /**
      * Last 4 characters of the key
-     * @type {string}
-     * @memberof CreatedApiKeyDto
      */
     last4: string;
     /**
      * When the key was last used to authenticate a request
-     * @type {object}
-     * @memberof CreatedApiKeyDto
      */
     lastUsedAt?: object | null;
     /**
      * When the key expires (null = never)
-     * @type {object}
-     * @memberof CreatedApiKeyDto
      */
     expiresAt?: object | null;
     /**
      * Whether the key has been revoked
-     * @type {boolean}
-     * @memberof CreatedApiKeyDto
      */
     revoked: boolean;
     /**
      * Creation timestamp
-     * @type {Date}
-     * @memberof CreatedApiKeyDto
      */
     createdAt: Date;
     /**
      * The full secret key. Shown only once, at creation — store it securely. Use it as a Bearer token: `Authorization: Bearer sk_live_...`
-     * @type {string}
-     * @memberof CreatedApiKeyDto
      */
     key: string;
 }
@@ -103,8 +85,8 @@ export function CreatedApiKeyDtoFromJSONTyped(json: any, ignoreDiscriminator: bo
         'name': json['name'],
         'prefix': json['prefix'],
         'last4': json['last4'],
-        'lastUsedAt': json['lastUsedAt'] == null ? undefined : json['lastUsedAt'],
-        'expiresAt': json['expiresAt'] == null ? undefined : json['expiresAt'],
+        'lastUsedAt': json['lastUsedAt'] === undefined ? undefined : json['lastUsedAt'] === null ? null : json['lastUsedAt'],
+        'expiresAt': json['expiresAt'] === undefined ? undefined : json['expiresAt'] === null ? null : json['expiresAt'],
         'revoked': json['revoked'],
         'createdAt': (new Date(json['createdAt'])),
         'key': json['key'],

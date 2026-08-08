@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface UpdateMemberDto {
     /**
      * New role for the member. Note: Owner role cannot be assigned via this endpoint.
-     * @type {UpdateMemberDtoRoleEnum}
-     * @memberof UpdateMemberDto
      */
     role: UpdateMemberDtoRoleEnum;
 }

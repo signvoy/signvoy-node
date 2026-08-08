@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface DeclineDto {
     /**
      * Optional reason for declining to sign
-     * @type {string}
-     * @memberof DeclineDto
      */
     reason?: string;
 }

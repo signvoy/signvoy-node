@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface CreateDocumentRecipientDto {
     /**
      * Template role key this recipient fills (matches `version.content.recipients[].key`)
-     * @type {string}
-     * @memberof CreateDocumentRecipientDto
      */
     roleKey: string;
     /**
      * Recipient's full name
-     * @type {string}
-     * @memberof CreateDocumentRecipientDto
      */
     name: string;
     /**
      * Recipient's email address for notifications
-     * @type {string}
-     * @memberof CreateDocumentRecipientDto
      */
     email?: string;
 }

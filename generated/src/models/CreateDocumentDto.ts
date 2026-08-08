@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { ExpirySettingsDto } from './ExpirySettingsDto';
+import {
+    ExpirySettingsDtoFromJSON,
+    ExpirySettingsDtoFromJSONTyped,
+    ExpirySettingsDtoToJSON,
+    ExpirySettingsDtoToJSONTyped,
+} from './ExpirySettingsDto';
 import type { CreateDocumentRecipientDto } from './CreateDocumentRecipientDto';
 import {
     CreateDocumentRecipientDtoFromJSON,
@@ -36,38 +43,30 @@ import {
 export interface CreateDocumentDto {
     /**
      * Template UUID to create document from
-     * @type {string}
-     * @memberof CreateDocumentDto
      */
     templateId: string;
     /**
      * Custom name for the document
-     * @type {string}
-     * @memberof CreateDocumentDto
      */
     name?: string;
     /**
      * Message to include with the signing request
-     * @type {string}
-     * @memberof CreateDocumentDto
      */
     message?: string;
     /**
      * Signing-order mode. parallel (default): all recipients are invited at once. sequential: recipients are activated group-by-group by ascending order value — the next group is only activated once the current group has fully signed.
-     * @type {CreateDocumentDtoRoutingModeEnum}
-     * @memberof CreateDocumentDto
      */
     routingMode?: CreateDocumentDtoRoutingModeEnum;
     /**
      * Automatic reminder cadence for this document. When omitted, the template's reminder default (or the product default) is used.
-     * @type {ReminderSettingsDto}
-     * @memberof CreateDocumentDto
      */
     reminders?: ReminderSettingsDto;
     /**
+     * Signing deadline for this document. When omitted, the template's deadline default (or the product default) is used.
+     */
+    expiry?: ExpirySettingsDto;
+    /**
      * List of recipients who will sign the document
-     * @type {Array<CreateDocumentRecipientDto>}
-     * @memberof CreateDocumentDto
      */
     recipients: Array<CreateDocumentRecipientDto>;
 }
@@ -107,6 +106,7 @@ export function CreateDocumentDtoFromJSONTyped(json: any, ignoreDiscriminator: b
         'message': json['message'] == null ? undefined : json['message'],
         'routingMode': json['routingMode'] == null ? undefined : json['routingMode'],
         'reminders': json['reminders'] == null ? undefined : ReminderSettingsDtoFromJSON(json['reminders']),
+        'expiry': json['expiry'] == null ? undefined : ExpirySettingsDtoFromJSON(json['expiry']),
         'recipients': ((json['recipients'] as Array<any>).map(CreateDocumentRecipientDtoFromJSON)),
     };
 }
@@ -127,6 +127,7 @@ export function CreateDocumentDtoToJSONTyped(value?: CreateDocumentDto | null, i
         'message': value['message'],
         'routingMode': value['routingMode'],
         'reminders': ReminderSettingsDtoToJSON(value['reminders']),
+        'expiry': ExpirySettingsDtoToJSON(value['expiry']),
         'recipients': ((value['recipients'] as Array<any>).map(CreateDocumentRecipientDtoToJSON)),
     };
 }

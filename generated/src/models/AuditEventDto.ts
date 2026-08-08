@@ -21,74 +21,50 @@ import { mapValues } from '../runtime';
 export interface AuditEventDto {
     /**
      * 
-     * @type {string}
-     * @memberof AuditEventDto
      */
     id: string;
     /**
      * 
-     * @type {string}
-     * @memberof AuditEventDto
      */
     documentId: string;
     /**
      * 
-     * @type {object}
-     * @memberof AuditEventDto
      */
     documentRecipientId?: object | null;
     /**
      * Event type
-     * @type {string}
-     * @memberof AuditEventDto
      */
     type: string;
     /**
      * 
-     * @type {object}
-     * @memberof AuditEventDto
      */
     actorName?: object | null;
     /**
      * 
-     * @type {object}
-     * @memberof AuditEventDto
      */
     actorEmail?: object | null;
     /**
      * API key that performed the action (when applicable)
-     * @type {object}
-     * @memberof AuditEventDto
      */
     apiKeyId?: object | null;
     /**
      * Human-readable name of the API key used (when applicable)
-     * @type {object}
-     * @memberof AuditEventDto
      */
     apiKeyName?: object | null;
     /**
      * 
-     * @type {object}
-     * @memberof AuditEventDto
      */
     ipAddress?: object | null;
     /**
      * 
-     * @type {object}
-     * @memberof AuditEventDto
      */
     userAgent?: object | null;
     /**
      * 
-     * @type {object}
-     * @memberof AuditEventDto
      */
     metadata?: object | null;
     /**
      * 
-     * @type {Date}
-     * @memberof AuditEventDto
      */
     createdAt: Date;
 }
@@ -116,15 +92,15 @@ export function AuditEventDtoFromJSONTyped(json: any, ignoreDiscriminator: boole
         
         'id': json['id'],
         'documentId': json['documentId'],
-        'documentRecipientId': json['documentRecipientId'] == null ? undefined : json['documentRecipientId'],
+        'documentRecipientId': json['documentRecipientId'] === undefined ? undefined : json['documentRecipientId'] === null ? null : json['documentRecipientId'],
         'type': json['type'],
-        'actorName': json['actorName'] == null ? undefined : json['actorName'],
-        'actorEmail': json['actorEmail'] == null ? undefined : json['actorEmail'],
-        'apiKeyId': json['apiKeyId'] == null ? undefined : json['apiKeyId'],
-        'apiKeyName': json['apiKeyName'] == null ? undefined : json['apiKeyName'],
-        'ipAddress': json['ipAddress'] == null ? undefined : json['ipAddress'],
-        'userAgent': json['userAgent'] == null ? undefined : json['userAgent'],
-        'metadata': json['metadata'] == null ? undefined : json['metadata'],
+        'actorName': json['actorName'] === undefined ? undefined : json['actorName'] === null ? null : json['actorName'],
+        'actorEmail': json['actorEmail'] === undefined ? undefined : json['actorEmail'] === null ? null : json['actorEmail'],
+        'apiKeyId': json['apiKeyId'] === undefined ? undefined : json['apiKeyId'] === null ? null : json['apiKeyId'],
+        'apiKeyName': json['apiKeyName'] === undefined ? undefined : json['apiKeyName'] === null ? null : json['apiKeyName'],
+        'ipAddress': json['ipAddress'] === undefined ? undefined : json['ipAddress'] === null ? null : json['ipAddress'],
+        'userAgent': json['userAgent'] === undefined ? undefined : json['userAgent'] === null ? null : json['userAgent'],
+        'metadata': json['metadata'] === undefined ? undefined : json['metadata'] === null ? null : json['metadata'],
         'createdAt': (new Date(json['createdAt'])),
     };
 }

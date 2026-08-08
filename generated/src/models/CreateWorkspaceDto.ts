@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface CreateWorkspaceDto {
     /**
      * Workspace name
-     * @type {string}
-     * @memberof CreateWorkspaceDto
      */
     name: string;
     /**
      * URL-friendly slug (auto-generated from name if omitted). Must be lowercase alphanumeric with optional hyphens.
-     * @type {string}
-     * @memberof CreateWorkspaceDto
      */
     slug?: string;
 }

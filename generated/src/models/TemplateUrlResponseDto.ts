@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface TemplateUrlResponseDto {
     /**
      * Presigned PDF URL
-     * @type {string}
-     * @memberof TemplateUrlResponseDto
      */
     url: string;
 }

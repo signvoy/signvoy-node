@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface CreateTemplateResponseDto {
     /**
      * Newly created template ID
-     * @type {string}
-     * @memberof CreateTemplateResponseDto
      */
     templateId: string;
     /**
      * ID of the initial draft version
-     * @type {string}
-     * @memberof CreateTemplateResponseDto
      */
     draftVersionId: string;
     /**
      * Presigned PUT URL for uploading the source PDF directly to storage. Upload the PDF bytes to this URL with Content-Type: application/pdf.
-     * @type {string}
-     * @memberof CreateTemplateResponseDto
      */
     uploadUrl: string;
 }

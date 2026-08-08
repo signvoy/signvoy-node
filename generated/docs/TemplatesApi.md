@@ -313,7 +313,7 @@ example().catch(console.error);
 
 ## templatesList
 
-> Array&lt;TemplateWithVersionsDto&gt; templatesList(status)
+> Array&lt;TemplateWithVersionsDto&gt; templatesList(status, kind)
 
 List templates in the workspace
 
@@ -341,6 +341,8 @@ async function example() {
   const body = {
     // 'active' | 'archived' | 'all' | Filter templates by status (optional)
     status: active,
+    // 'reusable' | 'oneoff' | Which kind of template to list. `reusable` (the default) is the templates library. `oneoff` returns only the single-use templates behind an unfinished \'upload and send\' — the ones still being prepared, with no document created from them yet. (optional)
+    kind: reusable,
   } satisfies TemplatesListRequest;
 
   try {
@@ -361,6 +363,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **status** | `active`, `archived`, `all` | Filter templates by status | [Optional] [Defaults to `undefined`] [Enum: active, archived, all] |
+| **kind** | `reusable`, `oneoff` | Which kind of template to list. &#x60;reusable&#x60; (the default) is the templates library. &#x60;oneoff&#x60; returns only the single-use templates behind an unfinished \&#39;upload and send\&#39; — the ones still being prepared, with no document created from them yet. | [Optional] [Defaults to `undefined`] [Enum: reusable, oneoff] |
 
 ### Return type
 

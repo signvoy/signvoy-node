@@ -29,26 +29,18 @@ import {
 export interface ErrorResponseDto {
     /**
      * HTTP status code
-     * @type {number}
-     * @memberof ErrorResponseDto
      */
     statusCode: number;
     /**
      * When the error occurred (ISO 8601)
-     * @type {Date}
-     * @memberof ErrorResponseDto
      */
     timestamp: Date;
     /**
      * Request path that produced the error
-     * @type {string}
-     * @memberof ErrorResponseDto
      */
     path: string;
     /**
      * 
-     * @type {ErrorResponseDtoMessage}
-     * @memberof ErrorResponseDto
      */
     message: ErrorResponseDtoMessage;
 }

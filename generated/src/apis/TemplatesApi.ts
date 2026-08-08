@@ -40,35 +40,66 @@ import {
 } from '../models/UpdateTemplateDto';
 
 export interface TemplatesArchiveRequest {
+    /**
+     * 
+     */
     id: string;
 }
 
 export interface TemplatesCreateRequest {
+    /**
+     * 
+     */
     createTemplateDto: CreateTemplateDto;
 }
 
 export interface TemplatesFindOneRequest {
+    /**
+     * 
+     */
     id: string;
 }
 
 export interface TemplatesGetPdfUrlRequest {
+    /**
+     * 
+     */
     id: string;
 }
 
 export interface TemplatesListRequest {
+    /**
+     * Filter templates by status
+     */
     status?: TemplatesListStatusEnum;
+    /**
+     * Which kind of template to list. `reusable` (the default) is the templates library. `oneoff` returns only the single-use templates behind an unfinished 'upload and send' — the ones still being prepared, with no document created from them yet.
+     */
+    kind?: TemplatesListKindEnum;
 }
 
 export interface TemplatesRemoveRequest {
+    /**
+     * 
+     */
     id: string;
 }
 
 export interface TemplatesUnarchiveRequest {
+    /**
+     * 
+     */
     id: string;
 }
 
 export interface TemplatesUpdateRequest {
+    /**
+     * 
+     */
     id: string;
+    /**
+     * 
+     */
     updateTemplateDto: UpdateTemplateDto;
 }
 
@@ -353,6 +384,10 @@ export class TemplatesApi extends runtime.BaseAPI {
             queryParameters['status'] = requestParameters['status'];
         }
 
+        if (requestParameters['kind'] != null) {
+            queryParameters['kind'] = requestParameters['kind'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.accessToken) {
@@ -619,3 +654,11 @@ export const TemplatesListStatusEnum = {
     ALL: 'all'
 } as const;
 export type TemplatesListStatusEnum = typeof TemplatesListStatusEnum[keyof typeof TemplatesListStatusEnum];
+/**
+ * @export
+ */
+export const TemplatesListKindEnum = {
+    REUSABLE: 'reusable',
+    ONEOFF: 'oneoff'
+} as const;
+export type TemplatesListKindEnum = typeof TemplatesListKindEnum[keyof typeof TemplatesListKindEnum];

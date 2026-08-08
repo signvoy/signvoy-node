@@ -21,74 +21,50 @@ import { mapValues } from '../runtime';
 export interface WebhookEndpointWithSecretDto {
     /**
      * 
-     * @type {string}
-     * @memberof WebhookEndpointWithSecretDto
      */
     id: string;
     /**
      * 
-     * @type {string}
-     * @memberof WebhookEndpointWithSecretDto
      */
     workspaceId: string;
     /**
      * HTTPS URL Signvoy will POST events to
-     * @type {string}
-     * @memberof WebhookEndpointWithSecretDto
      */
     url: string;
     /**
      * Human-readable label
-     * @type {object}
-     * @memberof WebhookEndpointWithSecretDto
      */
     description?: object;
     /**
      * Subscribed events. Empty array = all events.
-     * @type {Array<string>}
-     * @memberof WebhookEndpointWithSecretDto
      */
     enabledEvents: Array<string>;
     /**
      * 
-     * @type {WebhookEndpointWithSecretDtoStatusEnum}
-     * @memberof WebhookEndpointWithSecretDto
      */
     status: WebhookEndpointWithSecretDtoStatusEnum;
     /**
      * Count of consecutive delivery failures
-     * @type {number}
-     * @memberof WebhookEndpointWithSecretDto
      */
     consecutiveFailures: number;
     /**
      * 
-     * @type {object}
-     * @memberof WebhookEndpointWithSecretDto
      */
     disabledAt?: object | null;
     /**
      * Percentage of successful deliveries (null if no deliveries yet)
-     * @type {number}
-     * @memberof WebhookEndpointWithSecretDto
      */
     successRate?: number | null;
     /**
      * 
-     * @type {Date}
-     * @memberof WebhookEndpointWithSecretDto
      */
     createdAt: Date;
     /**
      * 
-     * @type {Date}
-     * @memberof WebhookEndpointWithSecretDto
      */
     updatedAt: Date;
     /**
      * HMAC-SHA256 signing secret. Shown only once — store it securely. Use it to verify the `Signvoy-Signature` header on inbound events.
-     * @type {string}
-     * @memberof WebhookEndpointWithSecretDto
      */
     secret: string;
 }
@@ -137,8 +113,8 @@ export function WebhookEndpointWithSecretDtoFromJSONTyped(json: any, ignoreDiscr
         'enabledEvents': json['enabledEvents'],
         'status': json['status'],
         'consecutiveFailures': json['consecutiveFailures'],
-        'disabledAt': json['disabledAt'] == null ? undefined : json['disabledAt'],
-        'successRate': json['successRate'] == null ? undefined : json['successRate'],
+        'disabledAt': json['disabledAt'] === undefined ? undefined : json['disabledAt'] === null ? null : json['disabledAt'],
+        'successRate': json['successRate'] === undefined ? undefined : json['successRate'] === null ? null : json['successRate'],
         'createdAt': (new Date(json['createdAt'])),
         'updatedAt': (new Date(json['updatedAt'])),
         'secret': json['secret'],
