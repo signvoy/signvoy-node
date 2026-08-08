@@ -100,8 +100,8 @@ export function WebhookDeliveryDtoFromJSONTyped(json: any, ignoreDiscriminator: 
         'responseStatus': json['responseStatus'] == null ? undefined : json['responseStatus'],
         'responseBody': json['responseBody'] == null ? undefined : json['responseBody'],
         'attempts': json['attempts'],
-        'lastAttemptAt': (new Date(json['lastAttemptAt'])),
-        'createdAt': (new Date(json['createdAt'])),
+        'lastAttemptAt': (json['lastAttemptAt'] == null ? json['lastAttemptAt'] : new Date(json['lastAttemptAt'])),
+        'createdAt': (json['createdAt'] == null ? json['createdAt'] : new Date(json['createdAt'])),
     };
 }
 
@@ -123,8 +123,8 @@ export function WebhookDeliveryDtoToJSONTyped(value?: WebhookDeliveryDto | null,
         'responseStatus': value['responseStatus'],
         'responseBody': value['responseBody'],
         'attempts': value['attempts'],
-        'lastAttemptAt': value['lastAttemptAt'].toISOString(),
-        'createdAt': value['createdAt'].toISOString(),
+        'lastAttemptAt': value['lastAttemptAt'] == null ? value['lastAttemptAt'] : value['lastAttemptAt'].toISOString(),
+        'createdAt': value['createdAt'] == null ? value['createdAt'] : value['createdAt'].toISOString(),
     };
 }
 

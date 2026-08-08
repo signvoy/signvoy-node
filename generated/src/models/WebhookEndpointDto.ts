@@ -110,8 +110,8 @@ export function WebhookEndpointDtoFromJSONTyped(json: any, ignoreDiscriminator: 
         'consecutiveFailures': json['consecutiveFailures'],
         'disabledAt': json['disabledAt'] === undefined ? undefined : json['disabledAt'] === null ? null : json['disabledAt'],
         'successRate': json['successRate'] === undefined ? undefined : json['successRate'] === null ? null : json['successRate'],
-        'createdAt': (new Date(json['createdAt'])),
-        'updatedAt': (new Date(json['updatedAt'])),
+        'createdAt': (json['createdAt'] == null ? json['createdAt'] : new Date(json['createdAt'])),
+        'updatedAt': (json['updatedAt'] == null ? json['updatedAt'] : new Date(json['updatedAt'])),
     };
 }
 
@@ -135,8 +135,8 @@ export function WebhookEndpointDtoToJSONTyped(value?: WebhookEndpointDto | null,
         'consecutiveFailures': value['consecutiveFailures'],
         'disabledAt': value['disabledAt'],
         'successRate': value['successRate'],
-        'createdAt': value['createdAt'].toISOString(),
-        'updatedAt': value['updatedAt'].toISOString(),
+        'createdAt': value['createdAt'] == null ? value['createdAt'] : value['createdAt'].toISOString(),
+        'updatedAt': value['updatedAt'] == null ? value['updatedAt'] : value['updatedAt'].toISOString(),
     };
 }
 

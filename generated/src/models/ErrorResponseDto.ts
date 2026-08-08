@@ -67,7 +67,7 @@ export function ErrorResponseDtoFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'statusCode': json['statusCode'],
-        'timestamp': (new Date(json['timestamp'])),
+        'timestamp': (json['timestamp'] == null ? json['timestamp'] : new Date(json['timestamp'])),
         'path': json['path'],
         'message': ErrorResponseDtoMessageFromJSON(json['message']),
     };
@@ -85,7 +85,7 @@ export function ErrorResponseDtoToJSONTyped(value?: ErrorResponseDto | null, ign
     return {
         
         'statusCode': value['statusCode'],
-        'timestamp': value['timestamp'].toISOString(),
+        'timestamp': value['timestamp'] == null ? value['timestamp'] : value['timestamp'].toISOString(),
         'path': value['path'],
         'message': ErrorResponseDtoMessageToJSON(value['message']),
     };

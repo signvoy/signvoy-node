@@ -83,7 +83,7 @@ export function ApiKeyDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'lastUsedAt': json['lastUsedAt'] === undefined ? undefined : json['lastUsedAt'] === null ? null : json['lastUsedAt'],
         'expiresAt': json['expiresAt'] === undefined ? undefined : json['expiresAt'] === null ? null : json['expiresAt'],
         'revoked': json['revoked'],
-        'createdAt': (new Date(json['createdAt'])),
+        'createdAt': (json['createdAt'] == null ? json['createdAt'] : new Date(json['createdAt'])),
     };
 }
 
@@ -105,7 +105,7 @@ export function ApiKeyDtoToJSONTyped(value?: ApiKeyDto | null, ignoreDiscriminat
         'lastUsedAt': value['lastUsedAt'],
         'expiresAt': value['expiresAt'],
         'revoked': value['revoked'],
-        'createdAt': value['createdAt'].toISOString(),
+        'createdAt': value['createdAt'] == null ? value['createdAt'] : value['createdAt'].toISOString(),
     };
 }
 
