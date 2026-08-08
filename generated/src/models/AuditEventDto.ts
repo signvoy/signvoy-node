@@ -101,7 +101,7 @@ export function AuditEventDtoFromJSONTyped(json: any, ignoreDiscriminator: boole
         'ipAddress': json['ipAddress'] === undefined ? undefined : json['ipAddress'] === null ? null : json['ipAddress'],
         'userAgent': json['userAgent'] === undefined ? undefined : json['userAgent'] === null ? null : json['userAgent'],
         'metadata': json['metadata'] === undefined ? undefined : json['metadata'] === null ? null : json['metadata'],
-        'createdAt': (new Date(json['createdAt'])),
+        'createdAt': (json['createdAt'] == null ? json['createdAt'] : new Date(json['createdAt'])),
     };
 }
 
@@ -127,7 +127,7 @@ export function AuditEventDtoToJSONTyped(value?: AuditEventDto | null, ignoreDis
         'ipAddress': value['ipAddress'],
         'userAgent': value['userAgent'],
         'metadata': value['metadata'],
-        'createdAt': value['createdAt'].toISOString(),
+        'createdAt': value['createdAt'] == null ? value['createdAt'] : value['createdAt'].toISOString(),
     };
 }
 

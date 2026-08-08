@@ -110,7 +110,7 @@ export function NotificationDtoFromJSONTyped(json: any, ignoreDiscriminator: boo
         'documentId': json['documentId'],
         'data': json['data'],
         'readAt': json['readAt'],
-        'createdAt': (new Date(json['createdAt'])),
+        'createdAt': (json['createdAt'] == null ? json['createdAt'] : new Date(json['createdAt'])),
     };
 }
 
@@ -134,7 +134,7 @@ export function NotificationDtoToJSONTyped(value?: NotificationDto | null, ignor
         'documentId': value['documentId'],
         'data': value['data'],
         'readAt': value['readAt'],
-        'createdAt': value['createdAt'].toISOString(),
+        'createdAt': value['createdAt'] == null ? value['createdAt'] : value['createdAt'].toISOString(),
     };
 }
 
