@@ -223,7 +223,7 @@ export class TemplatesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Reserves a template id and the initial draft version, plus a presigned URL the browser uses to upload the source PDF directly.
+     * Reserves a template id and the initial draft version. For a PDF source (the default) the response also carries a presigned URL the browser uploads the file to. Pass a `content` body with `sourceKind: \"document\"` to author the template as rich text instead; there is then no file to upload, so no `uploadUrl` is returned.
      * Create a new template
      */
     async templatesCreateRaw(requestParameters: TemplatesCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTemplateResponseDto>> {
@@ -234,7 +234,7 @@ export class TemplatesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Reserves a template id and the initial draft version, plus a presigned URL the browser uses to upload the source PDF directly.
+     * Reserves a template id and the initial draft version. For a PDF source (the default) the response also carries a presigned URL the browser uploads the file to. Pass a `content` body with `sourceKind: \"document\"` to author the template as rich text instead; there is then no file to upload, so no `uploadUrl` is returned.
      * Create a new template
      */
     async templatesCreate(requestParameters: TemplatesCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTemplateResponseDto> {
@@ -651,7 +651,7 @@ export class TemplatesApi extends runtime.BaseAPI {
 export const TemplatesListStatusEnum = {
     ACTIVE: 'active',
     ARCHIVED: 'archived',
-    ALL: 'all'
+    ALL: 'all',
 } as const;
 export type TemplatesListStatusEnum = typeof TemplatesListStatusEnum[keyof typeof TemplatesListStatusEnum];
 /**
@@ -659,6 +659,6 @@ export type TemplatesListStatusEnum = typeof TemplatesListStatusEnum[keyof typeo
  */
 export const TemplatesListKindEnum = {
     REUSABLE: 'reusable',
-    ONEOFF: 'oneoff'
+    ONEOFF: 'oneoff',
 } as const;
 export type TemplatesListKindEnum = typeof TemplatesListKindEnum[keyof typeof TemplatesListKindEnum];
