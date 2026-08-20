@@ -31,7 +31,7 @@ export interface UpdateMemberDto {
  */
 export const UpdateMemberDtoRoleEnum = {
     ADMIN: 'admin',
-    MEMBER: 'member'
+    MEMBER: 'member',
 } as const;
 export type UpdateMemberDtoRoleEnum = typeof UpdateMemberDtoRoleEnum[keyof typeof UpdateMemberDtoRoleEnum];
 
