@@ -13,7 +13,7 @@ Name | Type
 `enabledEvents` | Array&lt;string&gt;
 `status` | string
 `consecutiveFailures` | number
-`disabledAt` | object
+`disabledAt` | Date
 `successRate` | number
 `createdAt` | Date
 `updatedAt` | Date

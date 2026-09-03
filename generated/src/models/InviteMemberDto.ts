@@ -35,7 +35,7 @@ export interface InviteMemberDto {
  */
 export const InviteMemberDtoRoleEnum = {
     ADMIN: 'admin',
-    MEMBER: 'member'
+    MEMBER: 'member',
 } as const;
 export type InviteMemberDtoRoleEnum = typeof InviteMemberDtoRoleEnum[keyof typeof InviteMemberDtoRoleEnum];
 

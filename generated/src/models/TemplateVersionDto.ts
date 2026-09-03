@@ -67,7 +67,7 @@ export interface TemplateVersionDto {
  */
 export const TemplateVersionDtoStatusEnum = {
     DRAFT: 'draft',
-    PUBLISHED: 'published'
+    PUBLISHED: 'published',
 } as const;
 export type TemplateVersionDtoStatusEnum = typeof TemplateVersionDtoStatusEnum[keyof typeof TemplateVersionDtoStatusEnum];
 
