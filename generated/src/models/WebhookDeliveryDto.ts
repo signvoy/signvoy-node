@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -64,7 +64,7 @@ export interface WebhookDeliveryDto {
 export const WebhookDeliveryDtoStatusEnum = {
     PENDING: 'pending',
     SUCCESS: 'success',
-    FAILED: 'failed'
+    FAILED: 'failed',
 } as const;
 export type WebhookDeliveryDtoStatusEnum = typeof WebhookDeliveryDtoStatusEnum[keyof typeof WebhookDeliveryDtoStatusEnum];
 
@@ -100,8 +100,8 @@ export function WebhookDeliveryDtoFromJSONTyped(json: any, ignoreDiscriminator: 
         'responseStatus': json['responseStatus'] == null ? undefined : json['responseStatus'],
         'responseBody': json['responseBody'] == null ? undefined : json['responseBody'],
         'attempts': json['attempts'],
-        'lastAttemptAt': (new Date(json['lastAttemptAt'])),
-        'createdAt': (new Date(json['createdAt'])),
+        'lastAttemptAt': (json['lastAttemptAt'] == null ? json['lastAttemptAt'] : parseDateTime(json['lastAttemptAt'])),
+        'createdAt': (json['createdAt'] == null ? json['createdAt'] : parseDateTime(json['createdAt'])),
     };
 }
 
@@ -123,8 +123,8 @@ export function WebhookDeliveryDtoToJSONTyped(value?: WebhookDeliveryDto | null,
         'responseStatus': value['responseStatus'],
         'responseBody': value['responseBody'],
         'attempts': value['attempts'],
-        'lastAttemptAt': value['lastAttemptAt'].toISOString(),
-        'createdAt': value['createdAt'].toISOString(),
+        'lastAttemptAt': value['lastAttemptAt'] == null ? value['lastAttemptAt'] : serializeDateTime(value['lastAttemptAt']),
+        'createdAt': value['createdAt'] == null ? value['createdAt'] : serializeDateTime(value['createdAt']),
     };
 }
 
