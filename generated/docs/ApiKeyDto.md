@@ -10,8 +10,8 @@ Name | Type
 `name` | string
 `prefix` | string
 `last4` | string
-`lastUsedAt` | object
-`expiresAt` | object
+`lastUsedAt` | Date
+`expiresAt` | Date
 `revoked` | boolean
 `createdAt` | Date
 
