@@ -12,9 +12,9 @@ Name | Type
 `type` | string
 `title` | string
 `body` | string
-`documentId` | object
-`data` | object
-`readAt` | object
+`documentId` | string
+`data` | { [key: string]: any; }
+`readAt` | Date
 `createdAt` | Date
 
 ## Example
