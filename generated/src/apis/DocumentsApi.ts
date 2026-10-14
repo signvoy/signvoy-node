@@ -991,6 +991,6 @@ export const DocumentsListStatusEnum = {
     COMPLETED: 'completed',
     DECLINED: 'declined',
     VOIDED: 'voided',
-    EXPIRED: 'expired'
+    EXPIRED: 'expired',
 } as const;
 export type DocumentsListStatusEnum = typeof DocumentsListStatusEnum[keyof typeof DocumentsListStatusEnum];

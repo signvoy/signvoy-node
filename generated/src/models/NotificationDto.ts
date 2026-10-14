@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -46,15 +46,15 @@ export interface NotificationDto {
     /**
      * 
      */
-    documentId: object | null;
+    documentId: string | null;
     /**
      * 
      */
-    data: object | null;
+    data: { [key: string]: any; } | null;
     /**
      * 
      */
-    readAt: object | null;
+    readAt: Date | null;
     /**
      * 
      */
@@ -69,7 +69,7 @@ export const NotificationDtoTypeEnum = {
     RECIPIENT_SIGNED: 'recipient_signed',
     DOCUMENT_COMPLETED: 'document_completed',
     DOCUMENT_DECLINED: 'document_declined',
-    DOCUMENT_EXPIRED: 'document_expired'
+    DOCUMENT_EXPIRED: 'document_expired',
 } as const;
 export type NotificationDtoTypeEnum = typeof NotificationDtoTypeEnum[keyof typeof NotificationDtoTypeEnum];
 
@@ -109,8 +109,8 @@ export function NotificationDtoFromJSONTyped(json: any, ignoreDiscriminator: boo
         'body': json['body'],
         'documentId': json['documentId'],
         'data': json['data'],
-        'readAt': json['readAt'],
-        'createdAt': (new Date(json['createdAt'])),
+        'readAt': (json['readAt'] == null ? null : parseDateTime(json['readAt'])),
+        'createdAt': (json['createdAt'] == null ? json['createdAt'] : parseDateTime(json['createdAt'])),
     };
 }
 
@@ -133,8 +133,8 @@ export function NotificationDtoToJSONTyped(value?: NotificationDto | null, ignor
         'body': value['body'],
         'documentId': value['documentId'],
         'data': value['data'],
-        'readAt': value['readAt'],
-        'createdAt': value['createdAt'].toISOString(),
+        'readAt': value['readAt'] == null ? value['readAt'] : serializeDateTime(value['readAt']),
+        'createdAt': value['createdAt'] == null ? value['createdAt'] : serializeDateTime(value['createdAt']),
     };
 }
 

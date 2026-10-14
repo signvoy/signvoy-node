@@ -66,6 +66,20 @@ All URIs are relative to *https://api.signvoy.com*
 *AgentApi* | [**agentGenerate**](docs/AgentApi.md#agentgenerate) | **POST** /v1/agent/generate | Generate a new template draft from a prompt
 *AgentApi* | [**agentGetSession**](docs/AgentApi.md#agentgetsession) | **GET** /v1/agent/sessions/{id} | Load a conversation with rehydrated messages
 *AgentApi* | [**agentListSessions**](docs/AgentApi.md#agentlistsessions) | **GET** /v1/agent/sessions | List agent conversations (optionally by template)
+*BillingApi* | [**billingChangePlan**](docs/BillingApi.md#billingchangeplan) | **PATCH** /v1/billing/plan | Change plan or interval
+*BillingApi* | [**billingCheckout**](docs/BillingApi.md#billingcheckout) | **POST** /v1/billing/checkout | Start a checkout
+*BillingApi* | [**billingPortal**](docs/BillingApi.md#billingportal) | **POST** /v1/billing/portal | Open the customer portal
+*BillingApi* | [**billingSummary**](docs/BillingApi.md#billingsummary) | **GET** /v1/billing | Get billing summary
+*BillingApi* | [**billingUpdateSeats**](docs/BillingApi.md#billingupdateseats) | **PATCH** /v1/billing/seats | Set the seat count
+*BillingApi* | [**publicCheckoutCheckout**](docs/BillingApi.md#publiccheckoutcheckout) | **POST** /v1/billing/public/checkout | Start a checkout without an account
+*BillingApi* | [**publicCheckoutStatus**](docs/BillingApi.md#publiccheckoutstatus) | **GET** /v1/billing/public/checkout/{sessionId} | Describe an anonymous checkout
+*ContactsApi* | [**contactsCreate**](docs/ContactsApi.md#contactscreate) | **POST** /v1/contacts | Create a contact
+*ContactsApi* | [**contactsFindOne**](docs/ContactsApi.md#contactsfindone) | **GET** /v1/contacts/{id} | Get a contact
+*ContactsApi* | [**contactsList**](docs/ContactsApi.md#contactslist) | **GET** /v1/contacts | List contacts
+*ContactsApi* | [**contactsListDocuments**](docs/ContactsApi.md#contactslistdocuments) | **GET** /v1/contacts/{id}/documents | List documents involving a contact
+*ContactsApi* | [**contactsRemove**](docs/ContactsApi.md#contactsremove) | **DELETE** /v1/contacts/{id} | Delete a contact permanently
+*ContactsApi* | [**contactsSearch**](docs/ContactsApi.md#contactssearch) | **GET** /v1/contacts/search | Search contacts for a recipient picker
+*ContactsApi* | [**contactsUpdate**](docs/ContactsApi.md#contactsupdate) | **PATCH** /v1/contacts/{id} | Update, archive or restore a contact
 *DocumentsApi* | [**documentsAudit**](docs/DocumentsApi.md#documentsaudit) | **GET** /v1/documents/{id}/audit | Get document audit trail
 *DocumentsApi* | [**documentsCertificate**](docs/DocumentsApi.md#documentscertificate) | **GET** /v1/documents/{id}/certificate | Get certificate of completion URL
 *DocumentsApi* | [**documentsCreate**](docs/DocumentsApi.md#documentscreate) | **POST** /v1/documents | Create a new document
@@ -87,7 +101,12 @@ All URIs are relative to *https://api.signvoy.com*
 *NotificationsApi* | [**notificationsMarkAllRead**](docs/NotificationsApi.md#notificationsmarkallread) | **POST** /v1/notifications/read-all | Mark all notifications as read
 *NotificationsApi* | [**notificationsMarkRead**](docs/NotificationsApi.md#notificationsmarkread) | **PATCH** /v1/notifications/{id}/read | Mark a notification as read
 *NotificationsApi* | [**notificationsUnreadCount**](docs/NotificationsApi.md#notificationsunreadcount) | **GET** /v1/notifications/unread-count | Get the unread notification count
+*SignaturesApi* | [**userSignaturesCreate**](docs/SignaturesApi.md#usersignaturescreate) | **POST** /v1/users/me/signatures | Save a signature
+*SignaturesApi* | [**userSignaturesList**](docs/SignaturesApi.md#usersignatureslist) | **GET** /v1/users/me/signatures | List the current user\&#39;s saved signatures
+*SignaturesApi* | [**userSignaturesRemove**](docs/SignaturesApi.md#usersignaturesremove) | **DELETE** /v1/users/me/signatures/{id} | Delete a signature
+*SignaturesApi* | [**userSignaturesUpdate**](docs/SignaturesApi.md#usersignaturesupdate) | **PATCH** /v1/users/me/signatures/{id} | Update a signature
 *SigningApi* | [**signingDecline**](docs/SigningApi.md#signingdecline) | **POST** /v1/sign/{token}/decline | Decline to sign
+*SigningApi* | [**signingDocumentUrl**](docs/SigningApi.md#signingdocumenturl) | **GET** /v1/sign/{token}/document | Get a download link for the document
 *SigningApi* | [**signingGetContext**](docs/SigningApi.md#signinggetcontext) | **GET** /v1/sign/{token} | Get signing context
 *SigningApi* | [**signingGetDraft**](docs/SigningApi.md#signinggetdraft) | **GET** /v1/sign/{token}/draft | Get saved draft
 *SigningApi* | [**signingSaveDraft**](docs/SigningApi.md#signingsavedraft) | **POST** /v1/sign/{token}/draft | Save draft
@@ -111,6 +130,8 @@ All URIs are relative to *https://api.signvoy.com*
 *TemplatesApi* | [**templatesRemove**](docs/TemplatesApi.md#templatesremove) | **DELETE** /v1/templates/{id} | Delete template
 *TemplatesApi* | [**templatesUnarchive**](docs/TemplatesApi.md#templatesunarchive) | **POST** /v1/templates/{id}/unarchive | Unarchive template
 *TemplatesApi* | [**templatesUpdate**](docs/TemplatesApi.md#templatesupdate) | **PATCH** /v1/templates/{id} | Update template metadata (name only)
+*UsersApi* | [**usersMe**](docs/UsersApi.md#usersme) | **GET** /v1/users/me | Get the current user\&#39;s profile, creating it on first call
+*UsersApi* | [**usersUpdateMe**](docs/UsersApi.md#usersupdateme) | **PATCH** /v1/users/me | Update the current user\&#39;s profile and onboarding progress
 *WebhooksApi* | [**webhooksCreate**](docs/WebhooksApi.md#webhookscreate) | **POST** /v1/webhooks | Create a webhook endpoint
 *WebhooksApi* | [**webhooksGet**](docs/WebhooksApi.md#webhooksget) | **GET** /v1/webhooks/{id} | Get a single webhook endpoint
 *WebhooksApi* | [**webhooksList**](docs/WebhooksApi.md#webhookslist) | **GET** /v1/webhooks | List webhook endpoints for the workspace
@@ -135,14 +156,29 @@ All URIs are relative to *https://api.signvoy.com*
 
 ### Models
 
+- [AnonymousCheckoutDto](docs/AnonymousCheckoutDto.md)
+- [AnonymousCheckoutStatusDto](docs/AnonymousCheckoutStatusDto.md)
 - [ApiKeyDto](docs/ApiKeyDto.md)
 - [AuditEventDto](docs/AuditEventDto.md)
+- [BillingDocumentsDto](docs/BillingDocumentsDto.md)
+- [BillingFeaturesDto](docs/BillingFeaturesDto.md)
+- [BillingPlanOptionDto](docs/BillingPlanOptionDto.md)
+- [BillingRedirectDto](docs/BillingRedirectDto.md)
+- [BillingSeatsDto](docs/BillingSeatsDto.md)
+- [BillingSummaryDto](docs/BillingSummaryDto.md)
+- [BillingWorkspacesDto](docs/BillingWorkspacesDto.md)
+- [ContactDocumentDto](docs/ContactDocumentDto.md)
+- [ContactDto](docs/ContactDto.md)
+- [ContactListDto](docs/ContactListDto.md)
+- [ContactSuggestionDto](docs/ContactSuggestionDto.md)
 - [CreateApiKeyDto](docs/CreateApiKeyDto.md)
+- [CreateContactDto](docs/CreateContactDto.md)
 - [CreateDocumentDto](docs/CreateDocumentDto.md)
 - [CreateDocumentRecipientDto](docs/CreateDocumentRecipientDto.md)
 - [CreateEmbedSessionDto](docs/CreateEmbedSessionDto.md)
 - [CreateTemplateDto](docs/CreateTemplateDto.md)
 - [CreateTemplateResponseDto](docs/CreateTemplateResponseDto.md)
+- [CreateUserSignatureDto](docs/CreateUserSignatureDto.md)
 - [CreateWebhookDto](docs/CreateWebhookDto.md)
 - [CreateWorkspaceDto](docs/CreateWorkspaceDto.md)
 - [CreatedApiKeyDto](docs/CreatedApiKeyDto.md)
@@ -161,17 +197,25 @@ All URIs are relative to *https://api.signvoy.com*
 - [NotificationDto](docs/NotificationDto.md)
 - [ReminderSettingsDto](docs/ReminderSettingsDto.md)
 - [SaveDraftDto](docs/SaveDraftDto.md)
+- [SelectPlanDto](docs/SelectPlanDto.md)
 - [SubmitSigningDto](docs/SubmitSigningDto.md)
 - [TemplateUrlResponseDto](docs/TemplateUrlResponseDto.md)
 - [TemplateVersionDto](docs/TemplateVersionDto.md)
 - [TemplateWithVersionsDto](docs/TemplateWithVersionsDto.md)
 - [UnreadCountDto](docs/UnreadCountDto.md)
+- [UpdateContactDto](docs/UpdateContactDto.md)
 - [UpdateDocumentDto](docs/UpdateDocumentDto.md)
 - [UpdateMemberDto](docs/UpdateMemberDto.md)
+- [UpdateSeatsDto](docs/UpdateSeatsDto.md)
 - [UpdateTemplateDto](docs/UpdateTemplateDto.md)
+- [UpdateUserDto](docs/UpdateUserDto.md)
+- [UpdateUserSignatureDto](docs/UpdateUserSignatureDto.md)
 - [UpdateWebhookDto](docs/UpdateWebhookDto.md)
 - [UpdateWorkspaceDto](docs/UpdateWorkspaceDto.md)
 - [UrlResponseDto](docs/UrlResponseDto.md)
+- [UserDemographicsDto](docs/UserDemographicsDto.md)
+- [UserProfileDto](docs/UserProfileDto.md)
+- [UserSignatureDto](docs/UserSignatureDto.md)
 - [WebhookDeliveryDto](docs/WebhookDeliveryDto.md)
 - [WebhookEndpointDto](docs/WebhookEndpointDto.md)
 - [WebhookEndpointWithSecretDto](docs/WebhookEndpointWithSecretDto.md)
@@ -206,7 +250,7 @@ and is automatically generated by the
 
 - API version: `1.0`
 - Package version: `0.1.0`
-- Generator version: `7.25.0-SNAPSHOT`
+- Generator version: `7.27.0-SNAPSHOT`
 - Build package: `org.openapitools.codegen.languages.TypeScriptFetchClientCodegen`
 
 The generated npm module supports the following:

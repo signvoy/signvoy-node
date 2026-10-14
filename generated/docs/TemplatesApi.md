@@ -94,7 +94,7 @@ example().catch(console.error);
 
 Create a new template
 
-Reserves a template id and the initial draft version, plus a presigned URL the browser uses to upload the source PDF directly.
+Reserves a template id and the initial draft version. For a PDF source (the default) the response also carries a presigned URL the browser uploads the file to. Pass a &#x60;content&#x60; body with &#x60;sourceKind: \&quot;document\&quot;&#x60; to author the template as rich text instead; there is then no file to upload, so no &#x60;uploadUrl&#x60; is returned.
 
 ### Example
 
