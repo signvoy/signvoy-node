@@ -24,15 +24,15 @@ export interface CreateTemplateDto {
      */
     name: string;
     /**
-     * Original PDF filename
+     * Original PDF filename. Required for a pdf source; omit it for a document source, which has no uploaded file.
      */
-    fileName: string;
+    fileName?: string;
     /**
-     * Number of pages
+     * Number of pages. Required for a pdf source; omit it for a document source, whose length is only known once the body is rendered.
      */
-    pageCount: number;
+    pageCount?: number;
     /**
-     * Optional initial draft content (recipients/fields/rules, plus the `sourceFiles` manifest when several PDFs were merged on upload).
+     * Optional initial draft content (recipients/fields/rules, plus the `sourceFiles` manifest when several PDFs were merged on upload). Pass a body with `sourceKind: "document"` to author the template as rich text instead of uploading a PDF.
      */
     content?: object;
     /**
@@ -47,7 +47,7 @@ export interface CreateTemplateDto {
  */
 export const CreateTemplateDtoKindEnum = {
     REUSABLE: 'reusable',
-    ONEOFF: 'oneoff'
+    ONEOFF: 'oneoff',
 } as const;
 export type CreateTemplateDtoKindEnum = typeof CreateTemplateDtoKindEnum[keyof typeof CreateTemplateDtoKindEnum];
 
@@ -57,8 +57,6 @@ export type CreateTemplateDtoKindEnum = typeof CreateTemplateDtoKindEnum[keyof t
  */
 export function instanceOfCreateTemplateDto(value: object): value is CreateTemplateDto {
     if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('fileName' in value) || value['fileName'] === undefined) return false;
-    if (!('pageCount' in value) || value['pageCount'] === undefined) return false;
     return true;
 }
 
@@ -73,8 +71,8 @@ export function CreateTemplateDtoFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'name': json['name'],
-        'fileName': json['fileName'],
-        'pageCount': json['pageCount'],
+        'fileName': json['fileName'] == null ? undefined : json['fileName'],
+        'pageCount': json['pageCount'] == null ? undefined : json['pageCount'],
         'content': json['content'] == null ? undefined : json['content'],
         'kind': json['kind'] == null ? undefined : json['kind'],
     };

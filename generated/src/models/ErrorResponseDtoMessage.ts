@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * @type ErrorResponseDtoMessage
  * Human-readable error message. For validation failures this may be an array of field-level messages.
