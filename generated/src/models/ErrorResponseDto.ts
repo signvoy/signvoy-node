@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 import type { ErrorResponseDtoMessage } from './ErrorResponseDtoMessage';
 import {
     ErrorResponseDtoMessageFromJSON,
@@ -67,7 +67,7 @@ export function ErrorResponseDtoFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'statusCode': json['statusCode'],
-        'timestamp': (new Date(json['timestamp'])),
+        'timestamp': (json['timestamp'] == null ? json['timestamp'] : parseDateTime(json['timestamp'])),
         'path': json['path'],
         'message': ErrorResponseDtoMessageFromJSON(json['message']),
     };
@@ -85,7 +85,7 @@ export function ErrorResponseDtoToJSONTyped(value?: ErrorResponseDto | null, ign
     return {
         
         'statusCode': value['statusCode'],
-        'timestamp': value['timestamp'].toISOString(),
+        'timestamp': value['timestamp'] == null ? value['timestamp'] : serializeDateTime(value['timestamp']),
         'path': value['path'],
         'message': ErrorResponseDtoMessageToJSON(value['message']),
     };

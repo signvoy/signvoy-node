@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -47,7 +47,7 @@ export function HealthCheck200ResponseFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'status': json['status'] == null ? undefined : json['status'],
-        'timestamp': json['timestamp'] == null ? undefined : (new Date(json['timestamp'])),
+        'timestamp': json['timestamp'] == null ? undefined : (parseDateTime(json['timestamp'])),
     };
 }
 
@@ -63,7 +63,7 @@ export function HealthCheck200ResponseToJSONTyped(value?: HealthCheck200Response
     return {
         
         'status': value['status'],
-        'timestamp': value['timestamp'] == null ? value['timestamp'] : value['timestamp'].toISOString(),
+        'timestamp': value['timestamp'] == null ? value['timestamp'] : serializeDateTime(value['timestamp']),
     };
 }
 

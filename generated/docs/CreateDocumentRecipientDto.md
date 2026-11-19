@@ -9,6 +9,8 @@ Name | Type
 `roleKey` | string
 `name` | string
 `email` | string
+`type` | string
+`order` | number
 
 ## Example
 
@@ -20,6 +22,8 @@ const example = {
   "roleKey": buyer,
   "name": John Doe,
   "email": john.doe@example.com,
+  "type": null,
+  "order": 2,
 } satisfies CreateDocumentRecipientDto
 
 console.log(example)

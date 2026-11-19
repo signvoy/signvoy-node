@@ -39,7 +39,8 @@ export interface DocumentDtoSendBlockersInner {
  */
 export const DocumentDtoSendBlockersInnerCodeEnum = {
     NO_RECIPIENTS: 'NO_RECIPIENTS',
-    RECIPIENT_EMAIL_MISSING: 'RECIPIENT_EMAIL_MISSING'
+    RECIPIENT_EMAIL_MISSING: 'RECIPIENT_EMAIL_MISSING',
+    CC_EMAIL_MISSING: 'CC_EMAIL_MISSING',
 } as const;
 export type DocumentDtoSendBlockersInnerCodeEnum = typeof DocumentDtoSendBlockersInnerCodeEnum[keyof typeof DocumentDtoSendBlockersInnerCodeEnum];
 

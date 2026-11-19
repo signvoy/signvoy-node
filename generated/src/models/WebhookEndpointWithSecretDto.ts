@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -50,7 +50,7 @@ export interface WebhookEndpointWithSecretDto {
     /**
      * 
      */
-    disabledAt?: object | null;
+    disabledAt?: Date | null;
     /**
      * Percentage of successful deliveries (null if no deliveries yet)
      */
@@ -75,7 +75,7 @@ export interface WebhookEndpointWithSecretDto {
  */
 export const WebhookEndpointWithSecretDtoStatusEnum = {
     ENABLED: 'enabled',
-    DISABLED: 'disabled'
+    DISABLED: 'disabled',
 } as const;
 export type WebhookEndpointWithSecretDtoStatusEnum = typeof WebhookEndpointWithSecretDtoStatusEnum[keyof typeof WebhookEndpointWithSecretDtoStatusEnum];
 
@@ -113,10 +113,10 @@ export function WebhookEndpointWithSecretDtoFromJSONTyped(json: any, ignoreDiscr
         'enabledEvents': json['enabledEvents'],
         'status': json['status'],
         'consecutiveFailures': json['consecutiveFailures'],
-        'disabledAt': json['disabledAt'] === undefined ? undefined : json['disabledAt'] === null ? null : json['disabledAt'],
+        'disabledAt': json['disabledAt'] === undefined ? undefined : json['disabledAt'] === null ? null : (parseDateTime(json['disabledAt'])),
         'successRate': json['successRate'] === undefined ? undefined : json['successRate'] === null ? null : json['successRate'],
-        'createdAt': (new Date(json['createdAt'])),
-        'updatedAt': (new Date(json['updatedAt'])),
+        'createdAt': (json['createdAt'] == null ? json['createdAt'] : parseDateTime(json['createdAt'])),
+        'updatedAt': (json['updatedAt'] == null ? json['updatedAt'] : parseDateTime(json['updatedAt'])),
         'secret': json['secret'],
     };
 }
@@ -139,10 +139,10 @@ export function WebhookEndpointWithSecretDtoToJSONTyped(value?: WebhookEndpointW
         'enabledEvents': value['enabledEvents'],
         'status': value['status'],
         'consecutiveFailures': value['consecutiveFailures'],
-        'disabledAt': value['disabledAt'],
+        'disabledAt': value['disabledAt'] == null ? value['disabledAt'] : serializeDateTime(value['disabledAt']),
         'successRate': value['successRate'],
-        'createdAt': value['createdAt'].toISOString(),
-        'updatedAt': value['updatedAt'].toISOString(),
+        'createdAt': value['createdAt'] == null ? value['createdAt'] : serializeDateTime(value['createdAt']),
+        'updatedAt': value['updatedAt'] == null ? value['updatedAt'] : serializeDateTime(value['updatedAt']),
         'secret': value['secret'],
     };
 }

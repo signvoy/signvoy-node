@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -38,11 +38,11 @@ export interface CreatedApiKeyDto {
     /**
      * When the key was last used to authenticate a request
      */
-    lastUsedAt?: object | null;
+    lastUsedAt?: Date | null;
     /**
      * When the key expires (null = never)
      */
-    expiresAt?: object | null;
+    expiresAt?: Date | null;
     /**
      * Whether the key has been revoked
      */
@@ -85,10 +85,10 @@ export function CreatedApiKeyDtoFromJSONTyped(json: any, ignoreDiscriminator: bo
         'name': json['name'],
         'prefix': json['prefix'],
         'last4': json['last4'],
-        'lastUsedAt': json['lastUsedAt'] === undefined ? undefined : json['lastUsedAt'] === null ? null : json['lastUsedAt'],
-        'expiresAt': json['expiresAt'] === undefined ? undefined : json['expiresAt'] === null ? null : json['expiresAt'],
+        'lastUsedAt': json['lastUsedAt'] === undefined ? undefined : json['lastUsedAt'] === null ? null : (parseDateTime(json['lastUsedAt'])),
+        'expiresAt': json['expiresAt'] === undefined ? undefined : json['expiresAt'] === null ? null : (parseDateTime(json['expiresAt'])),
         'revoked': json['revoked'],
-        'createdAt': (new Date(json['createdAt'])),
+        'createdAt': (json['createdAt'] == null ? json['createdAt'] : parseDateTime(json['createdAt'])),
         'key': json['key'],
     };
 }
@@ -108,10 +108,10 @@ export function CreatedApiKeyDtoToJSONTyped(value?: CreatedApiKeyDto | null, ign
         'name': value['name'],
         'prefix': value['prefix'],
         'last4': value['last4'],
-        'lastUsedAt': value['lastUsedAt'],
-        'expiresAt': value['expiresAt'],
+        'lastUsedAt': value['lastUsedAt'] == null ? value['lastUsedAt'] : serializeDateTime(value['lastUsedAt']),
+        'expiresAt': value['expiresAt'] == null ? value['expiresAt'] : serializeDateTime(value['expiresAt']),
         'revoked': value['revoked'],
-        'createdAt': value['createdAt'].toISOString(),
+        'createdAt': value['createdAt'] == null ? value['createdAt'] : serializeDateTime(value['createdAt']),
         'key': value['key'],
     };
 }

@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface CreateDocumentRecipientDto {
     /**
-     * Template role key this recipient fills (matches `version.content.recipients[].key`)
+     * Template role key this recipient fills (matches `version.content.recipients[].key`). Required for `signer`; ignored for `cc` and `viewer`, which hold no fields and are assigned a synthetic key.
      */
     roleKey: string;
     /**
@@ -31,7 +31,27 @@ export interface CreateDocumentRecipientDto {
      * Recipient's email address for notifications
      */
     email?: string;
+    /**
+     * What this recipient is asked to do. `signer` (default) fills in fields and signs. `cc` receives a copy and never holds up the signing order. `viewer` must open and confirm they reviewed the document, and blocks the order until they do.
+     */
+    type?: CreateDocumentRecipientDtoTypeEnum;
+    /**
+     * Position in the signing order. Signers default to the order set on their template role. For a `cc` this is also *when* the copy is sent: a position after every signer gets the certified final document, while a mid-order position gets the document as it stands at that step.
+     */
+    order?: number;
 }
+
+
+/**
+ * @export
+ */
+export const CreateDocumentRecipientDtoTypeEnum = {
+    SIGNER: 'signer',
+    CC: 'cc',
+    VIEWER: 'viewer',
+} as const;
+export type CreateDocumentRecipientDtoTypeEnum = typeof CreateDocumentRecipientDtoTypeEnum[keyof typeof CreateDocumentRecipientDtoTypeEnum];
+
 
 /**
  * Check if a given object implements the CreateDocumentRecipientDto interface.
@@ -55,6 +75,8 @@ export function CreateDocumentRecipientDtoFromJSONTyped(json: any, ignoreDiscrim
         'roleKey': json['roleKey'],
         'name': json['name'],
         'email': json['email'] == null ? undefined : json['email'],
+        'type': json['type'] == null ? undefined : json['type'],
+        'order': json['order'] == null ? undefined : json['order'],
     };
 }
 
@@ -72,6 +94,8 @@ export function CreateDocumentRecipientDtoToJSONTyped(value?: CreateDocumentReci
         'roleKey': value['roleKey'],
         'name': value['name'],
         'email': value['email'],
+        'type': value['type'],
+        'order': value['order'],
     };
 }
 

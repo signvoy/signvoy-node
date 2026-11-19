@@ -15,6 +15,7 @@ Name | Type
 `status` | string
 `routingMode` | string
 `message` | string
+`emailSubject` | string
 `createdAt` | number
 `sentAt` | number
 `completedAt` | number
@@ -46,6 +47,7 @@ const example = {
   "status": null,
   "routingMode": null,
   "message": null,
+  "emailSubject": null,
   "createdAt": null,
   "sentAt": null,
   "completedAt": null,

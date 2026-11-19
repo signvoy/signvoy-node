@@ -9,6 +9,7 @@ Name | Type
 `id` | string
 `roleKey` | string
 `roleName` | string
+`type` | string
 `name` | string
 `email` | string
 `color` | string
@@ -31,6 +32,7 @@ const example = {
   "id": null,
   "roleKey": null,
   "roleName": null,
+  "type": null,
   "name": null,
   "email": null,
   "color": null,

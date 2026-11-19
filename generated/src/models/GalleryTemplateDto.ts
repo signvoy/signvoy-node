@@ -95,7 +95,7 @@ export interface GalleryTemplateDto {
  */
 export const GalleryTemplateDtoSourceKindEnum = {
     PDF: 'pdf',
-    DOCUMENT: 'document'
+    DOCUMENT: 'document',
 } as const;
 export type GalleryTemplateDtoSourceKindEnum = typeof GalleryTemplateDtoSourceKindEnum[keyof typeof GalleryTemplateDtoSourceKindEnum];
 

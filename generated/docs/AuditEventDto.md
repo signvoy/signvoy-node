@@ -8,15 +8,15 @@ Name | Type
 ------------ | -------------
 `id` | string
 `documentId` | string
-`documentRecipientId` | object
+`documentRecipientId` | string
 `type` | string
-`actorName` | object
-`actorEmail` | object
-`apiKeyId` | object
-`apiKeyName` | object
-`ipAddress` | object
-`userAgent` | object
-`metadata` | object
+`actorName` | string
+`actorEmail` | string
+`apiKeyId` | string
+`apiKeyName` | string
+`ipAddress` | string
+`userAgent` | string
+`metadata` | { [key: string]: any; }
 `createdAt` | Date
 
 ## Example

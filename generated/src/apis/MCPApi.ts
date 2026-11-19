@@ -63,7 +63,7 @@ export class MCPApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates or un-revokes a grant so the specified Clerk OAuth client can access the MCP endpoint on behalf of the authenticated user. The clerkClientId is the client_id returned by Clerk\'s Dynamic Client Registration endpoint when an MCP client connects for the first time.
+     * Creates or un-revokes a grant so the specified Clerk OAuth client can access the MCP endpoint on behalf of the authenticated user. The clerkClientId is the client_id returned by Clerk\'s Dynamic Client Registration endpoint when an MCP client connects for the first time. A grant carries no workspace — each tool call names the workspace it acts on and is authorised against the user\'s membership of it.
      * Authorise an OAuth client to call the MCP endpoint
      */
     async mcpGrantsCreateRaw(requestParameters: McpGrantsCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -74,7 +74,7 @@ export class MCPApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates or un-revokes a grant so the specified Clerk OAuth client can access the MCP endpoint on behalf of the authenticated user. The clerkClientId is the client_id returned by Clerk\'s Dynamic Client Registration endpoint when an MCP client connects for the first time.
+     * Creates or un-revokes a grant so the specified Clerk OAuth client can access the MCP endpoint on behalf of the authenticated user. The clerkClientId is the client_id returned by Clerk\'s Dynamic Client Registration endpoint when an MCP client connects for the first time. A grant carries no workspace — each tool call names the workspace it acts on and is authorised against the user\'s membership of it.
      * Authorise an OAuth client to call the MCP endpoint
      */
     async mcpGrantsCreate(requestParameters: McpGrantsCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {

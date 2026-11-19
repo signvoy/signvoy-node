@@ -43,7 +43,7 @@ export interface UpdateWebhookDto {
  */
 export const UpdateWebhookDtoStatusEnum = {
     ACTIVE: 'active',
-    DISABLED: 'disabled'
+    DISABLED: 'disabled',
 } as const;
 export type UpdateWebhookDtoStatusEnum = typeof UpdateWebhookDtoStatusEnum[keyof typeof UpdateWebhookDtoStatusEnum];
 
