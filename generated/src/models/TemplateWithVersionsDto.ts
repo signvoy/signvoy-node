@@ -62,11 +62,11 @@ export interface TemplateWithVersionsDto {
     /**
      * 
      */
-    currentDraftVersionId?: object | null;
+    currentDraftVersionId?: string | null;
     /**
      * 
      */
-    currentPublishedVersionId?: object | null;
+    currentPublishedVersionId?: string | null;
     /**
      * Current draft version (null if none exists)
      */
@@ -83,7 +83,7 @@ export interface TemplateWithVersionsDto {
  */
 export const TemplateWithVersionsDtoKindEnum = {
     REUSABLE: 'reusable',
-    ONEOFF: 'oneoff'
+    ONEOFF: 'oneoff',
 } as const;
 export type TemplateWithVersionsDtoKindEnum = typeof TemplateWithVersionsDtoKindEnum[keyof typeof TemplateWithVersionsDtoKindEnum];
 

@@ -54,6 +54,10 @@ export interface CreateDocumentDto {
      */
     message?: string;
     /**
+     * Replaces the generated subject line on the signing request, the awaiting-your-turn heads-up, and reminders (which stay prefixed with "Reminder: "). Completion, decline, void and expiry notices always use their standard wording. Leave unset for the generated subject.
+     */
+    emailSubject?: string;
+    /**
      * Signing-order mode. parallel (default): all recipients are invited at once. sequential: recipients are activated group-by-group by ascending order value — the next group is only activated once the current group has fully signed.
      */
     routingMode?: CreateDocumentDtoRoutingModeEnum;
@@ -66,7 +70,7 @@ export interface CreateDocumentDto {
      */
     expiry?: ExpirySettingsDto;
     /**
-     * List of recipients who will sign the document
+     * Everyone involved with the document, in signing order — those who sign, those who must view and confirm, and those who just receive a copy. At least one must sign or view.
      */
     recipients: Array<CreateDocumentRecipientDto>;
 }
@@ -77,7 +81,7 @@ export interface CreateDocumentDto {
  */
 export const CreateDocumentDtoRoutingModeEnum = {
     PARALLEL: 'parallel',
-    SEQUENTIAL: 'sequential'
+    SEQUENTIAL: 'sequential',
 } as const;
 export type CreateDocumentDtoRoutingModeEnum = typeof CreateDocumentDtoRoutingModeEnum[keyof typeof CreateDocumentDtoRoutingModeEnum];
 
@@ -104,6 +108,7 @@ export function CreateDocumentDtoFromJSONTyped(json: any, ignoreDiscriminator: b
         'templateId': json['templateId'],
         'name': json['name'] == null ? undefined : json['name'],
         'message': json['message'] == null ? undefined : json['message'],
+        'emailSubject': json['emailSubject'] == null ? undefined : json['emailSubject'],
         'routingMode': json['routingMode'] == null ? undefined : json['routingMode'],
         'reminders': json['reminders'] == null ? undefined : ReminderSettingsDtoFromJSON(json['reminders']),
         'expiry': json['expiry'] == null ? undefined : ExpirySettingsDtoFromJSON(json['expiry']),
@@ -125,6 +130,7 @@ export function CreateDocumentDtoToJSONTyped(value?: CreateDocumentDto | null, i
         'templateId': value['templateId'],
         'name': value['name'],
         'message': value['message'],
+        'emailSubject': value['emailSubject'],
         'routingMode': value['routingMode'],
         'reminders': ReminderSettingsDtoToJSON(value['reminders']),
         'expiry': ExpirySettingsDtoToJSON(value['expiry']),

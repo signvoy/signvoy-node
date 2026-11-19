@@ -32,6 +32,10 @@ export interface DocumentRecipientDto {
      */
     roleName: string;
     /**
+     * What this recipient is asked to do. `signer` fills in fields and signs. `cc` receives a copy and never holds up the signing order. `viewer` must open and confirm they reviewed the document.
+     */
+    type: DocumentRecipientDtoTypeEnum;
+    /**
      * 
      */
     name: string;
@@ -48,7 +52,7 @@ export interface DocumentRecipientDto {
      */
     order: number;
     /**
-     * 
+     * Each role reaches its own terminal status: a signer `signed`, a viewer `acknowledged`, a CC `copy_sent`. They are never interchangeable.
      */
     status: DocumentRecipientDtoStatusEnum;
     /**
@@ -81,10 +85,22 @@ export interface DocumentRecipientDto {
 /**
  * @export
  */
+export const DocumentRecipientDtoTypeEnum = {
+    SIGNER: 'signer',
+    CC: 'cc',
+    VIEWER: 'viewer',
+} as const;
+export type DocumentRecipientDtoTypeEnum = typeof DocumentRecipientDtoTypeEnum[keyof typeof DocumentRecipientDtoTypeEnum];
+
+/**
+ * @export
+ */
 export const DocumentRecipientDtoStatusEnum = {
     PENDING: 'pending',
     SIGNED: 'signed',
-    DECLINED: 'declined'
+    ACKNOWLEDGED: 'acknowledged',
+    COPY_SENT: 'copy_sent',
+    DECLINED: 'declined',
 } as const;
 export type DocumentRecipientDtoStatusEnum = typeof DocumentRecipientDtoStatusEnum[keyof typeof DocumentRecipientDtoStatusEnum];
 
@@ -96,6 +112,7 @@ export function instanceOfDocumentRecipientDto(value: object): value is Document
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('roleKey' in value) || value['roleKey'] === undefined) return false;
     if (!('roleName' in value) || value['roleName'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('color' in value) || value['color'] === undefined) return false;
     if (!('order' in value) || value['order'] === undefined) return false;
@@ -116,6 +133,7 @@ export function DocumentRecipientDtoFromJSONTyped(json: any, ignoreDiscriminator
         'id': json['id'],
         'roleKey': json['roleKey'],
         'roleName': json['roleName'],
+        'type': json['type'],
         'name': json['name'],
         'email': json['email'] == null ? undefined : json['email'],
         'color': json['color'],
@@ -144,6 +162,7 @@ export function DocumentRecipientDtoToJSONTyped(value?: DocumentRecipientDto | n
         'id': value['id'],
         'roleKey': value['roleKey'],
         'roleName': value['roleName'],
+        'type': value['type'],
         'name': value['name'],
         'email': value['email'],
         'color': value['color'],

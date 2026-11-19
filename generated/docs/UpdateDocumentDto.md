@@ -8,6 +8,7 @@ Name | Type
 ------------ | -------------
 `name` | string
 `message` | string
+`emailSubject` | string
 `routingMode` | string
 `reminders` | [ReminderSettingsDto](ReminderSettingsDto.md)
 `expiry` | [ExpirySettingsDto](ExpirySettingsDto.md)
@@ -22,6 +23,7 @@ import type { UpdateDocumentDto } from '@signvoy/node'
 const example = {
   "name": Q4 2025 Contract Agreement,
   "message": Please review and sign this document at your earliest convenience.,
+  "emailSubject": Please sign: Acme MSA,
   "routingMode": null,
   "reminders": null,
   "expiry": null,

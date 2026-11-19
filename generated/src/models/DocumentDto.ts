@@ -71,6 +71,10 @@ export interface DocumentDto {
      */
     message?: string;
     /**
+     * Sender's replacement subject for the signing request and reminders. Absent means the generated subject is used.
+     */
+    emailSubject?: string;
+    /**
      * Creation timestamp (Unix ms)
      */
     createdAt: number;
@@ -139,7 +143,7 @@ export const DocumentDtoStatusEnum = {
     COMPLETED: 'completed',
     DECLINED: 'declined',
     VOIDED: 'voided',
-    EXPIRED: 'expired'
+    EXPIRED: 'expired',
 } as const;
 export type DocumentDtoStatusEnum = typeof DocumentDtoStatusEnum[keyof typeof DocumentDtoStatusEnum];
 
@@ -148,7 +152,7 @@ export type DocumentDtoStatusEnum = typeof DocumentDtoStatusEnum[keyof typeof Do
  */
 export const DocumentDtoRoutingModeEnum = {
     PARALLEL: 'parallel',
-    SEQUENTIAL: 'sequential'
+    SEQUENTIAL: 'sequential',
 } as const;
 export type DocumentDtoRoutingModeEnum = typeof DocumentDtoRoutingModeEnum[keyof typeof DocumentDtoRoutingModeEnum];
 
@@ -194,6 +198,7 @@ export function DocumentDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'status': json['status'],
         'routingMode': json['routingMode'],
         'message': json['message'] == null ? undefined : json['message'],
+        'emailSubject': json['emailSubject'] == null ? undefined : json['emailSubject'],
         'createdAt': json['createdAt'],
         'sentAt': json['sentAt'] == null ? undefined : json['sentAt'],
         'completedAt': json['completedAt'] == null ? undefined : json['completedAt'],
@@ -231,6 +236,7 @@ export function DocumentDtoToJSONTyped(value?: DocumentDto | null, ignoreDiscrim
         'status': value['status'],
         'routingMode': value['routingMode'],
         'message': value['message'],
+        'emailSubject': value['emailSubject'],
         'createdAt': value['createdAt'],
         'sentAt': value['sentAt'],
         'completedAt': value['completedAt'],

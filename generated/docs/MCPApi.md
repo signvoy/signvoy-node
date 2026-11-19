@@ -16,7 +16,7 @@ All URIs are relative to *https://api.signvoy.com*
 
 Authorise an OAuth client to call the MCP endpoint
 
-Creates or un-revokes a grant so the specified Clerk OAuth client can access the MCP endpoint on behalf of the authenticated user. The clerkClientId is the client_id returned by Clerk\&#39;s Dynamic Client Registration endpoint when an MCP client connects for the first time.
+Creates or un-revokes a grant so the specified Clerk OAuth client can access the MCP endpoint on behalf of the authenticated user. The clerkClientId is the client_id returned by Clerk\&#39;s Dynamic Client Registration endpoint when an MCP client connects for the first time. A grant carries no workspace — each tool call names the workspace it acts on and is authorised against the user\&#39;s membership of it.
 
 ### Example
 

@@ -28,9 +28,9 @@ export interface CreateTemplateResponseDto {
      */
     draftVersionId: string;
     /**
-     * Presigned PUT URL for uploading the source PDF directly to storage. Upload the PDF bytes to this URL with Content-Type: application/pdf.
+     * Presigned PUT URL for uploading the source PDF directly to storage. Upload the PDF bytes to this URL with Content-Type: application/pdf. Absent for a document-source template, which has no file to upload — its PDF is rendered from the body at signing time.
      */
-    uploadUrl: string;
+    uploadUrl?: string;
 }
 
 /**
@@ -39,7 +39,6 @@ export interface CreateTemplateResponseDto {
 export function instanceOfCreateTemplateResponseDto(value: object): value is CreateTemplateResponseDto {
     if (!('templateId' in value) || value['templateId'] === undefined) return false;
     if (!('draftVersionId' in value) || value['draftVersionId'] === undefined) return false;
-    if (!('uploadUrl' in value) || value['uploadUrl'] === undefined) return false;
     return true;
 }
 
@@ -55,7 +54,7 @@ export function CreateTemplateResponseDtoFromJSONTyped(json: any, ignoreDiscrimi
         
         'templateId': json['templateId'],
         'draftVersionId': json['draftVersionId'],
-        'uploadUrl': json['uploadUrl'],
+        'uploadUrl': json['uploadUrl'] == null ? undefined : json['uploadUrl'],
     };
 }
 

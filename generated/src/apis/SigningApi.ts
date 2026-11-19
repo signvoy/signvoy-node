@@ -40,6 +40,13 @@ export interface SigningDeclineRequest {
     declineDto: DeclineDto;
 }
 
+export interface SigningDocumentUrlRequest {
+    /**
+     * Unique signing token sent to recipient
+     */
+    token: string;
+}
+
 export interface SigningGetContextRequest {
     /**
      * Unique signing token sent to recipient
@@ -135,6 +142,52 @@ export class SigningApi extends runtime.BaseAPI {
      */
     async signingDecline(requestParameters: SigningDeclineRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.signingDeclineRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates request options for signingDocumentUrl without sending the request
+     */
+    async signingDocumentUrlRequestOpts(requestParameters: SigningDocumentUrlRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['token'] == null) {
+            throw new runtime.RequiredError(
+                'token',
+                'Required parameter "token" was null or undefined when calling signingDocumentUrl().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+
+        let urlPath = `/v1/sign/{token}/document`;
+        urlPath = urlPath.replace('{token}', encodeURIComponent(String(requestParameters['token'])));
+
+        return {
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        };
+    }
+
+    /**
+     * Presigned URL for the document as it stands for this recipient. A CC or viewer placed mid-order receives the snapshot as of their step; once the document is complete, everyone gets the certified final PDF.
+     * Get a download link for the document
+     */
+    async signingDocumentUrlRaw(requestParameters: SigningDocumentUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.signingDocumentUrlRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Presigned URL for the document as it stands for this recipient. A CC or viewer placed mid-order receives the snapshot as of their step; once the document is complete, everyone gets the certified final PDF.
+     * Get a download link for the document
+     */
+    async signingDocumentUrl(requestParameters: SigningDocumentUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.signingDocumentUrlRaw(requestParameters, initOverrides);
     }
 
     /**

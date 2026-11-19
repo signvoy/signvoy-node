@@ -9,6 +9,7 @@ Name | Type
 `templateId` | string
 `name` | string
 `message` | string
+`emailSubject` | string
 `routingMode` | string
 `reminders` | [ReminderSettingsDto](ReminderSettingsDto.md)
 `expiry` | [ExpirySettingsDto](ExpirySettingsDto.md)
@@ -24,6 +25,7 @@ const example = {
   "templateId": 550e8400-e29b-41d4-a716-446655440000,
   "name": Q4 2025 Contract Agreement,
   "message": Please review and sign this document at your earliest convenience.,
+  "emailSubject": Please sign: Acme MSA,
   "routingMode": null,
   "reminders": null,
   "expiry": null,

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * 
  * @export
@@ -59,7 +59,7 @@ export function EmbedSessionResponseDtoFromJSONTyped(json: any, ignoreDiscrimina
     return {
         
         'url': json['url'],
-        'expiresAt': (new Date(json['expiresAt'])),
+        'expiresAt': (json['expiresAt'] == null ? json['expiresAt'] : parseDateTime(json['expiresAt'])),
         'documentId': json['documentId'],
         'documentRecipientId': json['documentRecipientId'],
     };
@@ -77,7 +77,7 @@ export function EmbedSessionResponseDtoToJSONTyped(value?: EmbedSessionResponseD
     return {
         
         'url': value['url'],
-        'expiresAt': value['expiresAt'].toISOString(),
+        'expiresAt': value['expiresAt'] == null ? value['expiresAt'] : serializeDateTime(value['expiresAt']),
         'documentId': value['documentId'],
         'documentRecipientId': value['documentRecipientId'],
     };

@@ -14,8 +14,8 @@ Name | Type
 `archivedAt` | number
 `createdAt` | number
 `updatedAt` | number
-`currentDraftVersionId` | object
-`currentPublishedVersionId` | object
+`currentDraftVersionId` | string
+`currentPublishedVersionId` | string
 `draftVersion` | [TemplateVersionDto](TemplateVersionDto.md)
 `publishedVersion` | [TemplateVersionDto](TemplateVersionDto.md)
 
