@@ -1,6 +1,6 @@
 {
   "name": "@signvoy/node",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Official Node.js SDK for the Signvoy e-signature API",
   "license": "MIT",
   "author": "Signvoy Inc.",
